@@ -51,7 +51,7 @@ function Filtros({
           <option value="saude">Saúde</option>
           <option value="cuidados_pessoais">Cuidados Pessoais</option>
           <option value="compras">Compras</option>
-           <option value="assinaturas ">Assinaturas</option>
+           <option value="assinaturas">Assinaturas</option>
 
           {/* receitas */}
           <option value="salario">Salário</option>
