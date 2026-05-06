@@ -31,16 +31,14 @@
 }
 
 /* tema escuro */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --background: var(--color-gray-950);
-        --main-text: var(--color-white);
-        --secondary-text: var(--color-gray-100);
-        --inverted-text: var(--color-gray-950);
-        --primary-color: var(--color-medium-purple);
-        --secondary-color: var(--color-dark-purple);
-        --standard-border: var(--color-gray-700)
-    }
+[data-theme="dark"] {
+    --background: var(--color-gray-950);
+    --main-text: var(--color-white);
+    --secondary-text: var(--color-gray-100);
+    --inverted-text: var(--color-gray-950);
+    --primary-color: var(--color-medium-purple);
+    --secondary-color: var(--color-dark-purple);
+    --standard-border: var(--color-gray-700);
 }
 
 body,
