@@ -1,0 +1,16 @@
+.insightsContainer {
+  padding: 2rem;
+}
+
+.title {
+  font-size: 2rem;
+  color: var(--main-text);
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+

@@ -11,8 +11,9 @@ import { analisarConsumo } from "./utils/analiseConsumo";
 import { Header } from "./components/Header/Header";
 import { Resumo } from "./components/Resumo/Resumo";
 import Filtros from "./components/Filtros";
-import Insights from "./components/Insights";
+import Insights from "./components/Insights/Insights";
 import { MainHeader } from "./components/MainHeader/MainHeader";
+import Recomendacoes from "./components/Recomendacoes/Recomendacoes";
 
 function App() {
     const [consumos, setConsumos] = useState([]);
@@ -85,6 +86,8 @@ function App() {
                 filtroTipo={filtroTipo}
                 setFiltroTipo={setFiltroTipo}
             />
+
+            <Recomendacoes analise={analise}/>
         </div>
     );
 }
