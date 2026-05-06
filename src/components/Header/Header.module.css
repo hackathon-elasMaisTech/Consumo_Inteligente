@@ -13,27 +13,6 @@
     font-weight: 800;
 }
 
-.menu {
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-}
-
-.menuItem {
-    color: var(--secondary-text);
-    text-decoration: none;
-    font-size: 2rem;
-    font-weight: 600;
-    padding: 1rem 1.5rem;
-    transition: ease-in-out 0.2s, color 0.2s
-}
-
-.menuItemActive {
-    background-color: var(--secondary-color);
-    color: var(--primary-color);
-    border-radius: 1.2rem;
-}
-
 .accountMenu {
     display: flex;
     align-items: center;
@@ -53,14 +32,6 @@
 .themeToggleBtn {
     color: var(--secondary-text);
     font-size: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.iconsAccountMenu {
-    font-size: 2rem;
-    color: var(--secondary-text);
     display: flex;
     align-items: center;
     justify-content: center;
