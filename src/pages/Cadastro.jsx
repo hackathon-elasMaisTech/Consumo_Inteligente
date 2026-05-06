@@ -28,7 +28,17 @@ function Cadastro({ onAdd }) {
   // 🎯 categorias dinâmicas
   const categorias =
     tipo === "despesa"
-      ? ["mercado", "transporte", "lazer", "contas"]
+      ? [
+          "mercado",
+          "transporte",
+          "lazer",
+          "contas",
+          "moradia",
+          "saude",
+          "cuidados_pessoais",
+          "compras",
+          "assinaturas"
+        ]
       : ["salario", "freelance", "investimento"];
 
   return (
