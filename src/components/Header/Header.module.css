@@ -1,0 +1,78 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 8rem;
+    padding: 0 4rem;
+    border-bottom: 1px solid var(--standard-border);
+}
+
+.logo {
+    color: var(--main-text);
+    font-size: 2.4rem;
+    font-weight: 800;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.menuItem {
+    color: var(--secondary-text);
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: 600;
+    padding: 1rem 1.5rem;
+    transition: ease-in-out 0.2s, color 0.2s
+}
+
+.menuItemActive {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border-radius: 1.2rem;
+}
+
+.accountMenu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.button {
+    height: 4rem;
+    width: 4rem;
+    border: none;
+    background: none;
+    /* padding: 0.5rem; */
+    cursor: pointer;
+}
+
+.themeToggleBtn {
+    color: var(--secondary-text);
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.iconsAccountMenu {
+    font-size: 2rem;
+    color: var(--secondary-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar {
+    font-size: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+    /* padding: 0.2rem; */
+    border-radius: 100%;
+}
