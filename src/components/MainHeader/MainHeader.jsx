@@ -1,8 +1,8 @@
 import { GoPlus, GoCalendar } from "react-icons/go";
-import styles from "./MainHeader.module.css";
 import { useState } from "react";
 import { Modal } from "../Modal/Modal";
-import Cadastro from "../../pages/Cadastro";
+import { Cadastro } from "../Cadastro/Cadastro";
+import styles from "./MainHeader.module.css";
 
 export const MainHeader = ({ onAddTransaction }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -25,6 +25,7 @@ export const MainHeader = ({ onAddTransaction }) => {
                 <Modal
                     isOpen={isModalOpen}
                     onClose={() => setIsModalOpen(false)}
+                    title="Adicionar Nova Transação"
                 >
                     <Cadastro
                         onAdd={(novoItem) => {
