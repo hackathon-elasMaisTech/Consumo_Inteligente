@@ -9,9 +9,10 @@ import { analisarConsumo } from "./utils/analiseConsumo";
 
 // novos componentes
 import { Header } from "./components/Header/Header";
-import Resumo from "./components/Resumo";
+import { Resumo } from "./components/Resumo/Resumo";
 import Filtros from "./components/Filtros";
 import Insights from "./components/Insights";
+import { MainHeader } from "./components/MainHeader/MainHeader";
 
 function App() {
     const [consumos, setConsumos] = useState([]);
@@ -63,6 +64,8 @@ function App() {
     return (
         <div className="app-container">
             <Header />
+
+            <MainHeader />
 
             <Resumo
                 receitas={totalReceitas}
