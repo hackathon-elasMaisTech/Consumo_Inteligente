@@ -4,13 +4,15 @@ import { GoX } from "react-icons/go";
 export const Modal = ({ isOpen, onClose, children, title }) => {
     if (!isOpen) return null;
 
+    const handleOverlayClick = (event) => {
+        if (event.target === event.currentTarget) {
+            onClose();
+        }
+    };
+
     return (
-        <div className={styles.overlay} onClick={onClose}>
-            {/* O stopPropagation impede que o modal feche ao clicar dentro da caixa branca */}
-            <div
-                className={styles.container}
-                onClick={(e) => e.stopPropagation}
-            >
+        <div className={styles.overlay} onClick={handleOverlayClick}>
+            <div className={styles.container}>
                 <header className={styles.header}>
                     <h3>{title}</h3>
                     <button className={styles.closeBtn} onClick={onClose}>
