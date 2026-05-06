@@ -1,0 +1,39 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 3.2rem;
+    padding: 0 10rem;
+    margin-top: 2rem;
+    /* flex: 1 0 0; */
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-grow: 1;
+    gap: 0.8rem;
+    padding: 2.4rem;
+
+    border: 1px solid var(--standard-border);
+    border-radius: 1.2rem;
+    box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
+}
+
+.cardTitle {
+    color: var(--secondary-text);
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+.cardValue {
+    color: var(--main-text);
+    font-size: 3.6rem;
+    font-weight: 600;
+}
+
+.cardValueExpense {
+    color: var(--primary-color);
+}
