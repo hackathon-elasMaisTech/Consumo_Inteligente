@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { getConsumos, createConsumo, deleteConsumo } from "./services/api";
 
-import "./styles/global.module.css";
+import "./styles/global.css";
 
 import Cadastro from "./pages/Cadastro";
 import Lista from "./pages/Lista";
 
 // novos componentes
-import Header from "./components/Header";
+import { Header } from "./components/Header/Header";
 import Resumo from "./components/Resumo";
 import Filtros from "./components/Filtros";
 
