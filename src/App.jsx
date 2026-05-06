@@ -65,7 +65,7 @@ function App() {
         <div className="app-container">
             <Header />
 
-            <MainHeader />
+            <MainHeader onAddTransaction={adicionarConsumo} />
 
             <Resumo
                 receitas={totalReceitas}
