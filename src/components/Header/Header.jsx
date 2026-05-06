@@ -31,7 +31,7 @@ export const Header = () => {
 
     return (
         <header className={styles.header}>
-            <h1 className={styles.logo}>consum</h1>
+            <h2 className={styles.logo}>consum</h2>
             <nav className={styles.menu}>
                 <NavLink to="/" className={checkActiveLink}>
                     Visão geral
