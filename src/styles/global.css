@@ -6,6 +6,42 @@
     box-sizing: border-box;
 }
 
+:root {
+    /* cores primitivas */
+    --color-white: #fefdfb;
+    --color-gray-100: #ECEFF2;
+    --color-gray-600: #516778;
+    --color-gray-700: #314158;
+    --color-gray-950: #22292F;
+    --color-gray-black: #1b1c1e;
+    --color-light-purple: #EADDFF;
+    --color-medium-purple: #9E77ED;
+    --color-dark-purple: #4F378A;
+
+    /* cores semânticas */
+    /* tema claro - padrão */
+    --background: var(--color-white);
+    --main-text: var(--color-gray-950);
+    --secondary-text: var(--color-gray-600);
+    --inverted-text: var(--color-white);
+    --primary-color: var(--color-medium-purple);
+    --secondary-color: var(--color-light-purple);
+    --standard-border: var(--color-gray-100);
+}
+
+/* tema escuro */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: var(--color-gray-950);
+        --main-text: var(--color-white);
+        --secondary-text: var(--color-gray-100);
+        --inverted-text: var(--color-gray-950);
+        --primary-color: var(--color-medium-purple);
+        --secondary-color: var(--color-dark-purple);
+        --standard-border: var(--color-gray-700)
+    }
+}
+
 body,
 button,
 input,
