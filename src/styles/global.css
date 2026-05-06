@@ -7,6 +7,7 @@
 }
 
 :root {
+    font-size: 62.5%;
     /* cores primitivas */
     --color-white: #fefdfb;
     --color-gray-100: #ECEFF2;
@@ -49,4 +50,10 @@ select,
 option,
 textarea {
     font-family: "Inter", monospace;
+}
+
+body {
+    background-color: var(--background);
+    max-width: 1440px;
+    margin: 0 auto;
 }
