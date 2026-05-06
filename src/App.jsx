@@ -3,11 +3,13 @@ import { getConsumos, createConsumo, deleteConsumo } from "./services/api";
 
 import Cadastro from "./pages/Cadastro";
 import Lista from "./pages/Lista";
+import { analisarConsumo } from "./utils/analiseConsumo";
 
 // novos componentes
 import Header from "./components/Header";
 import Resumo from "./components/Resumo";
 import Filtros from "./components/Filtros";
+import Insights from "./components/Insights";
 
 function App() {
   const [consumos, setConsumos] = useState([]);
@@ -47,6 +49,7 @@ function App() {
     .reduce((acc, i) => acc + i.valor, 0);
 
   const saldo = totalReceitas - totalDespesas;
+  const analise = analisarConsumo(consumos);
 
   // filtro
   const consumosFiltrados = consumos.filter(item =>
@@ -73,6 +76,8 @@ function App() {
         consumos={consumosFiltrados}
         onDelete={removerConsumo}
       />
+
+      <Insights analise={analise} />
 
       <Filtros
         filtroCategoria={filtroCategoria}
