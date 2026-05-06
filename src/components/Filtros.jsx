@@ -47,6 +47,11 @@ function Filtros({
           <option value="transporte">Transporte</option>
           <option value="lazer">Lazer</option>
           <option value="contas">Contas</option>
+           <option value="moradia">Moradia</option>
+          <option value="saude">Saúde</option>
+          <option value="cuidados_pessoais">Cuidados Pessoais</option>
+          <option value="compras">Compras</option>
+           <option value="assinaturas ">Assinaturas</option>
 
           {/* receitas */}
           <option value="salario">Salário</option>
