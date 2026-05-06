@@ -3,7 +3,6 @@ import { getConsumos, createConsumo, deleteConsumo } from "./services/api";
 
 import "./styles/global.css";
 
-import Cadastro from "./pages/Cadastro";
 import Lista from "./pages/Lista";
 import { analisarConsumo } from "./utils/analiseConsumo";
 
@@ -72,8 +71,6 @@ function App() {
                 despesas={totalDespesas}
                 saldo={saldo}
             />
-
-            <Cadastro onAdd={adicionarConsumo} />
 
             <Lista consumos={consumosFiltrados} onDelete={removerConsumo} />
 
