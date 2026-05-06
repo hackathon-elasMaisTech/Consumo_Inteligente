@@ -30,6 +30,7 @@
 
 .header h3 {
     color: var(--main-text);
+    font-size: 2rem;
 }
 
 .closeBtn {
