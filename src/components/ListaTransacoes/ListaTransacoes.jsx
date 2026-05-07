@@ -1,4 +1,4 @@
-export const Lista = ({ consumos, onDelete }) => {
+export const ListaTransacoes = ({ consumos, onDelete }) => {
     return (
         <div>
             <h2>Lista de Consumos</h2>
