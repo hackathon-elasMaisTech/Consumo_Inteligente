@@ -3,15 +3,17 @@ import { useState, useContext } from "react";
 
 import { Modal } from "../Modal/Modal";
 import { Cadastro } from "../Cadastro/Cadastro";
+import { FiltroPeriodo } from "../FiltroPeriodo/FiltroPeriodo";
 
 import styles from "./MainHeader.module.css";
 
 import { AuthContext } from "../../context/AuthContext";
 
-export const MainHeader = ({ onAddTransaction }) => {
+export const MainHeader = ({ onAddTransaction, onFilterPeriod }) => {
     const { user } = useContext(AuthContext);
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isCadastroModalOpen, setIsCadastroModalOpen] = useState(false);
+    const [isPeriodoModalOpen, setIsPeriodoModalOpen] = useState(false);
 
     // ⏰ saudação automática
     const hora = new Date().getHours();
@@ -41,13 +43,16 @@ export const MainHeader = ({ onAddTransaction }) => {
             <div className={styles.btnWrapped}>
                 <button
                     className={styles.button}
-                    onClick={() => setIsModalOpen(true)}
+                    onClick={() => setIsCadastroModalOpen(true)}
                 >
                     <GoPlus className={styles.iconButton} />
                     Nova Transação
                 </button>
 
-                <button className={styles.button}>
+                <button
+                    className={styles.button}
+                    onClick={() => setIsPeriodoModalOpen(true)}
+                >
                     <GoCalendar className={styles.iconButton} />
                     Selecionar Período
                 </button>
@@ -55,14 +60,29 @@ export const MainHeader = ({ onAddTransaction }) => {
 
             {/* modal */}
             <Modal
-                isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
+                isOpen={isCadastroModalOpen}
+                onClose={() => setIsCadastroModalOpen(false)}
                 title="Adicionar Nova Transação"
             >
                 <Cadastro
                     onAdd={(novoItem) => {
                         onAddTransaction(novoItem);
-                        setIsModalOpen(false);
+                        setIsCadastroModalOpen(false);
+                    }}
+                />
+            </Modal>
+
+            <Modal
+                isOpen={isPeriodoModalOpen}
+                onClose={() => setIsPeriodoModalOpen(false)}
+                title="Selecionar Período"
+            >
+                <FiltroPeriodo
+                    onClose={() => setIsPeriodoModalOpen(false)}
+                    onConfirm={(datas) => {
+                        if (onFilterPeriod) {
+                            onFilterPeriod(datas);
+                        }
                     }}
                 />
             </Modal>
