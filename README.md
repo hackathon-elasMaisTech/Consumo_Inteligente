@@ -74,15 +74,18 @@ Com base nos dados processados, o sistema apresenta análises automáticas sobre
 
 
 ## Interface
-[(Repositório do Projeto)](https://github.com/hackathon-elasMaisTech/Consumo_Inteligente)
-
-[(Projeto Hospedado](https://hackathon-elasmaistech.github.io/Consumo_Inteligente/)
 
 ### Imagens do Sistema
 
 (Adicionar prints da aplicação)
 
 
+
+## Link do Projeto
+
+[Repositório do Projeto](https://github.com/hackathon-elasMaisTech/Consumo_Inteligente)
+
+[Projeto Hospedado](https://hackathon-elasmaistech.github.io/Consumo_Inteligente/)
 ## Fluxo de Dados
 
 <img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/86f3d223-7653-4872-9db2-ea49221fbb0c" />
