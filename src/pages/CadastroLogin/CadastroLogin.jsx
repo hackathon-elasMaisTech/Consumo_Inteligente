@@ -94,7 +94,10 @@ function CadastroLogin() {
 
                 {/* DIREITA */}
                 <div className="login-image">
-                    <img src="/logo.png" alt="Consuman Logo" />
+                    <img
+                        src={`${import.meta.env.BASE_URL}logo.png`}
+                        alt="Consuman Logo"
+                    />
                 </div>
             </div>
         </div>
