@@ -7,8 +7,25 @@
 }
 
 .consumoInsightsWrapped {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
+    display: flex;
     gap: 2.4rem;
     align-items: start;
+}
+
+@media (max-width: 1024px) {
+    .appContainer {
+        padding: 0 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .consumoInsightsWrapped {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .appContainer {
+        gap: 1.5rem;
+    }
 }

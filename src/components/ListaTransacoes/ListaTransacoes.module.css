@@ -106,3 +106,24 @@
 .btnExcluir:hover {
     background-color: var(--bg-expense);
 }
+
+@media (max-width: 480px) {
+    .item {
+        flex-direction: column;
+        align-items: start;
+        /* justify-content: space-between; */
+    }
+
+    .infoDireita {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        justify-content: space-between;
+    }
+
+    .btnExcluir {
+        position: absolute;
+        margin-left: 30rem;
+        margin-bottom: 4rem;
+    }
+}

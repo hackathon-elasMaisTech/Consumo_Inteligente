@@ -71,3 +71,9 @@
     background-color: var(--primary-color);
     border-radius: 1rem;
 }
+
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+    }
+}
