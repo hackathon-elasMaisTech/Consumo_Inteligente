@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-
 import { getConsumos, createConsumo, deleteConsumo } from "./services/api";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { analisarConsumo } from "./utils/analiseConsumo";
