@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { getConsumos, createConsumo, deleteConsumo } from "./services/api";
-
+import { Routes, Route } from "react-router-dom";
 import "./styles/global.css";
-
+import ProtectedRoute from "./components/ProtectedRoute";
+import Login from "./pages/Login/Login";
 import { analisarConsumo } from "./utils/analiseConsumo";
+import CadastroLogin from "./pages/CadastroLogin/CadastroLogin";
 
-// novos componentes
+// componentes
 import { Header } from "./components/Header/Header";
 import { MainHeader } from "./components/MainHeader/MainHeader";
 import { Resumo } from "./components/Resumo/Resumo";
@@ -63,33 +65,49 @@ function App() {
     );
 
     return (
-        <div className="app-container">
-            <Header />
+        <Routes>
+            {/* 🔐 Login */}
+            <Route path="/" element={<Login />} />
+            {/* 📝 Cadastro */}
+            <Route path="/cadastroLogin" element={<CadastroLogin />} />
+            {/* 🏠 Home */}
+            <Route
+                path="/home"
+                element={
+                    <ProtectedRoute>
+                        <div className="app-container">
+                            <Header />
 
-            <MainHeader onAddTransaction={adicionarConsumo} />
+                            <MainHeader />
 
-            <Resumo
-                receitas={totalReceitas}
-                despesas={totalDespesas}
-                saldo={saldo}
+                            <Resumo
+                                receitas={totalReceitas}
+                                despesas={totalDespesas}
+                                saldo={saldo}
+                            />
+
+                            <Cadastro onAdd={adicionarConsumo} />
+
+                            <Lista
+                                consumos={consumosFiltrados}
+                                onDelete={removerConsumo}
+                            />
+
+                            <Filtros
+                                filtroCategoria={filtroCategoria}
+                                setFiltroCategoria={setFiltroCategoria}
+                                filtroTipo={filtroTipo}
+                                setFiltroTipo={setFiltroTipo}
+                            />
+
+                            <VisaoConsumo analise={analise} />
+                            <Insights analise={analise} />
+                            <Recomendacoes analise={analise} />
+                        </div>
+                    </ProtectedRoute>
+                }
             />
-
-            <Filtros
-                filtroCategoria={filtroCategoria}
-                setFiltroCategoria={setFiltroCategoria}
-                filtroTipo={filtroTipo}
-                setFiltroTipo={setFiltroTipo}
-            />
-
-            <ListaTransacoes
-                consumos={consumosFiltrados}
-                onDelete={removerConsumo}
-            />
-
-            <VisaoConsumo analise={analise} />
-            <Insights analise={analise} />
-            <Recomendacoes analise={analise} />
-        </div>
+        </Routes>
     );
 }
 

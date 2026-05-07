@@ -24,7 +24,11 @@ export const Header = () => {
 
     return (
         <header className={styles.header}>
-            <h2 className={styles.logo}>consum</h2>
+            <img
+                src="/logo.png"
+                alt="Logo do Consuman"
+                className={styles.logo}
+            />
             <div className={styles.accountMenu}>
                 <button
                     onClick={toggleTheme}

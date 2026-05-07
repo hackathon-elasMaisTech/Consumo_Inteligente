@@ -1,0 +1,61 @@
+.cadastro-container {
+
+    filter:
+        drop-shadow(0 0 25px rgba(158,119,237,0.18));
+}
+
+[data-theme="dark"] .cadastro-image img {
+    filter:
+        brightness(1.15)
+        contrast(1.08)
+        saturate(1.1)
+        drop-shadow(0 0 35px rgba(158,119,237,0.35));
+}
+
+.theme-toggle {
+    position: absolute;
+
+    top: 2rem;
+    right: 2rem;
+
+    width: 5rem;
+    height: 5rem;
+
+    border-radius: 50%;
+
+    border: none;
+
+    background: rgba(158,119,237,0.15);
+
+    color: var(--main-text);
+
+    cursor: pointer;
+
+    font-size: 2rem;
+
+    backdrop-filter: blur(10px);
+
+    transition: 0.3s;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.05);
+}
+
+@media (max-width: 900px) {
+    .cadastro-card {
+        flex-direction: column;
+
+        text-align: center;
+
+        padding: 3rem;
+    }
+
+    .cadastro-content {
+        align-items: center;
+    }
+
+    .cadastro-image img {
+        max-width: 32rem;
+    }
+}
