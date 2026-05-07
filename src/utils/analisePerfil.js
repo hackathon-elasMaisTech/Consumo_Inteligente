@@ -104,6 +104,7 @@ export function analisarPerfil(totalReceitas, totalPorCategoria) {
     if (percentualNecessidades > 50) {
         recomendacoes.push({
             titulo: "Revise gastos essenciais",
+            tipo: "negativa",
             descricao:
                 "Seus gastos essenciais ultrapassaram 50% da renda. Avalie despesas como mercado, moradia, contas e transporte para encontrar possíveis ajustes.",
         });
@@ -112,6 +113,7 @@ export function analisarPerfil(totalReceitas, totalPorCategoria) {
     if (percentualDesejos > 30) {
         recomendacoes.push({
             titulo: "Reduza gastos flexíveis",
+            tipo: "negativa",
             descricao:
                 "Seus gastos flexíveis ultrapassaram 30% da renda. Defina limites para compras, lazer, cuidados pessoais e assinaturas.",
         });
@@ -120,12 +122,14 @@ export function analisarPerfil(totalReceitas, totalPorCategoria) {
     if (percentualReserva >= 20) {
         recomendacoes.push({
             titulo: "Aproveite sua margem",
+            tipo: "positiva",
             descricao:
                 "Você alcançou a meta de 20% de saldo disponível. Considere direcionar essa margem para reserva de emergência ou objetivos financeiros.",
         });
     } else {
         recomendacoes.push({
             titulo: "Priorize sua reserva",
+            tipo: "negativa",
             descricao:
                 "Sua margem disponível está abaixo de 20% da renda. Tente separar uma parte da receita logo ao receber e reduzir gastos variáveis.",
         });
@@ -138,6 +142,7 @@ export function analisarPerfil(totalReceitas, totalPorCategoria) {
     ) {
         recomendacoes.push({
             titulo: "Mantenha o equilíbrio",
+            tipo: "positiva",
             descricao:
                 "Seus gastos estão alinhados com a regra 50/30/20. Continue acompanhando as categorias para preservar sua saúde financeira.",
         });
@@ -159,24 +164,28 @@ export function analisarPerfil(totalReceitas, totalPorCategoria) {
     if (maiorDesejo[0] === "compras") {
         recomendacoes.push({
             titulo: "Ajuste gastos não essenciais",
+            tipo: "negativa",
             descricao:
                 "Compras é a categoria flexível com maior gasto. Revise compras por impulso e defina um teto para esse tipo de consumo.",
         });
     } else if (maiorDesejo[0] === "assinaturas") {
         recomendacoes.push({
             titulo: "Revise suas assinaturas",
+            tipo: "negativa",
             descricao:
                 "Assinaturas é a categoria flexível com maior impacto. Cancele ou pause serviços pouco usados para liberar parte da renda.",
         });
     } else if (maiorDesejo[0] === "lazer") {
         recomendacoes.push({
             titulo: "Planeje seus gastos com lazer",
+            tipo: "negativa",
             descricao:
                 "Lazer é a categoria flexível com maior impacto. Defina um teto semanal para passeios, eventos e momentos de entretenimento.",
         });
     } else if (maiorDesejo[0] === "cuidados_pessoais") {
         recomendacoes.push({
             titulo: "Organize cuidados pessoais",
+            tipo: "negativa",
             descricao:
                 "Cuidados pessoais é a categoria flexível com maior impacto. Defina um orçamento mensal para manter esse gasto sob controle.",
         });
