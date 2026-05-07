@@ -5,8 +5,8 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { analisarConsumo } from "./utils/analiseConsumo";
 
 // estilos
-// App.module.css ainda nao foi adicionado
 import "./styles/global.css";
+import styles from "./App.module.css";
 
 // páginas
 import Login from "./pages/Login/Login";

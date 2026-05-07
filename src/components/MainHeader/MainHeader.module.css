@@ -11,6 +11,10 @@
     font-weight: 700;
 }
 
+.nomeUsuario {
+    text-transform: capitalize;
+}
+
 .btnWrapped {
     display: flex;
     gap: 2rem;
