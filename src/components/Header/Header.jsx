@@ -1,4 +1,3 @@
-import { NavLink } from "react-router-dom";
 import styles from "./Header.module.css";
 
 import { GoGear, GoBell, GoMoon, GoSun } from "react-icons/go";
@@ -28,13 +27,6 @@ export const Header = () => {
         );
     };
 
-    // link ativo
-    const checkActiveLink = ({ isActive }) => {
-        return isActive
-            ? `${styles.menuItem} ${styles.menuItemActive}`
-            : styles.menuItem;
-    };
-
     return (
         <header className={styles.header}>
             {/* logo */}
@@ -44,25 +36,6 @@ export const Header = () => {
                     alt="Logo do Consuman"
                     className={styles.logo}
                 />
-
-                {/* menu */}
-                <nav className={styles.menu}>
-                    <NavLink to="/" className={checkActiveLink}>
-                        Visão geral
-                    </NavLink>
-
-                    <NavLink to="/transacoes" className={checkActiveLink}>
-                        Transações
-                    </NavLink>
-
-                    <NavLink to="/categorias" className={checkActiveLink}>
-                        Categorias
-                    </NavLink>
-
-                    <NavLink to="/insights" className={checkActiveLink}>
-                        Insights
-                    </NavLink>
-                </nav>
 
                 {/* ações */}
                 <div className={styles.accountMenu}>
