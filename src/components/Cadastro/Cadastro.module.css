@@ -55,6 +55,7 @@
 .inputField,
 .selectField {
     width: 100%;
+    background-color: var(--background);
     padding: 1.2rem 1.6rem;
     border: 1px solid var(--standard-border);
     border-radius: 0.8rem;
@@ -67,7 +68,7 @@
 .selectField:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 2px var(--color-light-purple);
+    box-shadow: 0 0 0 2px var(--secondary-color);
 }
 
 /* Esconde as setinhas feias do input number */
