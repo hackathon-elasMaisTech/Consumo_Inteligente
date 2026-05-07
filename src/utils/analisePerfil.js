@@ -108,6 +108,13 @@ export function analisarPerfil(totalReceitas, totalPorCategoria) {
             descricao:
                 "Seus gastos essenciais ultrapassaram 50% da renda. Avalie despesas como mercado, moradia, contas e transporte para encontrar possíveis ajustes.",
         });
+    } else if (totalReceitas > 0) {
+        recomendacoes.push({
+            titulo: "Essenciais sob controle",
+            tipo: "positiva",
+            descricao:
+                "Seus gastos essenciais estão dentro do limite de 50% da renda. Isso ajuda a manter estabilidade no orçamento mensal.",
+        });
     }
 
     if (percentualDesejos > 30) {
@@ -116,6 +123,13 @@ export function analisarPerfil(totalReceitas, totalPorCategoria) {
             tipo: "negativa",
             descricao:
                 "Seus gastos flexíveis ultrapassaram 30% da renda. Defina limites para compras, lazer, cuidados pessoais e assinaturas.",
+        });
+    } else if (totalReceitas > 0) {
+        recomendacoes.push({
+            titulo: "Consumo flexível equilibrado",
+            tipo: "positiva",
+            descricao:
+                "Seus gastos com lazer, compras, assinaturas e cuidados pessoais estão dentro do limite de 30% da renda.",
         });
     }
 
@@ -126,12 +140,25 @@ export function analisarPerfil(totalReceitas, totalPorCategoria) {
             descricao:
                 "Você alcançou a meta de 20% de saldo disponível. Considere direcionar essa margem para reserva de emergência ou objetivos financeiros.",
         });
+    } else if (percentualReserva > 0) {
+        recomendacoes.push({
+            titulo: "Você está poupando",
+            tipo: "positiva",
+            descricao: `Você conseguiu manter ${percentualReserva.toFixed(2)}% da renda disponível. Continue acompanhando seus gastos para aumentar essa margem até 20%.`,
+        });
+
+        recomendacoes.push({
+            titulo: "Priorize sua reserva",
+            tipo: "negativa",
+            descricao:
+                "Sua margem disponível ainda está abaixo de 20% da renda. Tente separar uma parte da receita logo ao receber e reduzir gastos variáveis.",
+        });
     } else {
         recomendacoes.push({
             titulo: "Priorize sua reserva",
             tipo: "negativa",
             descricao:
-                "Sua margem disponível está abaixo de 20% da renda. Tente separar uma parte da receita logo ao receber e reduzir gastos variáveis.",
+                "Não sobrou margem disponível para reserva neste período. Revise os gastos do mês para tentar liberar parte da renda.",
         });
     }
 
@@ -161,28 +188,31 @@ export function analisarPerfil(totalReceitas, totalPorCategoria) {
             ["", 0],
         );
 
-    if (maiorDesejo[0] === "compras") {
+    if (percentualDesejos > 30 && maiorDesejo[0] === "compras") {
         recomendacoes.push({
             titulo: "Ajuste gastos não essenciais",
             tipo: "negativa",
             descricao:
                 "Compras é a categoria flexível com maior gasto. Revise compras por impulso e defina um teto para esse tipo de consumo.",
         });
-    } else if (maiorDesejo[0] === "assinaturas") {
+    } else if (percentualDesejos > 30 && maiorDesejo[0] === "assinaturas") {
         recomendacoes.push({
             titulo: "Revise suas assinaturas",
             tipo: "negativa",
             descricao:
                 "Assinaturas é a categoria flexível com maior impacto. Cancele ou pause serviços pouco usados para liberar parte da renda.",
         });
-    } else if (maiorDesejo[0] === "lazer") {
+    } else if (percentualDesejos > 30 && maiorDesejo[0] === "lazer") {
         recomendacoes.push({
             titulo: "Planeje seus gastos com lazer",
             tipo: "negativa",
             descricao:
                 "Lazer é a categoria flexível com maior impacto. Defina um teto semanal para passeios, eventos e momentos de entretenimento.",
         });
-    } else if (maiorDesejo[0] === "cuidados_pessoais") {
+    } else if (
+        percentualDesejos > 30 &&
+        maiorDesejo[0] === "cuidados_pessoais"
+    ) {
         recomendacoes.push({
             titulo: "Organize cuidados pessoais",
             tipo: "negativa",
