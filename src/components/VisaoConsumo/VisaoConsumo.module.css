@@ -1,7 +1,9 @@
 .container {
     padding: 2.4rem;
     border-radius: 1.2rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-container);
+    border: 0.1rem solid var(--standard-border);
+    height: 100%;
 }
 
 .title {
@@ -19,7 +21,7 @@
 .categoriaItem {
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
+    gap: 1rem;
 }
 
 .categoriaHeader {
@@ -51,7 +53,7 @@
 /* Estilizando a barra de progresso nativa */
 .progress {
     width: 100%;
-    height: 0.8rem;
+    height: 1.2rem;
     border-radius: 1rem;
     /* Remove a aparência padrão do navegador */
     -webkit-appearance: none;

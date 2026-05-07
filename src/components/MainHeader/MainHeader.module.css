@@ -1,7 +1,6 @@
 .container {
     display: flex;
     justify-content: space-between;
-    padding: 0 10rem;
     height: 5.4rem;
     margin-top: 5rem;
 }
@@ -21,6 +20,7 @@
     background: none;
     border: 1px solid var(--standard-border);
     border-radius: 1rem;
+    box-shadow: var(--shadow-container);
     color: var(--secondary-text);
     padding: 1rem 1.5rem;
     display: flex;
@@ -34,6 +34,7 @@
 .iconButton {
     color: var(--primary-color);
 }
+
 .userInfo {
     display: flex;
     align-items: center;
@@ -60,6 +61,7 @@
     font-size: 2rem;
     font-weight: 700;
 }
+
 /* =========================
    RESPONSIVO
 ========================= */
