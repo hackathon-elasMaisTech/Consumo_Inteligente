@@ -26,6 +26,10 @@ function App() {
     const [consumos, setConsumos] = useState([]);
     const [filtroCategoria, setFiltroCategoria] = useState("");
     const [filtroTipo, setFiltroTipo] = useState("");
+    const [filtroPeriodo, setFiltroPeriodo] = useState({
+        dataInicio: "",
+        dataFim: "",
+    });
 
     useEffect(() => {
         async function carregar() {
@@ -50,6 +54,17 @@ function App() {
         carregarConsumos();
     };
 
+    // filtro
+    const consumosFiltrados = consumos.filter(
+        (item) =>
+            (filtroCategoria === "" || item.categoria === filtroCategoria) &&
+            (filtroTipo === "" || item.tipo === filtroTipo) &&
+            (filtroPeriodo.dataInicio === "" ||
+                item.data >= filtroPeriodo.dataInicio) &&
+            (filtroPeriodo.dataFim === "" ||
+                item.data <= filtroPeriodo.dataFim),
+    );
+
     // cálculos
     const totalReceitas = consumos
         .filter((i) => i.tipo === "receita")
@@ -62,13 +77,6 @@ function App() {
     const saldo = totalReceitas - totalDespesas;
     const analise = analisarConsumo(consumos);
     const categoriaDominante = analise.insightCategoriaDominante?.categoria;
-
-    // filtro
-    const consumosFiltrados = consumos.filter(
-        (item) =>
-            (filtroCategoria === "" || item.categoria === filtroCategoria) &&
-            (filtroTipo === "" || item.tipo === filtroTipo),
-    );
 
     return (
         <Routes>
@@ -84,7 +92,12 @@ function App() {
                         <Header />
 
                         <div className={styles.appContainer}>
-                            <MainHeader onAddTransaction={adicionarConsumo} />
+                            <MainHeader
+                                onAddTransaction={adicionarConsumo}
+                                onFilterPeriod={(datas) =>
+                                    setFiltroPeriodo(datas)
+                                }
+                            />
 
                             <Resumo
                                 receitas={totalReceitas}
