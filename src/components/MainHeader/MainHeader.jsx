@@ -28,26 +28,14 @@ export const MainHeader = ({ onAddTransaction }) => {
 
     return (
         <div className={styles.container}>
-            {/* usuário */}
-            <div className={styles.userInfo}>
-                {/* avatar */}
-                {user?.foto ? (
-                    <img
-                        src={user.foto}
-                        alt={user.nome}
-                        className={styles.avatar}
-                    />
-                ) : (
-                    <div className={styles.avatarFallback}>
-                        {user?.nome?.charAt(0).toUpperCase() || "U"}
-                    </div>
-                )}
-
-                {/* saudação */}
-                <h1 className={styles.h1}>
-                    {saudacao}, {user?.nome || "Usuário"}!
-                </h1>
-            </div>
+            {/* saudação */}
+            <h1 className={styles.h1}>
+                {saudacao},{" "}
+                <span className={styles.nomeUsuario}>
+                    {user?.nome || "Usuário"}
+                </span>
+                !
+            </h1>
 
             {/* botões */}
             <div className={styles.btnWrapped}>
