@@ -81,18 +81,9 @@
     font-weight: 700;
 }
 
-/* RESPONSIVO */
-@media (max-width: 768px) {
-
-    .header {
+@media (max-width: 1024px) {
+    .headerWrapped {
         padding: 0 2rem;
-    }
 
-    .menu {
-        display: none;
-    }
-
-    .logo {
-        width: 8rem;
     }
 }

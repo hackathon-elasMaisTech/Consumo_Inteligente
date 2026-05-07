@@ -35,3 +35,9 @@
 .cardValueExpense {
     color: var(--primary-color);
 }
+
+@media (max-width: 480px) {
+    .container {
+        gap: 1.5rem;
+    }
+}
