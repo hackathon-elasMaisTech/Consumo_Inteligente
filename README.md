@@ -13,71 +13,96 @@ O projeto foi desenvolvido com foco na consolidação dos conteúdos estudados d
 Além da aplicação técnica dos conhecimentos, o projeto também busca estimular o trabalho em equipe, a resolução de problemas e a criação de soluções tecnológicas voltadas para situações reais do cotidiano.
 
 ## Objetivo do projeto
-O projeto Consumo Inteligente tem como objetivo desenvolver uma aplicação web capaz de analisar padrões de consumo financeiro dos usuários, utilizando dados simulados para gerar insights automáticos e recomendações de economia.
+O projeto Consumo Inteligente foi desenvolvido com o objetivo de auxiliar usuários no controle financeiro pessoal de maneira simples, intuitiva e visual.
 
-A aplicação foi desenvolvida utilizando React, JavaScript e CSS Modules, consumindo dados por meio da MockAPI, permitindo simular informações financeiras e comportamentos de consumo de forma dinâmica e interativa.
+**A aplicação permite:**
 
-O sistema realiza o processamento dos dados recebidos, classificando gastos por categorias como alimentação, lazer, transporte, moradia e compras. A partir dessas informações, a aplicação identifica padrões de comportamento financeiro, categorias dominantes de gastos e apresenta recomendações inteligentes para auxiliar o usuário na tomada de decisões financeiras mais conscientes.
+- Cadastro de receitas e despesas;
+- Visualização do saldo financeiro;
+- Organização por categorias;
+- Geração de insights financeiros;
+- Interface responsiva;
+- Alternância entre tema claro e escuro;
+- Autenticação fictícia de usuário;
+- Persistência de sessão utilizando LocalStorage.
 
-Além disso, o projeto aplica conceitos de componentização, consumo de APIs, manipulação de dados em JavaScript e desenvolvimento de interfaces responsivas, proporcionando uma experiência moderna e intuitiva ao usuário.
+O principal foco do projeto é proporcionar uma experiência moderna de gestão financeira, utilizando tecnologias Front-End com React.
+
 
 ## Arquitetura da Solução 
-A arquitetura da aplicação foi estruturada em frontend utilizando React, com separação de responsabilidades através de componentes reutilizáveis e organização modular de estilos utilizando CSS Modules.
+A aplicação foi construída utilizando uma arquitetura baseada em componentes com React, promovendo reutilização de código, organização e facilidade de manutenção.
 
-## Tecnologias utilizadas
-- React.js: utilizado para desenvolvimento da interface da aplicação através de componentes reutilizáveis e dinâmicos.
-- Vite: utilizado como ferramenta de build e ambiente de desenvolvimento, proporcionando maior desempenho e rapidez na execução do projeto.
-- React Router DOM: responsável pelo gerenciamento de rotas e navegação entre as páginas da aplicação.
-- CSS Modules: utilizado para estilização modular dos componentes, garantindo organização, reutilização e isolamento dos estilos.
-- Context API: utilizada para gerenciamento de estado global e compartilhamento de informações entre os componentes da aplicação.
-- LocalStorage: utilizado para persistência local de dados no navegador, permitindo armazenamento temporário de informações do usuário.
-- JavaScript ES6+: utilizado no desenvolvimento das funcionalidades, processamento de dados, regras de negócio e geração de insights da aplicação.
+**Tecnologias Utilizadas**
+- React.js
+- Vite
+- React Router DOM
+- CSS Modules
+- Context API
+- LocalStorage
+- JavaScript ES6+
 
-## Estrutura da Aplicação
-A aplicação é composta pelas seguintes etapas:
 
-1. Consumo de Dados:
+**Estrutura de Pastas**
 
-Os dados financeiros e de consumo são armazenados e disponibilizados através da MockAPI, simulando uma API real.
+<img width="600" height="700" alt="image" src="https://github.com/user-attachments/assets/12fbac99-b481-4e11-b152-1e022a59b683" />
 
-2. Processamento de Dados: 
 
-Utilizando JavaScript, os dados são processados para:
+## Fluxo da Aplicação 
 
-Classificação de gastos por categoria;
-Cálculo de totais e médias;
-Identificação da categoria com maior consumo;
-Geração de insights automáticos;
-Criação de recomendações financeiras.
+Fluxo Principal
 
-3. Interface Frontend: 
+<img width="500" height="700" alt="image" src="https://github.com/user-attachments/assets/a5727fe3-5157-4fe7-bb0c-6c5181e5b214" />
 
-A interface foi construída com React utilizando componentes reutilizáveis para:
-
-Exibição de gráficos e informações;
-Cards de insights;
-Recomendações personalizadas;
-Visualização clara e responsiva dos dados.
-
-4. Geração de Insights
-
-Com base nos dados processados, o sistema apresenta análises automáticas sobre o comportamento de consumo do usuário, auxiliando no controle financeiro e na identificação de possíveis excessos.
 
 
 ## Evidências Técnicas 
-### Prints do Código: 
+
+### Prints do Código (Lógica JavaScript)
+
+Colocar Print da lógica JS
+
+## Estrutura dos Dados
+
+### Print json utilizado 
 
 
-### Estrutura dos Dados: 
+## Interface da Aplicação
 
-### Prints da Aplicação React: 
+### Funcionalidades da Interface
+- Tela de Login;
+- Tela de Cadastro;
+- Dashboard Financeiro;
+- Modal de Nova Transação;
+- Tema Claro/Escuro;
+- Avatar com inicial do usuário;
+- Insights financeiros;
+- Resumo financeiro;
+- Responsividade para dispositivos móveis.
 
 
-## Interface
 
-### Imagens do Sistema
+##  Prints da Aplicação React
+Tela de Login 
+Inserir print da tela de login.
 
-(Adicionar prints da aplicação)
+Tela de Cadastro
+Inserir print da tela de cadastro.
+
+Dashboard Principal
+Inserir print da dashboard.
+
+Modal de Cadastro de Transação
+Inserir print do modal.
+
+Responsividade Mobile
+Inserir print da versão mobile.
+
+
+
+## Demonstração do Fluxo de Dados
+
+  <img width="500" height="700" alt="image" src="https://github.com/user-attachments/assets/227de90d-516f-453b-9624-512e38599ffe" />
+
 
 
 
@@ -86,25 +111,26 @@ Com base nos dados processados, o sistema apresenta análises automáticas sobre
 [Repositório do Projeto](https://github.com/hackathon-elasMaisTech/Consumo_Inteligente)
 
 [Projeto Hospedado](https://hackathon-elasmaistech.github.io/Consumo_Inteligente/)
-## Fluxo de Dados
-
-<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/86f3d223-7653-4872-9db2-ea49221fbb0c" />
 
 
 
 
-## Problema Resolvido
+## Conclusão 
+O projeto Consumo Inteligente permitiu aplicar conceitos fundamentais do desenvolvimento Front-End moderno utilizando React.
 
-Muitas pessoas possuem dificuldades em visualizar e compreender seus hábitos de consumo financeiro. O projeto Consumo Inteligente busca resolver esse problema através da análise automática dos dados financeiros, apresentando informações organizadas, insights e recomendações que ajudam o usuário a tomar decisões financeiras mais conscientes.
+Durante o desenvolvimento, foram trabalhados os seguintes conceitos:
 
-## Solução Proposta
-A solução proposta foi o desenvolvimento de uma aplicação web interativa capaz de:
+- Componentização;
+- Gerenciamento de estado;
+- Context API;
+- Persistência local;
+- Responsividade;
+- Consumo e manipulação de dados;
+- Organização da arquitetura React;
+- Trabalho colaborativo com Git e GitHub.
 
-- Organizar gastos por categorias;
-- Identificar padrões de consumo;
-- Gerar insights automáticos;
-- Exibir recomendações de economia;
-- Facilitar a visualização das informações financeiras de forma simples e intuitiva.
+O sistema foi desenvolvido com foco na experiência do usuário, na organização visual e na facilidade de manutenção do código.
+
 
 ## Integrantes do grupo: 
 
