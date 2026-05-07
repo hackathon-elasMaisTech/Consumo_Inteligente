@@ -1,10 +1,14 @@
 import { NavLink } from "react-router-dom";
 import styles from "./Header.module.css";
-import { GoGear, GoBell, GoPerson, GoMoon, GoSun } from "react-icons/go";
-import { useEffect, useState } from "react";
+import { GoGear, GoBell,  GoMoon, GoSun } from "react-icons/go";
+import { useEffect, useState, useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 export const Header = () => {
     // cria o estado e verifica se o usuário já tinha salvo o tema
+
+    const { user } = useContext(AuthContext);
+
     const [theme, setTheme] = useState(() => {
         const savedTheme = localStorage.getItem("consuman-theme");
         return savedTheme ? savedTheme : "light";
@@ -31,7 +35,7 @@ export const Header = () => {
 
     return (
         <header className={styles.header}>
-            <img src="/logo.png" alt="Logo do Consuman" className={styles.logo} />
+            <img src="logo.png" alt="Logo" className={styles.logo} />
             <nav className={styles.menu}>
                 <NavLink to="/" className={checkActiveLink}>
                     Visão geral
@@ -63,9 +67,10 @@ export const Header = () => {
                 >
                     <GoBell />
                 </button>
-                <button className={`${styles.button} ${styles.avatar}`}>
-                    <GoPerson />
-                </button>
+               {/* avatar */}
+                <div className={styles.avatarFallback}>
+                    {user?.nome?.charAt(0).toUpperCase() || "U"}
+                </div>
             </div>
         </header>
     );

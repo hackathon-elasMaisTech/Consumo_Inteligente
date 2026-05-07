@@ -67,13 +67,23 @@
     justify-content: center;
 }
 
-.avatar {
-    font-size: 2.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--primary-color);
-    background-color: var(--secondary-color);
-    /* padding: 0.2rem; */
-    border-radius: 100%;
-}
+ .avatar,
+    .avatarFallback {
+        width: 4rem;
+        height: 4rem;
+        font-size: 1.6rem;
+    }
+    .avatar {
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid var(--primary-color);
+    }
+    .avatarFallback {
+        border-radius: 50%;
+        background: var(--primary-color);
+        color: rgb(252, 252, 252);
+        display: flex;      
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+    }

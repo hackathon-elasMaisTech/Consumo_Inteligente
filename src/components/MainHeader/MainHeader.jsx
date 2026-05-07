@@ -25,19 +25,7 @@ export const MainHeader = () => {
             {/* 👤 usuário */}
             <div className={styles.userInfo}>
 
-                {/* avatar */}
-                {user?.foto ? (
-                    <img
-                        src={user.foto}
-                        alt={user.nome}
-                        className={styles.avatar}
-                    />
-                ) : (
-                    <div className={styles.avatarFallback}>
-                        {user?.nome?.charAt(0).toUpperCase()}
-                    </div>
-                )}
-
+               
                 {/* saudação */}
                 <h1 className={styles.h1}>
                     {saudacao}, {user?.nome || "Usuário"}!
