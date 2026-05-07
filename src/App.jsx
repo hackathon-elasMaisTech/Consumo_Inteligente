@@ -14,6 +14,7 @@ import Filtros from "./components/Filtros";
 import Insights from "./components/Insights/Insights";
 import { MainHeader } from "./components/MainHeader/MainHeader";
 import Recomendacoes from "./components/Recomendacoes/Recomendacoes";
+import VisaoConsumo from "./components/VisaoConsumo/VisaoConsumo";
 
 function App() {
     const [consumos, setConsumos] = useState([]);
@@ -78,7 +79,6 @@ function App() {
 
             <Lista consumos={consumosFiltrados} onDelete={removerConsumo} />
 
-            <Insights analise={analise} />
 
             <Filtros
                 filtroCategoria={filtroCategoria}
@@ -87,6 +87,8 @@ function App() {
                 setFiltroTipo={setFiltroTipo}
             />
 
+            <VisaoConsumo analise={analise}/>
+            <Insights analise={analise} />
             <Recomendacoes analise={analise}/>
         </div>
     );
