@@ -4,11 +4,10 @@ import { getConsumos, createConsumo, deleteConsumo } from "./services/api";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { analisarConsumo } from "./utils/analiseConsumo";
 
-// estilos
-
+// estilos globais
 import "./styles/global.css";
 
-// paginas
+// páginas
 import Login from "./pages/Login/Login";
 import CadastroLogin from "./pages/CadastroLogin/CadastroLogin";
 
