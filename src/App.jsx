@@ -3,15 +3,15 @@ import { getConsumos, createConsumo, deleteConsumo } from "./services/api";
 
 import "./styles/global.css";
 
-import Lista from "./pages/Lista";
 import { analisarConsumo } from "./utils/analiseConsumo";
 
 // novos componentes
 import { Header } from "./components/Header/Header";
-import { Resumo } from "./components/Resumo/Resumo";
-import Filtros from "./components/Filtros";
-import Insights from "./components/Insights/Insights";
 import { MainHeader } from "./components/MainHeader/MainHeader";
+import { Resumo } from "./components/Resumo/Resumo";
+import { Filtros } from "./components/Filtros/Filtros";
+import { ListaTransacoes } from "./components/ListaTransacoes/ListaTransacoes";
+import Insights from "./components/Insights/Insights";
 import Recomendacoes from "./components/Recomendacoes/Recomendacoes";
 import VisaoConsumo from "./components/VisaoConsumo/VisaoConsumo";
 
@@ -74,9 +74,6 @@ function App() {
                 saldo={saldo}
             />
 
-            <Lista consumos={consumosFiltrados} onDelete={removerConsumo} />
-
-
             <Filtros
                 filtroCategoria={filtroCategoria}
                 setFiltroCategoria={setFiltroCategoria}
@@ -84,9 +81,14 @@ function App() {
                 setFiltroTipo={setFiltroTipo}
             />
 
-            <VisaoConsumo analise={analise}/>
+            <ListaTransacoes
+                consumos={consumosFiltrados}
+                onDelete={removerConsumo}
+            />
+
+            <VisaoConsumo analise={analise} />
             <Insights analise={analise} />
-            <Recomendacoes analise={analise}/>
+            <Recomendacoes analise={analise} />
         </div>
     );
 }
