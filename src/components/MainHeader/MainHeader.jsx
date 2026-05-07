@@ -1,52 +1,105 @@
-import { GoPlus, GoCalendar } from "react-icons/go";
-import styles from "./MainHeader.module.css";
-import { useContext } from "react";
+import { NavLink } from "react-router-dom";
+import styles from "./Header.module.css";
+
+import {
+    GoGear,
+    GoBell,
+    GoMoon,
+    GoSun,
+} from "react-icons/go";
+
+import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 
-export const MainHeader = () => {
+export const Header = () => {
+
     const { user } = useContext(AuthContext);
 
-    // ⏰ horário atual
-    const hora = new Date().getHours();
+    // tema salvo
+    const [theme, setTheme] = useState(() => {
+        const savedTheme = localStorage.getItem("consuman-theme");
+        return savedTheme ? savedTheme : "light";
+    });
 
-    let saudacao;
+    // aplica tema
+    useEffect(() => {
+        document.documentElement.setAttribute("data-theme", theme);
+        localStorage.setItem("consuman-theme", theme);
+    }, [theme]);
 
-    if (hora >= 5 && hora < 12) {
-        saudacao = "☀️ Bom dia";
-    } else if (hora >= 12 && hora < 18) {
-        saudacao = "🌤️ Boa tarde";
-    } else {
-        saudacao = "🌙 Boa noite";
-    }
+    // alternar tema
+    const toggleTheme = () => {
+        setTheme((currentTheme) =>
+            currentTheme === "light" ? "dark" : "light"
+        );
+    };
+
+    // link ativo
+    const checkActiveLink = ({ isActive }) => {
+        return isActive
+            ? `${styles.menuItem} ${styles.menuItemActive}`
+            : styles.menuItem;
+    };
 
     return (
-        <div className={styles.container}>
+        <header className={styles.header}>
 
-            {/* 👤 usuário */}
-            <div className={styles.userInfo}>
+            {/* logo */}
+            <img
+                src="/logo.png"
+                alt="Logo do Consuman"
+                className={styles.logo}
+            />
 
-               
-                {/* saudação */}
-                <h1 className={styles.h1}>
-                    {saudacao}, {user?.nome || "Usuário"}!
-                </h1>
+            {/* menu */}
+            <nav className={styles.menu}>
 
-            </div>
+                <NavLink to="/" className={checkActiveLink}>
+                    Visão geral
+                </NavLink>
 
-            {/* botões */}
-            <div className={styles.btnWrapped}>
+                <NavLink to="/transacoes" className={checkActiveLink}>
+                    Transações
+                </NavLink>
 
-                <button className={styles.button}>
-                    <GoPlus className={styles.iconButton} />
-                    Nova Transação
+                <NavLink to="/categorias" className={checkActiveLink}>
+                    Categorias
+                </NavLink>
+
+                <NavLink to="/insights" className={checkActiveLink}>
+                    Insights
+                </NavLink>
+
+            </nav>
+
+            {/* ações */}
+            <div className={styles.accountMenu}>
+
+                <button
+                    onClick={toggleTheme}
+                    className={`${styles.button} ${styles.themeToggleBtn}`}
+                >
+                    {theme === "light" ? <GoMoon /> : <GoSun />}
                 </button>
 
-                <button className={styles.button}>
-                    <GoCalendar className={styles.iconButton} />
-                    Selecionar Período
+                <button
+                    className={`${styles.button} ${styles.iconsAccountMenu}`}
+                >
+                    <GoGear />
                 </button>
 
+                <button
+                    className={`${styles.button} ${styles.iconsAccountMenu}`}
+                >
+                    <GoBell />
+                </button>
+
+                {/* avatar */}
+                <div className={styles.avatarFallback}>
+                    {user?.nome?.charAt(0).toUpperCase() || "U"}
+                </div>
+
             </div>
-        </div>
+        </header>
     );
 };
