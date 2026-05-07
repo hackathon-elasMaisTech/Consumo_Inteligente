@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-
 import { getConsumos, createConsumo, deleteConsumo } from "./services/api";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { analisarConsumo } from "./utils/analiseConsumo";
@@ -9,7 +8,7 @@ import { analisarConsumo } from "./utils/analiseConsumo";
 // App.module.css ainda nao foi adicionado
 import "./styles/global.css";
 
-// paginas
+// páginas
 import Login from "./pages/Login/Login";
 import CadastroLogin from "./pages/CadastroLogin/CadastroLogin";
 
