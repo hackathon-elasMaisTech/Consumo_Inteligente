@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
-import "./Login.css";
+import "./login.css";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -112,7 +112,10 @@ function Login() {
 
         {/* direita */}
         <div className="login-image">
-          <img src="/logo.png" alt="Consuman Logo" />
+          <img
+            src={`${import.meta.env.BASE_URL}logo.png`}
+            alt="Consuman Logo"
+          />
         </div>
 
       </div>

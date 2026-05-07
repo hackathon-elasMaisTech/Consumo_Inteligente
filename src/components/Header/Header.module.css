@@ -12,16 +12,28 @@
 }
 
 .logo {
-    color: var(--main-text);
-    font-size: 2.4rem;
-    font-weight: 800;
     width: 10rem;
+}
+
+.menu {
+    display: flex;
+    gap: 2rem;
+}
+
+.menuItem {
+    text-decoration: none;
+    color: var(--secondary-text);
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+.menuItemActive {
+    color: var(--primary-color);
 }
 
 .accountMenu {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     gap: 0.5rem;
 }
 
@@ -30,25 +42,57 @@
     width: 4rem;
     border: none;
     background: none;
-    /* padding: 0.5rem; */
     cursor: pointer;
 }
 
 .themeToggleBtn {
     color: var(--secondary-text);
     font-size: 2rem;
+
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.avatar {
-    font-size: 2.5rem;
+.iconsAccountMenu {
+    font-size: 2rem;
+    color: var(--secondary-text);
+
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--primary-color);
-    background-color: var(--secondary-color);
-    /* padding: 0.2rem; */
-    border-radius: 100%;
+}
+
+.avatarFallback {
+    width: 4rem;
+    height: 4rem;
+
+    border-radius: 50%;
+
+    background: var(--primary-color);
+
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+
+    .header {
+        padding: 0 2rem;
+    }
+
+    .menu {
+        display: none;
+    }
+
+    .logo {
+        width: 8rem;
+    }
 }

@@ -1,15 +1,19 @@
 import { GoPlus, GoCalendar } from "react-icons/go";
-import { useState } from "react";
+import { useState, useContext } from "react";
+
 import { Modal } from "../Modal/Modal";
 import { Cadastro } from "../Cadastro/Cadastro";
+
 import styles from "./MainHeader.module.css";
-import { useContext } from "react";
+
 import { AuthContext } from "../../context/AuthContext";
 
 export const MainHeader = ({ onAddTransaction }) => {
     const { user } = useContext(AuthContext);
 
-    // ⏰ horário atual
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    // ⏰ saudação automática
     const hora = new Date().getHours();
 
     let saudacao;
@@ -22,17 +26,28 @@ export const MainHeader = ({ onAddTransaction }) => {
         saudacao = "Boa noite";
     }
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
-
     return (
         <div className={styles.container}>
-            <h1 className={styles.h1}>
-                {saudacao},{" "}
-                <span className={styles.nomeUsuario}>
-                    {user?.nome || "Usuário"}
-                </span>
-                !
-            </h1>
+            {/* usuário */}
+            <div className={styles.userInfo}>
+                {/* avatar */}
+                {user?.foto ? (
+                    <img
+                        src={user.foto}
+                        alt={user.nome}
+                        className={styles.avatar}
+                    />
+                ) : (
+                    <div className={styles.avatarFallback}>
+                        {user?.nome?.charAt(0).toUpperCase() || "U"}
+                    </div>
+                )}
+
+                {/* saudação */}
+                <h1 className={styles.h1}>
+                    {saudacao}, {user?.nome || "Usuário"}!
+                </h1>
+            </div>
 
             {/* botões */}
             <div className={styles.btnWrapped}>
@@ -40,27 +55,29 @@ export const MainHeader = ({ onAddTransaction }) => {
                     className={styles.button}
                     onClick={() => setIsModalOpen(true)}
                 >
-                    <GoPlus className={styles.iconButton} /> Nova Transação
+                    <GoPlus className={styles.iconButton} />
+                    Nova Transação
                 </button>
 
                 <button className={styles.button}>
                     <GoCalendar className={styles.iconButton} />
                     Selecionar Período
                 </button>
-
-                <Modal
-                    isOpen={isModalOpen}
-                    onClose={() => setIsModalOpen(false)}
-                    title="Adicionar Nova Transação"
-                >
-                    <Cadastro
-                        onAdd={(novoItem) => {
-                            onAddTransaction(novoItem);
-                            setIsModalOpen(false);
-                        }}
-                    />
-                </Modal>
             </div>
+
+            {/* modal */}
+            <Modal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                title="Adicionar Nova Transação"
+            >
+                <Cadastro
+                    onAdd={(novoItem) => {
+                        onAddTransaction(novoItem);
+                        setIsModalOpen(false);
+                    }}
+                />
+            </Modal>
         </div>
     );
 };
