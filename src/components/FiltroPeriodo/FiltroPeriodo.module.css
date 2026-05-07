@@ -1,0 +1,83 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    width: 100%;
+}
+
+.inputWrapped {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.label {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--secondary-text);
+}
+
+.inputField {
+    width: 100%;
+    background-color: var(--background);
+    padding: 1.2rem 1.6rem;
+    border: 1px solid var(--standard-border);
+    border-radius: 0.8rem;
+    color: var(--main-text);
+    font-size: 1.4rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.inputField:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px var(--secondary-color);
+}
+
+.inputField::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+}
+
+.buttonWrapped {
+    display: flex;
+    gap: 1.2rem;
+    margin-top: 0.8rem;
+}
+
+.submitBtn,
+.clearBtn {
+    flex: 1;
+    padding: 1.4rem;
+    border-radius: 0.8rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.submitBtn {
+    border: none;
+    background-color: var(--primary-color);
+    color: var(--inverted-text);
+}
+
+.submitBtn:hover {
+    background-color: var(--secondary-color);
+    color: var(--primary-color)
+}
+
+.clearBtn {
+    background-color: transparent;
+    border: 1px solid var(--standard-border);
+    color: var(--secondary-text);
+}
+
+.clearBtn:hover {
+    background-color: var(--standard-border);
+}
+
+
+[data-theme="dark"] .inputField::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+}
