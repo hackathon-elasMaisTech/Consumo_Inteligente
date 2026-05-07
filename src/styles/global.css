@@ -18,6 +18,14 @@
     --color-light-purple: #EADDFF;
     --color-medium-purple: #9E77ED;
     --color-dark-purple: #4F378A;
+    --color-green-100: #dcfce7;
+    --color-green-400: #4ade80;
+    --color-green-500: #22c55e;
+    --color-green-900: #14532d;
+    --color-red-100: #fee2e2;
+    --color-red-400: #f87171;
+    --color-red-500: #ef4444;
+    --color-red-900: #451a1a;
 
     /* cores semânticas */
     /* tema claro - padrão */
@@ -28,6 +36,10 @@
     --primary-color: var(--color-medium-purple);
     --secondary-color: var(--color-light-purple);
     --standard-border: var(--color-gray-100);
+    --bg-income: var(--color-green-100);
+    --text-income: var(--color-green-500);
+    --bg-expense: var(--color-red-100);
+    --text-expense: var(--color-red-500);
 }
 
 /* tema escuro */
@@ -39,6 +51,10 @@
     --primary-color: var(--color-medium-purple);
     --secondary-color: var(--color-dark-purple);
     --standard-border: var(--color-gray-700);
+    --bg-income: var(--color-green-900);
+    --text-income: var(--color-green-400);
+    --bg-expense: var(--color-red-900);
+    --text-expense: var(--color-red-400);
 }
 
 body,

@@ -1,105 +1,90 @@
-import { NavLink } from "react-router-dom";
-import styles from "./Header.module.css";
+import { GoPlus, GoCalendar } from "react-icons/go";
+import { useState, useContext } from "react";
 
-import {
-    GoGear,
-    GoBell,
-    GoMoon,
-    GoSun,
-} from "react-icons/go";
+import { Modal } from "../Modal/Modal";
+import { Cadastro } from "../Cadastro/Cadastro";
 
-import { useEffect, useState, useContext } from "react";
+import styles from "./MainHeader.module.css";
+
 import { AuthContext } from "../../context/AuthContext";
 
-export const Header = () => {
+export const MainHeader = ({ onAddTransaction }) => {
 
     const { user } = useContext(AuthContext);
 
-    // tema salvo
-    const [theme, setTheme] = useState(() => {
-        const savedTheme = localStorage.getItem("consuman-theme");
-        return savedTheme ? savedTheme : "light";
-    });
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
-    // aplica tema
-    useEffect(() => {
-        document.documentElement.setAttribute("data-theme", theme);
-        localStorage.setItem("consuman-theme", theme);
-    }, [theme]);
+    // ⏰ saudação automática
+    const hora = new Date().getHours();
 
-    // alternar tema
-    const toggleTheme = () => {
-        setTheme((currentTheme) =>
-            currentTheme === "light" ? "dark" : "light"
-        );
-    };
+    let saudacao;
 
-    // link ativo
-    const checkActiveLink = ({ isActive }) => {
-        return isActive
-            ? `${styles.menuItem} ${styles.menuItemActive}`
-            : styles.menuItem;
-    };
+    if (hora >= 5 && hora < 12) {
+        saudacao = "☀️ Bom dia";
+    } else if (hora >= 12 && hora < 18) {
+        saudacao = "🌤️ Boa tarde";
+    } else {
+        saudacao = "🌙 Boa noite";
+    }
 
     return (
-        <header className={styles.header}>
+        <div className={styles.container}>
 
-            {/* logo */}
-            <img
-                src="/logo.png"
-                alt="Logo do Consuman"
-                className={styles.logo}
-            />
-
-            {/* menu */}
-            <nav className={styles.menu}>
-
-                <NavLink to="/" className={checkActiveLink}>
-                    Visão geral
-                </NavLink>
-
-                <NavLink to="/transacoes" className={checkActiveLink}>
-                    Transações
-                </NavLink>
-
-                <NavLink to="/categorias" className={checkActiveLink}>
-                    Categorias
-                </NavLink>
-
-                <NavLink to="/insights" className={checkActiveLink}>
-                    Insights
-                </NavLink>
-
-            </nav>
-
-            {/* ações */}
-            <div className={styles.accountMenu}>
-
-                <button
-                    onClick={toggleTheme}
-                    className={`${styles.button} ${styles.themeToggleBtn}`}
-                >
-                    {theme === "light" ? <GoMoon /> : <GoSun />}
-                </button>
-
-                <button
-                    className={`${styles.button} ${styles.iconsAccountMenu}`}
-                >
-                    <GoGear />
-                </button>
-
-                <button
-                    className={`${styles.button} ${styles.iconsAccountMenu}`}
-                >
-                    <GoBell />
-                </button>
+            {/* usuário */}
+            <div className={styles.userInfo}>
 
                 {/* avatar */}
-                <div className={styles.avatarFallback}>
-                    {user?.nome?.charAt(0).toUpperCase() || "U"}
-                </div>
+                {user?.foto ? (
+                    <img
+                        src={user.foto}
+                        alt={user.nome}
+                        className={styles.avatar}
+                    />
+                ) : (
+                    <div className={styles.avatarFallback}>
+                        {user?.nome?.charAt(0).toUpperCase() || "U"}
+                    </div>
+                )}
+
+                {/* saudação */}
+                <h1 className={styles.h1}>
+                    {saudacao}, {user?.nome || "Usuário"}!
+                </h1>
 
             </div>
-        </header>
+
+            {/* botões */}
+            <div className={styles.btnWrapped}>
+
+                <button
+                    className={styles.button}
+                    onClick={() => setIsModalOpen(true)}
+                >
+                    <GoPlus className={styles.iconButton} />
+                    Nova Transação
+                </button>
+
+                <button className={styles.button}>
+                    <GoCalendar className={styles.iconButton} />
+                    Selecionar Período
+                </button>
+
+            </div>
+
+            {/* modal */}
+            <Modal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                title="Adicionar Nova Transação"
+            >
+                <Cadastro
+                    onAdd={(novoItem) => {
+                        onAddTransaction(novoItem);
+                        setIsModalOpen(false);
+                    }}
+                />
+            </Modal>
+
+        </div>
     );
 };

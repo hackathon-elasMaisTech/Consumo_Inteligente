@@ -1,0 +1,85 @@
+.container {
+    padding: 2.4rem;
+    border-radius: 1.2rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.titulo {
+    font-size: 1.8rem;
+    color: var(--main-text);
+    margin-bottom: 1.6rem;
+}
+
+.lista {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    border: 1px solid var(--standard-border);
+    border-radius: 8px;
+    transition: transform 0.2s;
+}
+
+.item:hover {
+    transform: translateX(4px);
+    border-color: var(--primary-color);
+}
+
+.infoEsquerda {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.nome {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--main-text);
+}
+
+.categoria {
+    font-size: 1.2rem;
+    color: var(--secondary-text);
+    text-transform: capitalize;
+}
+
+.infoDireita {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.valorReceita {
+    color: var(--text-income);
+    font-weight: 600;
+    font-size: 1.6rem;
+}
+
+.valorDespesa {
+    color: var(--text-expense);
+    font-weight: 600;
+    font-size: 1.6rem;
+}
+
+.btnExcluir {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.6rem;
+    padding: 0.5rem;
+    border-radius: 100%;
+    color: var(--secondary-text);
+    transition: background 0.2s;
+}
+
+.btnExcluir:hover {
+    background-color: var(--bg-expense);
+}
