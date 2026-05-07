@@ -46,7 +46,7 @@ export const Header = () => {
 
             {/* logo */}
             <img
-                src="/logo.png"
+                src={`${import.meta.env.BASE_URL}logo.png`}
                 alt="Logo do Consuman"
                 className={styles.logo}
             />

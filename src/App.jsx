@@ -4,7 +4,8 @@ import { getConsumos, createConsumo, deleteConsumo } from "./services/api";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { analisarConsumo } from "./utils/analiseConsumo";
 
-// estilos globais
+// estilos
+// App.module.css ainda nao foi adicionado
 import "./styles/global.css";
 
 // páginas
