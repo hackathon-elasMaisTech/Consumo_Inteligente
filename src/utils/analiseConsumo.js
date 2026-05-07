@@ -1,3 +1,5 @@
+import { analisarPerfil } from "./analisePerfil.js";
+
 export function analisarConsumo(consumos) {
   const despesas = consumos.filter((item) => item.tipo === "despesa");
   const receitas = consumos.filter((item) => item.tipo === "receita");
@@ -46,9 +48,7 @@ export function analisarConsumo(consumos) {
 
   const nomeDominante = categoriaDominante[0];
   const percentualDominante = categoriaDominante[1];
-  const maiorCategoriaFlexivel = categoriasConsumo.find((item) =>
-    ["lazer", "cuidados_pessoais", "compras", "assinaturas"].includes(item.categoria)
-  );
+  const perfil = analisarPerfil(totalReceitas, totalPorCategoria);
 
   if (!nomeDominante) {
     return {
@@ -57,44 +57,10 @@ export function analisarConsumo(consumos) {
       percentuais,
       categoriasConsumo,
       insightCategoriaDominante: null,
-      insights: [],
-      recomendacoes: []
+      insights: perfil.insights,
+      recomendacoes: perfil.recomendacoes,
+      resumoRegra503020: perfil.resumoRegra503020
     };
-  }
-
-  const insights = [
-    {
-      titulo: "Margem disponivel",
-      valor: `R$ ${saldoRestante.toFixed(2)}`,
-      descricao: "Valor estimado que sobra depois das despesas registradas."
-    },
-    {
-      titulo: "Categoria dominante",
-      valor: nomeDominante,
-      descricao: `${nomeDominante} concentra ${percentualDominante.toFixed(2)}% dos gastos.`
-    }
-  ];
-
-  if (maiorCategoriaFlexivel) {
-    insights.push({
-      titulo: "Maior impacto flexivel",
-      valor: maiorCategoriaFlexivel.categoria,
-      descricao: `${maiorCategoriaFlexivel.categoria} e a categoria flexivel com maior potencial de ajuste.`
-    });
-  }
-
-  const recomendacoes = [
-    {
-      titulo: "Reserve antes de gastar",
-      descricao: "Separe uma parte da receita antes dos gastos variaveis para manter uma margem financeira."
-    }
-  ];
-
-  if (percentualDominante > 50) {
-    recomendacoes.push({
-      titulo: "Revise a categoria dominante",
-      descricao: `${nomeDominante} ultrapassa metade dos gastos. Vale verificar se ha despesas que podem ser reduzidas.`
-    });
   }
 
   return {
@@ -108,7 +74,8 @@ export function analisarConsumo(consumos) {
       categoria: nomeDominante,
       percentual: Number(percentualDominante.toFixed(2))
     },
-    insights,
-    recomendacoes
+    insights: perfil.insights,
+    recomendacoes: perfil.recomendacoes,
+    resumoRegra503020: perfil.resumoRegra503020
   };
 }
