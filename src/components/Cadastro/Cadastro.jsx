@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styles from "./Cadastro.module.css";
 
 export const Cadastro = ({ onAdd }) => {
     const [nome, setNome] = useState("");
@@ -44,49 +45,87 @@ export const Cadastro = ({ onAdd }) => {
             : ["salario", "freelance", "investimento"];
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={styles.formContainer}>
+            <div className={styles.incomeExpenseWrapped}>
+                <label
+                    className={`${styles.incomeExpenseRadioLabel} 
+                    ${tipo === "despesa" ? styles.expenseActive : ""}`}
+                >
+                    <input
+                        type="radio"
+                        name="tipo"
+                        value="despesa"
+                        checked={tipo === "despesa"}
+                        onChange={(e) => {
+                            setTipo(e.target.value);
+                            setCategoria("");
+                        }}
+                    />
+                    Despesa
+                </label>
+                <label
+                    className={`${styles.incomeExpenseRadioLabel} 
+                    ${tipo === "receita" ? styles.incomeActive : ""}`}
+                >
+                    <input
+                        type="radio"
+                        name="tipo"
+                        value="receita"
+                        checked={tipo === "receita"}
+                        onChange={(e) => {
+                            setTipo(e.target.value);
+                            setCategoria("");
+                        }}
+                    />
+                    Receita
+                </label>
+            </div>
+            <div className={styles.inputWrapped}>
+                <label className={styles.label}>Nome da Transação</label>
                 <input
-                    placeholder="Nome"
+                    className={styles.inputField}
+                    placeholder="Ex: Conta de Luz"
                     value={nome}
+                    required
                     onChange={(e) => setNome(e.target.value)}
                 />
+            </div>
 
+            <div className={styles.inputWrapped}>
+                <label className={styles.label}>Valor</label>
                 <input
+                    className={styles.inputField}
                     type="number"
-                    placeholder="Valor"
+                    step="any"
+                    placeholder="Ex: 150,00"
                     value={valor}
                     onChange={(e) => setValor(e.target.value)}
                 />
+            </div>
 
-                {/* 👇 seleciona tipo primeiro */}
+            <div className={styles.inputWrapped}>
+                <label className={styles.label}>Categoria</label>
                 <select
-                    value={tipo}
-                    onChange={(e) => {
-                        setTipo(e.target.value);
-                        setCategoria(""); // reseta categoria ao trocar tipo
-                    }}
-                >
-                    <option value="despesa">Despesa</option>
-                    <option value="receita">Receita</option>
-                </select>
-
-                {/* 👇 categoria dinâmica */}
-                <select
+                    className={styles.selectField}
                     value={categoria}
+                    required
                     onChange={(e) => setCategoria(e.target.value)}
                 >
-                    <option value="">Selecione uma categoria</option>
-
+                    <option value="" disabled>
+                        Selecione uma categoria
+                    </option>
                     {categorias.map((cat) => (
                         <option key={cat} value={cat}>
-                            {cat}
+                            {cat.charAt(0).toLocaleUpperCase() +
+                                cat.slice(1).replace("_", " ")}
                         </option>
                     ))}
                 </select>
+            </div>
 
-                <button type="submit">Cadastrar</button>
-            </form>
-        </div>
+            <button type="submit" className={styles.submitBtn}>
+                Cadastrar
+            </button>
+        </form>
     );
 };
