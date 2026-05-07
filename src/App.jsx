@@ -6,7 +6,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { analisarConsumo } from "./utils/analiseConsumo";
 
 // estilos
-import styles from "./App.module.css";
+// App.module.css ainda nao foi adicionado
 import "./styles/global.css";
 
 // paginas
@@ -21,7 +21,7 @@ import { Filtros } from "./components/Filtros/Filtros";
 import { ListaTransacoes } from "./components/ListaTransacoes/ListaTransacoes";
 import Insights from "./components/Insights/Insights";
 import Recomendacoes from "./components/Recomendacoes/Recomendacoes";
-import VisaoConsumo from "./components/VisaoConsumo/VisaoConsumo";
+import { VisaoConsumo } from "./components/VisaoConsumo/VisaoConsumo";
 
 function App() {
     const [consumos, setConsumos] = useState([]);
@@ -98,7 +98,7 @@ function App() {
                                 filtroTipo={filtroTipo}
                                 setFiltroTipo={setFiltroTipo}
                             />
-                            <section className={styles.listaConsumoWrapped}>
+                            <section className="listaConsumoWrapped">
                                 <ListaTransacoes
                                     consumos={consumosFiltrados}
                                     onDelete={removerConsumo}
