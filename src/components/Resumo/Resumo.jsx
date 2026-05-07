@@ -1,7 +1,7 @@
 import styles from "./Resumo.module.css";
 import { formatarMoeda } from "../../utils/formatadorMoeda";
 
-export const Resumo = ({ receitas, despesas, saldo }) => {
+export const Resumo = ({ receitas, despesas, saldo, categoriaDominante }) => {
     return (
         <section className={styles.container}>
             <div className={styles.card}>
@@ -23,7 +23,12 @@ export const Resumo = ({ receitas, despesas, saldo }) => {
 
             <div className={styles.card}>
                 <h3 className={styles.cardTitle}>Categoria Dominante</h3>
-                <p className={styles.cardValue}>Moradia</p>
+                <p className={styles.cardValue}>
+                    {categoriaDominante
+                        ? categoriaDominante.charAt(0).toLocaleUpperCase() +
+                          categoriaDominante.slice(1).replace("_", " ")
+                        : "---"}
+                </p>
             </div>
         </section>
     );
