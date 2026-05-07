@@ -78,7 +78,7 @@ function App() {
                         <div className="app-container">
                             <Header />
 
-                            <MainHeader />
+                            <MainHeader onAddTransaction={adicionarConsumo} />
 
                             <Resumo
                                 receitas={totalReceitas}
@@ -86,18 +86,16 @@ function App() {
                                 saldo={saldo}
                             />
 
-                            <Cadastro onAdd={adicionarConsumo} />
-
-                            <Lista
-                                consumos={consumosFiltrados}
-                                onDelete={removerConsumo}
-                            />
-
                             <Filtros
                                 filtroCategoria={filtroCategoria}
                                 setFiltroCategoria={setFiltroCategoria}
                                 filtroTipo={filtroTipo}
                                 setFiltroTipo={setFiltroTipo}
+                            />
+
+                            <ListaTransacoes
+                                consumos={consumosFiltrados}
+                                onDelete={removerConsumo}
                             />
 
                             <VisaoConsumo analise={analise} />
