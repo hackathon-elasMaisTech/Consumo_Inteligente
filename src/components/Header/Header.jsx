@@ -24,21 +24,23 @@ export const Header = () => {
 
     return (
         <header className={styles.header}>
-            <img
-                src="/logo.png"
-                alt="Logo do Consuman"
-                className={styles.logo}
-            />
-            <div className={styles.accountMenu}>
-                <button
-                    onClick={toggleTheme}
-                    className={`${styles.button} ${styles.themeToggleBtn}`}
-                >
-                    {theme === "light" ? <GoMoon /> : <GoSun />}
-                </button>
-                <button className={`${styles.button} ${styles.avatar}`}>
-                    <GoPerson />
-                </button>
+            <div className={styles.headerWrapped}>
+                <img
+                    src="/logo.png"
+                    alt="Logo do Consuman"
+                    className={styles.logo}
+                />
+                <div className={styles.accountMenu}>
+                    <button
+                        onClick={toggleTheme}
+                        className={`${styles.button} ${styles.themeToggleBtn}`}
+                    >
+                        {theme === "light" ? <GoMoon /> : <GoSun />}
+                    </button>
+                    <button className={`${styles.button} ${styles.avatar}`}>
+                        <GoPerson />
+                    </button>
+                </div>
             </div>
         </header>
     );
