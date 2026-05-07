@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { getConsumos, createConsumo, deleteConsumo } from "./services/api";
-
+import { Routes, Route } from "react-router-dom";
 import "./styles/global.css";
-
+import ProtectedRoute from "./components/ProtectedRoute";
+import Login from "./pages/Login/Login";
 import Cadastro from "./pages/Cadastro";
 import Lista from "./pages/Lista";
 import { analisarConsumo } from "./utils/analiseConsumo";
+import CadastroLogin from "./pages/CadastroLogin/CadastroLogin";
 
-// novos componentes
+// componentes
 import { Header } from "./components/Header/Header";
 import { Resumo } from "./components/Resumo/Resumo";
 import Filtros from "./components/Filtros";
@@ -15,78 +17,96 @@ import Insights from "./components/Insights";
 import { MainHeader } from "./components/MainHeader/MainHeader";
 
 function App() {
-    const [consumos, setConsumos] = useState([]);
-    const [filtroCategoria, setFiltroCategoria] = useState("");
-    const [filtroTipo, setFiltroTipo] = useState("");
+  const [consumos, setConsumos] = useState([]);
+  const [filtroCategoria, setFiltroCategoria] = useState("");
+  const [filtroTipo, setFiltroTipo] = useState("");
 
-    useEffect(() => {
-        async function carregar() {
-            const dados = await getConsumos();
-            setConsumos(dados);
-        }
-        carregar();
-    }, []);
+  useEffect(() => {
+    async function carregar() {
+      const dados = await getConsumos();
+      setConsumos(dados);
+    }
+    carregar();
+  }, []);
 
-    const carregarConsumos = async () => {
-        const dados = await getConsumos();
-        setConsumos(dados);
-    };
+  const carregarConsumos = async () => {
+    const dados = await getConsumos();
+    setConsumos(dados);
+  };
 
-    const adicionarConsumo = async (novoItem) => {
-        await createConsumo(novoItem);
-        carregarConsumos();
-    };
+  const adicionarConsumo = async (novoItem) => {
+    await createConsumo(novoItem);
+    carregarConsumos();
+  };
 
-    const removerConsumo = async (id) => {
-        await deleteConsumo(id);
-        carregarConsumos();
-    };
+  const removerConsumo = async (id) => {
+    await deleteConsumo(id);
+    carregarConsumos();
+  };
 
-    // cálculos
-    const totalReceitas = consumos
-        .filter((i) => i.tipo === "receita")
-        .reduce((acc, i) => acc + i.valor, 0);
+  // cálculos
+  const totalReceitas = consumos
+    .filter((i) => i.tipo === "receita")
+    .reduce((acc, i) => acc + i.valor, 0);
 
-    const totalDespesas = consumos
-        .filter((i) => i.tipo === "despesa")
-        .reduce((acc, i) => acc + i.valor, 0);
+  const totalDespesas = consumos
+    .filter((i) => i.tipo === "despesa")
+    .reduce((acc, i) => acc + i.valor, 0);
 
-    const saldo = totalReceitas - totalDespesas;
-    const analise = analisarConsumo(consumos);
+  const saldo = totalReceitas - totalDespesas;
+  const analise = analisarConsumo(consumos);
 
-    // filtro
-    const consumosFiltrados = consumos.filter(
-        (item) =>
-            (filtroCategoria === "" || item.categoria === filtroCategoria) &&
-            (filtroTipo === "" || item.tipo === filtroTipo),
-    );
+  // filtro
+  const consumosFiltrados = consumos.filter(
+    (item) =>
+      (filtroCategoria === "" || item.categoria === filtroCategoria) &&
+      (filtroTipo === "" || item.tipo === filtroTipo)
+  );
 
-    return (
-        <div className="app-container">
+  return (
+    <Routes>
+
+      {/* 🔐 Login */}
+      <Route path="/" element={<Login />} />
+      {/* 📝 Cadastro */}
+      <Route path="/cadastroLogin" element={<CadastroLogin />} />
+      {/* 🏠 Home */}
+      <Route
+        path="/home"
+        element={
+           <ProtectedRoute>
+          <div className="app-container">
             <Header />
-
             <MainHeader />
 
             <Resumo
-                receitas={totalReceitas}
-                despesas={totalDespesas}
-                saldo={saldo}
+              receitas={totalReceitas}
+              despesas={totalDespesas}
+              saldo={saldo}
             />
 
             <Cadastro onAdd={adicionarConsumo} />
 
-            <Lista consumos={consumosFiltrados} onDelete={removerConsumo} />
+            <Lista
+              consumos={consumosFiltrados}
+              onDelete={removerConsumo}
+            />
 
             <Insights analise={analise} />
 
             <Filtros
-                filtroCategoria={filtroCategoria}
-                setFiltroCategoria={setFiltroCategoria}
-                filtroTipo={filtroTipo}
-                setFiltroTipo={setFiltroTipo}
+              filtroCategoria={filtroCategoria}
+              setFiltroCategoria={setFiltroCategoria}
+              filtroTipo={filtroTipo}
+              setFiltroTipo={setFiltroTipo}
             />
-        </div>
-    );
+          </div>
+          </ProtectedRoute>
+        }
+      />
+
+    </Routes>
+  );
 }
 
 export default App;
