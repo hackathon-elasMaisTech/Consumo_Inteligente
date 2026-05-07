@@ -71,3 +71,11 @@ body {
     max-width: 1440px;
     margin: 0 auto;
 }
+.app-container {
+  padding: 20px;
+}
+
+.listaConsumoWrapped {
+  display: flex;
+  gap: 20px;
+}
