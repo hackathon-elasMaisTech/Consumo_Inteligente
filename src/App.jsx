@@ -1,10 +1,16 @@
 import { useEffect, useState } from "react";
-import { getConsumos, createConsumo, deleteConsumo } from "./services/api";
 import { Routes, Route } from "react-router-dom";
-import "./styles/global.css";
+
+import { getConsumos, createConsumo, deleteConsumo } from "./services/api";
 import ProtectedRoute from "./components/ProtectedRoute";
-import Login from "./pages/Login/Login";
 import { analisarConsumo } from "./utils/analiseConsumo";
+
+// estilos
+import styles from "./App.module.css";
+import "./styles/global.css";
+
+// paginas
+import Login from "./pages/Login/Login";
 import CadastroLogin from "./pages/CadastroLogin/CadastroLogin";
 
 // componentes
@@ -92,13 +98,15 @@ function App() {
                                 filtroTipo={filtroTipo}
                                 setFiltroTipo={setFiltroTipo}
                             />
+                            <section className={styles.listaConsumoWrapped}>
+                                <ListaTransacoes
+                                    consumos={consumosFiltrados}
+                                    onDelete={removerConsumo}
+                                />
 
-                            <ListaTransacoes
-                                consumos={consumosFiltrados}
-                                onDelete={removerConsumo}
-                            />
+                                <VisaoConsumo analise={analise} />
+                            </section>
 
-                            <VisaoConsumo analise={analise} />
                             <Insights analise={analise} />
                             <Recomendacoes analise={analise} />
                         </div>
