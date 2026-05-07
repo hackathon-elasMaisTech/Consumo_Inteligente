@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import styles from "./Recomendacoes.module.css";
 import {
+    MdOutlineThumbDown,
     MdOutlineThumbUp,
     MdChevronLeft,
     MdChevronRight,
@@ -77,8 +78,18 @@ export const Recomendacoes = ({ analise }) => {
                                 className={styles.recomendacaoItem}
                                 key={recomendacao.titulo}
                             >
-                                <span className={styles.icon}>
-                                    <MdOutlineThumbUp />
+                                <span
+                                    className={`${styles.icon} ${
+                                        recomendacao.tipo === "negativa"
+                                            ? styles.iconNegativo
+                                            : styles.iconPositivo
+                                    }`}
+                                >
+                                    {recomendacao.tipo === "negativa" ? (
+                                        <MdOutlineThumbDown />
+                                    ) : (
+                                        <MdOutlineThumbUp />
+                                    )}
                                 </span>
                                 <h4>{recomendacao.titulo}</h4>
                                 <p>{recomendacao.descricao}</p>

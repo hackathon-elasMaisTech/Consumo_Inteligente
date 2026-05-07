@@ -54,8 +54,15 @@
 
 .icon {
   font-size: 2.8rem;
-  color: var(--primary-color);
   display: flex;
+}
+
+.iconPositivo {
+  color: var(--primary-color);
+}
+
+.iconNegativo {
+  color: var(--primary-color);
 }
 
 .recomendacaoItem h4 {
