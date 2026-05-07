@@ -1,6 +1,5 @@
-import { NavLink } from "react-router-dom";
 import styles from "./Header.module.css";
-import { GoGear, GoBell, GoPerson, GoMoon, GoSun } from "react-icons/go";
+import { GoPerson, GoMoon, GoSun } from "react-icons/go";
 import { useEffect, useState } from "react";
 
 export const Header = () => {
@@ -23,45 +22,19 @@ export const Header = () => {
         );
     };
 
-    const checkActiveLink = ({ isActive }) => {
-        return isActive
-            ? `${styles.menuItem} ${styles.menuItemActive}`
-            : styles.menuItem;
-    };
-
     return (
         <header className={styles.header}>
-            <img src="/logo.png" alt="Logo do Consuman" className={styles.logo} />
-            <nav className={styles.menu}>
-                <NavLink to="/" className={checkActiveLink}>
-                    Visão geral
-                </NavLink>
-                <NavLink to="/transcacoes" className={checkActiveLink}>
-                    Transações
-                </NavLink>
-                <NavLink to="/categorias" className={checkActiveLink}>
-                    Categorias
-                </NavLink>
-                <NavLink to="/insights" className={checkActiveLink}>
-                    Insights
-                </NavLink>
-            </nav>
+            <img
+                src="/logo.png"
+                alt="Logo do Consuman"
+                className={styles.logo}
+            />
             <div className={styles.accountMenu}>
                 <button
                     onClick={toggleTheme}
                     className={`${styles.button} ${styles.themeToggleBtn}`}
                 >
                     {theme === "light" ? <GoMoon /> : <GoSun />}
-                </button>
-                <button
-                    className={`${styles.button} ${styles.iconsAccountMenu}`}
-                >
-                    <GoGear />
-                </button>
-                <button
-                    className={`${styles.button} ${styles.iconsAccountMenu}`}
-                >
-                    <GoBell />
                 </button>
                 <button className={`${styles.button} ${styles.avatar}`}>
                     <GoPerson />
