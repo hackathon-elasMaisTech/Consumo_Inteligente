@@ -8,6 +8,7 @@ import { FiltroPeriodo } from "../FiltroPeriodo/FiltroPeriodo";
 import styles from "./MainHeader.module.css";
 
 import { AuthContext } from "../../context/AuthContext";
+import { obterPeriodoMesAtual } from "../../utils/periodo";
 
 export const MainHeader = ({
     onAddTransaction,
@@ -19,7 +20,10 @@ export const MainHeader = ({
     const [isCadastroModalOpen, setIsCadastroModalOpen] = useState(false);
     const [isPeriodoModalOpen, setIsPeriodoModalOpen] = useState(false);
 
-    const isFiltroAtivo = filterPeriod?.dataInicio || filterPeriod?.dataFim;
+    const periodoMesAtual = obterPeriodoMesAtual();
+    const isFiltroAtivo =
+        filterPeriod?.dataInicio !== periodoMesAtual.dataInicio ||
+        filterPeriod?.dataFim !== periodoMesAtual.dataFim;
 
     // ⏰ saudação automática
     const hora = new Date().getHours();

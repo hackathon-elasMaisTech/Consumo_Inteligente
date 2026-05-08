@@ -8,6 +8,7 @@ import {
     CATEGORIAS_DESPESA_FIXA,
     CATEGORIAS_DESPESA_FLEXIVEL,
 } from "./utils/categorias";
+import { obterPeriodoMesAtual } from "./utils/periodo";
 
 // estilos
 import "./styles/global.css";
@@ -33,10 +34,7 @@ function App() {
     const [consumos, setConsumos] = useState([]);
     const [filtroCategoria, setFiltroCategoria] = useState("");
     const [filtroTipo, setFiltroTipo] = useState("");
-    const [filtroPeriodo, setFiltroPeriodo] = useState({
-        dataInicio: "",
-        dataFim: "",
-    });
+    const [filtroPeriodo, setFiltroPeriodo] = useState(obterPeriodoMesAtual);
     const [isRegraModalOpen, setIsRegraModalOpen] = useState(false);
     const [regraFinanceira, setRegraFinanceira] = useState({
         fixos: 50,
@@ -76,6 +74,15 @@ function App() {
     const fecharOnboarding = () => {
         localStorage.setItem("lumi-onboarding-visto", "true");
         setIsOnboardingOpen(false);
+    };
+
+    const atualizarFiltroPeriodo = (datas) => {
+        if (!datas.dataInicio && !datas.dataFim) {
+            setFiltroPeriodo(obterPeriodoMesAtual());
+            return;
+        }
+
+        setFiltroPeriodo(datas);
     };
 
     const gerarNotificacaoDeLimite = (novoItem, dadosAtualizados) => {
@@ -127,15 +134,16 @@ function App() {
     };
 
     // filtro
-    const consumosFiltrados = consumos.filter(
-        (item) =>
+    const consumosFiltrados = consumos.filter((item) => {
+        const dataTransacao = item.dataUser || item.data;
+
+        return (
             (filtroCategoria === "" || item.categoria === filtroCategoria) &&
             (filtroTipo === "" || item.tipo === filtroTipo) &&
-            (filtroPeriodo.dataInicio === "" ||
-                item.dataUser >= filtroPeriodo.dataInicio) &&
-            (filtroPeriodo.dataFim === "" ||
-                item.dataUser <= filtroPeriodo.dataFim),
-    );
+            dataTransacao >= filtroPeriodo.dataInicio &&
+            dataTransacao <= filtroPeriodo.dataFim
+        );
+    });
 
     // cálculos
     const categoriasInvestimentos = ["investimento", "reserva"];
@@ -187,9 +195,7 @@ function App() {
                         <div className={styles.appContainer}>
                             <MainHeader
                                 onAddTransaction={adicionarConsumo}
-                                onFilterPeriod={(datas) =>
-                                    setFiltroPeriodo(datas)
-                                }
+                                onFilterPeriod={atualizarFiltroPeriodo}
                                 filterPeriod={filtroPeriodo}
                             />
 
