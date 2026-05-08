@@ -1,6 +1,6 @@
 # PROJETO DE CONCLUSÃO DE CURSO
 
-## Consumo Inteligente 
+## Lumi
 
 **Tema:** Sistema Inteligente de Análise de Perfil Financeiro, Consumo e Geração de Insights. 
 
@@ -13,7 +13,7 @@ O projeto foi desenvolvido com foco na consolidação dos conteúdos estudados d
 Além da aplicação técnica dos conhecimentos, o projeto também busca estimular o trabalho em equipe, a resolução de problemas e a criação de soluções tecnológicas voltadas para situações reais do cotidiano.
 
 ## Objetivo do projeto
-O projeto Consumo Inteligente foi desenvolvido com o objetivo de auxiliar usuários no controle financeiro pessoal de maneira simples, intuitiva e visual.
+O projeto lumi foi desenvolvido com o objetivo de auxiliar usuários no controle financeiro pessoal de maneira simples, intuitiva e visual.
 
 **A aplicação permite:**
 
@@ -64,6 +64,12 @@ Colocar Print da lógica JS
 ## Estrutura dos Dados
 
 ### Print json utilizado 
+Os prints apresentados abaixo demonstram a estrutura dos dados JSON utilizados na aplicação, disponibilizados por meio da MockAPI.
+Para uma visualização mais detalhada da estrutura e dos dados utilizados no projeto, consulte a URL abaixo:
+MockAPI do Projeto lumi
+
+<img width="884" height="632" alt="image" src="https://github.com/user-attachments/assets/449e184e-e543-4413-89da-cbc400946c0e" />
+<img width="628" height="636" alt="image" src="https://github.com/user-attachments/assets/7efd0cf1-d8cf-4a3b-89c5-b181bfff6693" />
 
 
 ## Interface da Aplicação
@@ -82,20 +88,32 @@ Colocar Print da lógica JS
 
 
 ##  Prints da Aplicação React
+
 Tela de Login 
-Inserir print da tela de login.
+<img width="1365" height="637" alt="image" src="https://github.com/user-attachments/assets/6325e5ef-d072-410f-b2cf-f77c54ab722d" />
 
 Tela de Cadastro
-Inserir print da tela de cadastro.
+<img width="1365" height="639" alt="image" src="https://github.com/user-attachments/assets/e4791709-279f-4875-9675-9ff577dbe39e" />
 
 Dashboard Principal
-Inserir print da dashboard.
+<img width="1365" height="634" alt="image" src="https://github.com/user-attachments/assets/2bff239a-3b62-4f28-bbb1-004ba2eb72f2" />
+
+<img width="1365" height="637" alt="image" src="https://github.com/user-attachments/assets/28fa80fb-bd96-49e9-9f31-0cadd22e9c87" />
+
+<img width="1365" height="636" alt="image" src="https://github.com/user-attachments/assets/0000c619-c3ec-4d0e-85dd-8bf59e01e787" />
+
 
 Modal de Cadastro de Transação
-Inserir print do modal.
+
+<img width="1365" height="630" alt="image" src="https://github.com/user-attachments/assets/19c50e12-f96f-4094-b3b7-f0439cb6197f" />
+<img width="1363" height="635" alt="image" src="https://github.com/user-attachments/assets/10e471a0-51b9-419e-b100-413c3caa274e" />
+
 
 Responsividade Mobile
-Inserir print da versão mobile.
+
+<img width="820" height="637" alt="image" src="https://github.com/user-attachments/assets/25ee7d98-d267-43be-bb42-62f90ad2a6ad" />
+<img width="818" height="636" alt="image" src="https://github.com/user-attachments/assets/04a92269-226d-475e-9735-219e1c98fbf5" />
+<img width="822" height="641" alt="image" src="https://github.com/user-attachments/assets/84cf3b94-671b-4c65-b232-303dd54cf5ce" />
 
 
 
@@ -116,7 +134,7 @@ Inserir print da versão mobile.
 
 
 ## Conclusão 
-O projeto Consumo Inteligente permitiu aplicar conceitos fundamentais do desenvolvimento Front-End moderno utilizando React.
+O projeto lumi permitiu aplicar conceitos fundamentais do desenvolvimento Front-End moderno utilizando React.
 
 Durante o desenvolvimento, foram trabalhados os seguintes conceitos:
 

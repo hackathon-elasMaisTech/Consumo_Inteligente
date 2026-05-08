@@ -34,9 +34,9 @@
 }
 
 .activeBtn {
-    background-color: var(--primary-color);
-    color: var(--main-text);
-    box-shadow: var(--shadow-container);
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
 }
 
 .divisor {
