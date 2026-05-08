@@ -56,7 +56,9 @@ export const Recomendacoes = ({ analise }) => {
             <h2 className={styles.title}>Recomendações</h2>
 
             {!recomendacoes || recomendacoes.length === 0 ? (
-                <p>Nenhuma recomendação disponível.</p>
+                <p className={styles.emptyMessage}>
+                    Nenhuma recomendação disponível.
+                </p>
             ) : (
                 <div className={styles.carrosselWrapper}>
                     {!isAtStart && (

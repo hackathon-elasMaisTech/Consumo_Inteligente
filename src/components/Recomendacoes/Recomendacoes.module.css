@@ -73,7 +73,7 @@
 
 .recomendacaoItem p {
   max-width: 60%;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   color: var(--main-text);
   line-height: 1.5;
   margin-top: 0.8rem;
@@ -82,9 +82,14 @@
 .highlight {
   max-width: 60%;
   color: var(--main-text);
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   font-weight: 700;
   line-height: 1.5;
+}
+
+.emptyMessage {
+  color: var(--secondary-text);
+  font-size: 1.4rem;
 }
 
 .btnNavegacao {
@@ -93,7 +98,7 @@
   transform: translateY(-50%);
   z-index: 10;
 
-  background-color: var(--bg-card);
+  background-color: var(--background);
   color: var(--primary-color);
   border: 1px solid var(--standard-border);
   border-radius: 50%;

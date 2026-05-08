@@ -26,7 +26,7 @@ export const ListaTransacoes = ({ consumos, onDelete }) => {
             <h2 className={styles.titulo}>Lista de Consumos</h2>
 
             {consumos.length === 0 ? (
-                <p>Nenhum item encontrado</p>
+                <p className={styles.emptyMessage}>Nenhum item encontrado</p>
             ) : (
                 <div className={styles.lista}>
                     {consumos.map((item) => (
@@ -82,19 +82,19 @@ export const ListaTransacoes = ({ consumos, onDelete }) => {
 
                         <div className={styles.modalButtons}>
                             <button
-                                className={styles.btnConfirmar}
-                                onClick={confirmarExclusao}
-                            >
-                                Sim
-                            </button>
-
-                            <button
                                 className={styles.btnCancelar}
                                 onClick={() =>
                                     setModalAberto(false)
                                 }
                             >
                                 Cancelar
+                            </button>
+
+                            <button
+                                className={styles.btnConfirmar}
+                                onClick={confirmarExclusao}
+                            >
+                                Excluir
                             </button>
                         </div>
                     </div>

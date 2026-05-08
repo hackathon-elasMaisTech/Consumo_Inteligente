@@ -20,6 +20,11 @@
     padding-right: 0.8rem;
 }
 
+.emptyMessage {
+    color: var(--secondary-text);
+    font-size: 1.4rem;
+}
+
 .lista::-webkit-scrollbar {
     width: 0.6rem;
 }
@@ -112,31 +117,31 @@
     position: fixed;
     inset: 0;
 
-    background: rgba(0, 0, 0, 0.45);
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    z-index: 999;
+    z-index: 1000;
 }
 
 .modal {
     background: var(--background);
 
-    width: 34rem;
+    width: 90%;
+    max-width: 500px;
 
     padding: 2.4rem;
     border-radius: 1.2rem;
-
-    text-align: center;
 
     border: 1px solid var(--standard-border);
     box-shadow: var(--shadow-container);
 }
 
 .modalTitulo {
-    font-size: 1.8rem;
+    font-size: 2rem;
     color: var(--main-text);
 
     margin-bottom: 1.2rem;
@@ -145,41 +150,49 @@
 .modalTexto {
     font-size: 1.4rem;
     color: var(--secondary-text);
+    line-height: 1.5;
 
     margin-bottom: 2rem;
 }
 
 .modalButtons {
     display: flex;
-    justify-content: center;
+    align-items: center;
     gap: 1.2rem;
+    margin-top: 0.8rem;
 }
 
 .btnConfirmar,
 .btnCancelar {
-    border: none;
+    flex: 1;
     cursor: pointer;
 
-    padding: 0.9rem 1.6rem;
+    padding: 1.4rem;
     border-radius: 0.8rem;
 
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     font-weight: 600;
 
-    transition: opacity 0.2s;
+    transition: all 0.2s;
 }
 
 .btnConfirmar {
-    background: var(--text-income);
-    color: white;
+    border: none;
+    background-color: var(--primary-color);
+    color: var(--inverted-text);
 }
 
 .btnCancelar {
-    background: var(--standard-border);
-    color: var(--main-text);
+    background-color: transparent;
+    border: 1px solid var(--standard-border);
+    color: var(--secondary-text);
 }
 
-.btnConfirmar:hover,
 .btnCancelar:hover {
-    opacity: 0.9;
+    background-color: var(--standard-border);
+}
+
+.btnConfirmar:hover {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
 }
