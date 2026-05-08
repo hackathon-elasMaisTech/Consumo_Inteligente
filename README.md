@@ -88,20 +88,32 @@ MockAPI do Projeto Consumo Inteligente
 
 
 ##  Prints da Aplicação React
+
 Tela de Login 
-Inserir print da tela de login.
+<img width="1365" height="637" alt="image" src="https://github.com/user-attachments/assets/6325e5ef-d072-410f-b2cf-f77c54ab722d" />
 
 Tela de Cadastro
-Inserir print da tela de cadastro.
+<img width="1365" height="639" alt="image" src="https://github.com/user-attachments/assets/e4791709-279f-4875-9675-9ff577dbe39e" />
 
 Dashboard Principal
-Inserir print da dashboard.
+<img width="1365" height="634" alt="image" src="https://github.com/user-attachments/assets/2bff239a-3b62-4f28-bbb1-004ba2eb72f2" />
+
+<img width="1365" height="637" alt="image" src="https://github.com/user-attachments/assets/28fa80fb-bd96-49e9-9f31-0cadd22e9c87" />
+
+<img width="1365" height="636" alt="image" src="https://github.com/user-attachments/assets/0000c619-c3ec-4d0e-85dd-8bf59e01e787" />
+
 
 Modal de Cadastro de Transação
-Inserir print do modal.
+
+<img width="1365" height="630" alt="image" src="https://github.com/user-attachments/assets/19c50e12-f96f-4094-b3b7-f0439cb6197f" />
+<img width="1363" height="635" alt="image" src="https://github.com/user-attachments/assets/10e471a0-51b9-419e-b100-413c3caa274e" />
+
 
 Responsividade Mobile
-Inserir print da versão mobile.
+
+<img width="820" height="637" alt="image" src="https://github.com/user-attachments/assets/25ee7d98-d267-43be-bb42-62f90ad2a6ad" />
+<img width="818" height="636" alt="image" src="https://github.com/user-attachments/assets/04a92269-226d-475e-9735-219e1c98fbf5" />
+<img width="822" height="641" alt="image" src="https://github.com/user-attachments/assets/84cf3b94-671b-4c65-b232-303dd54cf5ce" />
 
 
 
