@@ -35,15 +35,25 @@
 .accountMenu {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.8rem;
 }
 
 .button {
     height: 4rem;
     width: 4rem;
     border: none;
+    border-radius: 50%;
     background: none;
     cursor: pointer;
+    transition:
+        background-color 0.2s,
+        color 0.2s;
+}
+
+.button:hover,
+.button:focus-visible {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
 }
 
 .themeToggleBtn {
@@ -159,8 +169,8 @@
 }
 
 .avatarFallback {
-    width: 4rem;
-    height: 4rem;
+    width: 3.4rem;
+    height: 3.4rem;
 
     border-radius: 50%;
     border: none;
@@ -176,10 +186,24 @@
     font-size: 1.6rem;
     font-weight: 700;
     cursor: pointer;
+    transition:
+        box-shadow 0.2s,
+        transform 0.2s;
+}
+
+.avatarFallback:hover,
+.avatarFallback:focus-visible {
+    box-shadow: 0 0 0 0.4rem var(--secondary-color);
+    transform: translateY(-0.1rem);
 }
 
 .userMenu {
     position: relative;
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .logoutMenu {
