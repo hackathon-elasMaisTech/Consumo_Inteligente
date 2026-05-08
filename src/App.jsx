@@ -130,10 +130,9 @@ function App() {
             mensagem: `Seus gastos ${dadosGrupo.nome} chegaram a ${percentual}% da renda, acima do limite de ${limite}%. O lançamento foi de ${formatarMoeda(novoItem.valor)} em ${novoItem.categoria}.`,
         };
 
-        setNotificacoes((notificacoesAtuais) => [
-            novaNotificacao,
-            ...notificacoesAtuais,
-        ].slice(0, 5));
+        setNotificacoes((notificacoesAtuais) =>
+            [novaNotificacao, ...notificacoesAtuais].slice(0, 5),
+        );
     };
 
     // filtro
@@ -200,6 +199,7 @@ function App() {
                                 onFilterPeriod={(datas) =>
                                     setFiltroPeriodo(datas)
                                 }
+                                filterPeriod={filtroPeriodo}
                             />
 
                             <Resumo

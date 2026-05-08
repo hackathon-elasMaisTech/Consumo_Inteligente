@@ -35,6 +35,12 @@
     font-size: 1.6rem;
 }
 
+.btnFilterActive {
+    background-color: var(--secondary-color);
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
 .iconButton {
     color: var(--primary-color);
 }
