@@ -2,13 +2,20 @@ import styles from "./Header.module.css";
 
 import { GoGear, GoBell, GoMoon, GoSun } from "react-icons/go";
 
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
-export const Header = ({ onOpenConfig }) => {
+export const Header = ({
+    onOpenConfig,
+    notificacoes = [],
+    onClearNotificacoes,
+    onReadNotificacao = () => {},
+}) => {
     const { user, logout } = useContext(AuthContext);
     const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+    const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
+    const notificationMenuRef = useRef(null);
     const navigate = useNavigate();
 
     // tema salvo
@@ -22,6 +29,23 @@ export const Header = ({ onOpenConfig }) => {
         document.documentElement.setAttribute("data-theme", theme);
         localStorage.setItem("lumi-theme", theme);
     }, [theme]);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (
+                notificationMenuRef.current &&
+                !notificationMenuRef.current.contains(event.target)
+            ) {
+                setIsNotificationsOpen(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
 
     // alternar tema
     const toggleTheme = () => {
@@ -63,19 +87,84 @@ export const Header = ({ onOpenConfig }) => {
                         <GoGear />
                     </button>
 
-                    <button
-                        className={`${styles.button} ${styles.iconsAccountMenu}`}
+                    <div
+                        className={styles.notificationMenu}
+                        ref={notificationMenuRef}
                     >
-                        <GoBell />
-                    </button>
+                        <button
+                            className={`${styles.button} ${styles.iconsAccountMenu}`}
+                            onClick={() => {
+                                setIsUserMenuOpen(false);
+                                setIsNotificationsOpen((isOpen) => !isOpen);
+                            }}
+                            type="button"
+                            aria-label="Abrir notificações"
+                        >
+                            <GoBell />
+                            {notificacoes.length > 0 && (
+                                <span className={styles.notificationBadge}>
+                                    {notificacoes.length}
+                                </span>
+                            )}
+                        </button>
+
+                        {isNotificationsOpen && (
+                            <div className={styles.notificationDropdown}>
+                                <div className={styles.notificationHeader}>
+                                    <strong>Notificações</strong>
+                                    {notificacoes.length > 0 && (
+                                        <button
+                                            type="button"
+                                            onClick={onClearNotificacoes}
+                                        >
+                                            Limpar
+                                        </button>
+                                    )}
+                                </div>
+
+                                {notificacoes.length === 0 ? (
+                                    <p className={styles.emptyNotifications}>
+                                        Nenhuma notificação no momento.
+                                    </p>
+                                ) : (
+                                    <div className={styles.notificationList}>
+                                        {notificacoes.map((notificacao) => (
+                                            <div
+                                                className={
+                                                    styles.notificationItem
+                                                }
+                                                key={notificacao.id}
+                                            >
+                                                <strong>
+                                                    {notificacao.titulo}
+                                                </strong>
+                                                <p>{notificacao.mensagem}</p>
+                                                <button
+                                                    type="button"
+                                                    onClick={() =>
+                                                        onReadNotificacao(
+                                                            notificacao.id,
+                                                        )
+                                                    }
+                                                >
+                                                    Marcar como lida
+                                                </button>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
+                        )}
+                    </div>
 
                     {/* avatar */}
                     <div className={styles.userMenu}>
                         <button
                             className={styles.avatarFallback}
-                            onClick={() =>
-                                setIsUserMenuOpen((isOpen) => !isOpen)
-                            }
+                            onClick={() => {
+                                setIsNotificationsOpen(false);
+                                setIsUserMenuOpen((isOpen) => !isOpen);
+                            }}
                             aria-label="Abrir menu do usuário"
                             type="button"
                         >
