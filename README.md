@@ -1,6 +1,6 @@
 # PROJETO DE CONCLUSÃO DE CURSO
 
-## Consumo Inteligente 
+## Lumi
 
 **Tema:** Sistema Inteligente de Análise de Perfil Financeiro, Consumo e Geração de Insights. 
 
@@ -13,7 +13,7 @@ O projeto foi desenvolvido com foco na consolidação dos conteúdos estudados d
 Além da aplicação técnica dos conhecimentos, o projeto também busca estimular o trabalho em equipe, a resolução de problemas e a criação de soluções tecnológicas voltadas para situações reais do cotidiano.
 
 ## Objetivo do projeto
-O projeto Consumo Inteligente foi desenvolvido com o objetivo de auxiliar usuários no controle financeiro pessoal de maneira simples, intuitiva e visual.
+O projeto lumi foi desenvolvido com o objetivo de auxiliar usuários no controle financeiro pessoal de maneira simples, intuitiva e visual.
 
 **A aplicação permite:**
 
@@ -66,7 +66,7 @@ Colocar Print da lógica JS
 ### Print json utilizado 
 Os prints apresentados abaixo demonstram a estrutura dos dados JSON utilizados na aplicação, disponibilizados por meio da MockAPI.
 Para uma visualização mais detalhada da estrutura e dos dados utilizados no projeto, consulte a URL abaixo:
-MockAPI do Projeto Consumo Inteligente
+MockAPI do Projeto lumi
 
 <img width="884" height="632" alt="image" src="https://github.com/user-attachments/assets/449e184e-e543-4413-89da-cbc400946c0e" />
 <img width="628" height="636" alt="image" src="https://github.com/user-attachments/assets/7efd0cf1-d8cf-4a3b-89c5-b181bfff6693" />
@@ -134,7 +134,7 @@ Responsividade Mobile
 
 
 ## Conclusão 
-O projeto Consumo Inteligente permitiu aplicar conceitos fundamentais do desenvolvimento Front-End moderno utilizando React.
+O projeto lumi permitiu aplicar conceitos fundamentais do desenvolvimento Front-End moderno utilizando React.
 
 Durante o desenvolvimento, foram trabalhados os seguintes conceitos:
 
