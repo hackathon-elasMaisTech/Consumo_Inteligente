@@ -13,7 +13,7 @@ O projeto foi desenvolvido com foco na consolidação dos conteúdos estudados d
 Além da aplicação técnica dos conhecimentos, o projeto também busca estimular o trabalho em equipe, a resolução de problemas e a criação de soluções tecnológicas voltadas para situações reais do cotidiano.
 
 ## Objetivo do projeto
-O projeto lumi foi desenvolvido com o objetivo de auxiliar usuários no controle financeiro pessoal de maneira simples, intuitiva e visual.
+O projeto Lumi foi desenvolvido com o objetivo de auxiliar usuários no controle financeiro pessoal de maneira simples, intuitiva e visual.
 
 **A aplicação permite:**
 
@@ -105,7 +105,7 @@ Este módulo é responsável pelo gerenciamento de usuários da aplicação util
 ### Print json utilizado 
 Os prints apresentados abaixo demonstram a estrutura dos dados JSON utilizados na aplicação, disponibilizados por meio da MockAPI.
 Para uma visualização mais detalhada da estrutura e dos dados utilizados no projeto, consulte a URL abaixo:
-MockAPI do Projeto lumi
+MockAPI do Projeto Lumi
 
 <img width="884" height="632" alt="image" src="https://github.com/user-attachments/assets/449e184e-e543-4413-89da-cbc400946c0e" />
 <img width="628" height="636" alt="image" src="https://github.com/user-attachments/assets/7efd0cf1-d8cf-4a3b-89c5-b181bfff6693" />
@@ -176,7 +176,7 @@ MockAPI do Projeto lumi
 
 
 ## Conclusão 
-O projeto lumi permitiu aplicar conceitos fundamentais do desenvolvimento Front-End moderno utilizando React.
+O projeto Lumi permitiu aplicar conceitos fundamentais do desenvolvimento Front-End moderno utilizando React.
 
 Durante o desenvolvimento, foram trabalhados os seguintes conceitos:
 
