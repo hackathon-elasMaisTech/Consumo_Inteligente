@@ -40,10 +40,17 @@
     border-color: var(--text-income);
 }
 
+.valueDateWrapped {
+    display: flex;
+    gap: 1.2rem;
+}
+
 .inputWrapped {
     display: flex;
+    width: 100%;
     flex-direction: column;
     gap: 0.5rem;
+    flex: 1;
 }
 
 .label {
@@ -98,4 +105,13 @@
 
 .submitBtn:hover {
     background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+.inputField::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+}
+
+[data-theme="dark"] .inputField::-webkit-calendar-picker-indicator {
+    filter: invert(1);
 }

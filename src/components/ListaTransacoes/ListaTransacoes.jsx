@@ -21,6 +21,14 @@ export const ListaTransacoes = ({ consumos, onDelete }) => {
         setTransacaoSelecionada(null);
     };
 
+    // ordenação da lista de transação por data (mais recente primeiro)
+    const consumosOrdenados = [...consumos].sort((a, b) => {
+        const dataA = new Date(a.dataUser);
+        const dataB = new Date(b.dataUser);
+
+        return dataB - dataA;
+    });
+
     return (
         <div className={styles.container}>
             <h2 className={styles.titulo}>Lista de Consumos</h2>
@@ -29,7 +37,7 @@ export const ListaTransacoes = ({ consumos, onDelete }) => {
                 <p className={styles.emptyMessage}>Nenhum item encontrado</p>
             ) : (
                 <div className={styles.lista}>
-                    {consumos.map((item) => (
+                    {consumosOrdenados.map((item) => (
                         <div key={item.id} className={styles.item}>
                             <div className={styles.infoEsquerda}>
                                 <span className={styles.nome}>
@@ -37,9 +45,20 @@ export const ListaTransacoes = ({ consumos, onDelete }) => {
                                         item.nome.slice(1)}
                                 </span>
 
-                                <span className={styles.categoria}>
-                                    {item.categoria.replace("_", " ")}
-                                </span>
+                                <div className={styles.dataCategoriaWrapped}>
+                                    <span className={styles.categoria}>
+                                        {item.categoria.replace("_", " ")}
+                                    </span>
+                                    <span className={styles.separador}>•</span>
+                                    <span className={styles.data}>
+                                        {item.dataUser
+                                            ? item.dataUser
+                                                  .split("-")
+                                                  .reverse()
+                                                  .join("/")
+                                            : "Sem Data"}
+                                    </span>
+                                </div>
                             </div>
 
                             <div className={styles.infoDireita}>
@@ -56,9 +75,7 @@ export const ListaTransacoes = ({ consumos, onDelete }) => {
 
                                 <button
                                     className={styles.btnExcluir}
-                                    onClick={() =>
-                                        abrirModalExcluir(item.id)
-                                    }
+                                    onClick={() => abrirModalExcluir(item.id)}
                                 >
                                     <GoX />
                                 </button>
@@ -83,9 +100,7 @@ export const ListaTransacoes = ({ consumos, onDelete }) => {
                         <div className={styles.modalButtons}>
                             <button
                                 className={styles.btnCancelar}
-                                onClick={() =>
-                                    setModalAberto(false)
-                                }
+                                onClick={() => setModalAberto(false)}
                             >
                                 Cancelar
                             </button>
