@@ -21,6 +21,14 @@ export const ListaTransacoes = ({ consumos, onDelete }) => {
         setTransacaoSelecionada(null);
     };
 
+    // ordenação da lista de transação por data (mais recente primeiro)
+    const consumosOrdenados = [...consumos].sort((a, b) => {
+        const dataA = new Date(a.dataUser);
+        const dataB = new Date(b.dataUser);
+
+        return dataB - dataA;
+    });
+
     return (
         <div className={styles.container}>
             <h2 className={styles.titulo}>Lista de Consumos</h2>
@@ -29,7 +37,7 @@ export const ListaTransacoes = ({ consumos, onDelete }) => {
                 <p>Nenhum item encontrado</p>
             ) : (
                 <div className={styles.lista}>
-                    {consumos.map((item) => (
+                    {consumosOrdenados.map((item) => (
                         <div key={item.id} className={styles.item}>
                             <div className={styles.infoEsquerda}>
                                 <span className={styles.nome}>
@@ -56,9 +64,7 @@ export const ListaTransacoes = ({ consumos, onDelete }) => {
 
                                 <button
                                     className={styles.btnExcluir}
-                                    onClick={() =>
-                                        abrirModalExcluir(item.id)
-                                    }
+                                    onClick={() => abrirModalExcluir(item.id)}
                                 >
                                     <GoX />
                                 </button>
@@ -90,9 +96,7 @@ export const ListaTransacoes = ({ consumos, onDelete }) => {
 
                             <button
                                 className={styles.btnCancelar}
-                                onClick={() =>
-                                    setModalAberto(false)
-                                }
+                                onClick={() => setModalAberto(false)}
                             >
                                 Cancelar
                             </button>
