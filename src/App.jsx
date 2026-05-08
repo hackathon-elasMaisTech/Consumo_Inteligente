@@ -23,6 +23,7 @@ import { Insights } from "./components/Insights/Insights";
 import { Recomendacoes } from "./components/Recomendacoes/Recomendacoes";
 import { VisaoConsumo } from "./components/VisaoConsumo/VisaoConsumo";
 import { RegraFinanceiraModal } from "./components/RegraFinanceiraModal/RegraFinanceiraModal";
+import { OnboardingTutorial } from "./components/OnboardingTutorial/OnboardingTutorial";
 
 function App() {
     const [consumos, setConsumos] = useState([]);
@@ -37,6 +38,9 @@ function App() {
         fixos: 50,
         flexiveis: 30,
         investimentos: 20,
+    });
+    const [isOnboardingOpen, setIsOnboardingOpen] = useState(() => {
+        return localStorage.getItem("lumi-onboarding-visto") !== "true";
     });
     const [notificacoes, setNotificacoes] = useState([]);
 
@@ -63,6 +67,11 @@ function App() {
     const removerConsumo = async (id) => {
         await deleteConsumo(id);
         carregarConsumos();
+    };
+
+    const fecharOnboarding = () => {
+        localStorage.setItem("lumi-onboarding-visto", "true");
+        setIsOnboardingOpen(false);
     };
 
     const gerarNotificacaoDeLimite = (novoItem, dadosAtualizados) => {
@@ -223,6 +232,11 @@ function App() {
                                 onClose={() => setIsRegraModalOpen(false)}
                                 regra={regraFinanceira}
                                 onChangeRegra={setRegraFinanceira}
+                            />
+
+                            <OnboardingTutorial
+                                isOpen={isOnboardingOpen}
+                                onClose={fecharOnboarding}
                             />
                         </div>
                     </ProtectedRoute>
