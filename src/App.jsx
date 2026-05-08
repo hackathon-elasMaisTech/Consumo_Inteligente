@@ -7,6 +7,7 @@ import { formatarMoeda } from "./utils/formatadorMoeda";
 import {
     CATEGORIAS_DESPESA_FIXA,
     CATEGORIAS_DESPESA_FLEXIVEL,
+    NOME_CATEGORIAS,
 } from "./utils/categorias";
 import { obterPeriodoMesAtual } from "./utils/periodo";
 
@@ -112,7 +113,16 @@ function App() {
         }
 
         const [grupo, dadosGrupo] = grupoEncontrado;
-        const novaAnalise = analisarConsumo(dadosAtualizados, regraFinanceira);
+        const dadosDoPeriodo = dadosAtualizados.filter((item) => {
+            const dataTransacao = item.dataUser || item.data;
+
+            return (
+                dataTransacao >= filtroPeriodo.dataInicio &&
+                dataTransacao <= filtroPeriodo.dataFim
+            );
+        });
+
+        const novaAnalise = analisarConsumo(dadosDoPeriodo, regraFinanceira);
         const resumoGrupo = novaAnalise.resumoRegraFinanceira?.[grupo];
 
         if (!resumoGrupo || resumoGrupo.dentro) {
@@ -125,7 +135,7 @@ function App() {
         const novaNotificacao = {
             id: `${Date.now()}-${grupo}`,
             titulo: dadosGrupo.titulo,
-            mensagem: `Seus gastos ${dadosGrupo.nome} chegaram a ${percentual}% da renda, acima do limite de ${limite}%. O lançamento foi de ${formatarMoeda(novoItem.valor)} em ${novoItem.categoria}.`,
+            mensagem: `Seus gastos ${dadosGrupo.nome} chegaram a ${percentual}% da renda, acima do limite de ${limite}%. O lançamento foi de ${formatarMoeda(novoItem.valor)} em ${NOME_CATEGORIAS[novoItem.categoria] || novoItem.categoria}.`,
         };
 
         setNotificacoes((notificacoesAtuais) =>
