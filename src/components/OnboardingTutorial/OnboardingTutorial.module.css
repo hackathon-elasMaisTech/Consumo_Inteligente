@@ -1,0 +1,570 @@
+.overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+}
+
+.container {
+    width: min(92rem, 100%);
+    min-height: 54rem;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    overflow: hidden;
+    border: 1px solid var(--standard-border);
+    border-radius: 1.2rem;
+    background: var(--background);
+    box-shadow: var(--shadow-container);
+}
+
+.preview {
+    min-height: 54rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3.2rem;
+    border-right: 1px solid var(--standard-border);
+    background:
+        linear-gradient(135deg, rgba(158, 119, 237, 0.14), transparent 42%),
+        var(--background);
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem;
+}
+
+.step {
+    width: fit-content;
+    margin-bottom: 1.6rem;
+    padding: 0.6rem 1rem;
+    border-radius: 999px;
+    background: var(--secondary-color);
+    color: var(--primary-color);
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.content h2 {
+    color: var(--main-text);
+    font-size: 3rem;
+    line-height: 1.15;
+    margin-bottom: 1.2rem;
+}
+
+.content p {
+    color: var(--secondary-text);
+    font-size: 1.6rem;
+    line-height: 1.55;
+}
+
+.dots {
+    display: flex;
+    gap: 0.8rem;
+    margin: 3.2rem 0;
+}
+
+.dot,
+.dotActive {
+    width: 0.9rem;
+    height: 0.9rem;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+}
+
+.dot {
+    background: var(--standard-border);
+}
+
+.dotActive {
+    width: 2.8rem;
+    background: var(--primary-color);
+}
+
+.actions {
+    display: flex;
+    gap: 1.2rem;
+}
+
+.secondaryButton,
+.primaryButton {
+    flex: 1;
+    border-radius: 0.8rem;
+    cursor: pointer;
+    font-size: 1.6rem;
+    font-weight: 600;
+    padding: 1.4rem;
+}
+
+.secondaryButton {
+    border: 1px solid var(--standard-border);
+    background: transparent;
+    color: var(--secondary-text);
+}
+
+.secondaryButton:hover {
+    background: var(--standard-border);
+}
+
+.primaryButton {
+    border: none;
+    background: var(--primary-color);
+    color: var(--inverted-text);
+}
+
+.primaryButton:hover {
+    background: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+.mockDashboard,
+.mockPanel,
+.mockFilters,
+.mockList,
+.mockRule,
+.mockNotifications {
+    width: 100%;
+    max-width: 42rem;
+    border: 1px solid var(--standard-border);
+    border-radius: 1.2rem;
+    background: var(--background);
+    box-shadow: var(--shadow-container);
+}
+
+.mockDashboard {
+    padding: 1.6rem;
+}
+
+.mockHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.mockLogo {
+    width: 11rem;
+    height: auto;
+}
+
+.mockAvatar {
+    width: 3.8rem;
+    height: 3.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--primary-color);
+    color: white;
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.mockCards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
+}
+
+.mockCards div,
+.mockForm,
+.mockList div,
+.notificationCard {
+    border: 1px solid var(--standard-border);
+    border-radius: 0.8rem;
+    background: var(--background);
+}
+
+.mockCards div {
+    padding: 1.4rem;
+}
+
+.mockCards small,
+.mockFilters small,
+.mockList small {
+    color: var(--secondary-text);
+    font-size: 1.2rem;
+}
+
+.mockCards strong {
+    display: block;
+    margin-top: 0.8rem;
+    color: var(--main-text);
+    font-size: 2rem;
+}
+
+.highlight {
+    color: var(--primary-color) !important;
+}
+
+.mockPanel,
+.mockFilters,
+.mockList,
+.mockRule,
+.mockNotifications {
+    padding: 2rem;
+}
+
+.mockPanelHeader {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.mockAction,
+.mockPeriod {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    border: 1px solid var(--standard-border);
+    border-radius: 1rem;
+    background: transparent;
+    color: var(--secondary-text);
+    font-size: 1.5rem;
+    padding: 1.2rem 1.6rem;
+}
+
+.mockAction svg,
+.mockPeriod svg {
+    color: var(--primary-color);
+}
+
+.mockForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.6rem;
+    padding: 1.6rem;
+}
+
+.mockToggle {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+}
+
+.mockToggle span,
+.mockForm label span {
+    border: 1px solid var(--standard-border);
+    border-radius: 0.8rem;
+}
+
+.mockToggle span {
+    color: var(--secondary-text);
+    font-size: 1.3rem;
+    font-weight: 700;
+    padding: 1rem;
+    text-align: center;
+}
+
+.mockToggle .mockToggleActive {
+    border-color: var(--primary-color);
+    background: var(--primary-color);
+    color: white;
+}
+
+.mockForm label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    color: var(--main-text);
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.mockForm label span {
+    color: var(--secondary-text);
+    font-weight: 500;
+    padding: 1.1rem 1.2rem;
+}
+
+.mockForm button {
+    border: none;
+    border-radius: 0.8rem;
+    background: var(--primary-color);
+    color: var(--inverted-text);
+    font-weight: 700;
+    padding: 1.2rem;
+}
+
+.mockFilters {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.filterButtons {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 0.8rem;
+}
+
+.filterButtons span,
+.mockSelect {
+    border: 1px solid var(--standard-border);
+    border-radius: 0.8rem;
+    color: var(--secondary-text);
+    font-size: 1.4rem;
+    padding: 1.1rem 1.4rem;
+}
+
+.filterButtons .filterActive {
+    border-color: var(--primary-color);
+    background: var(--primary-color);
+    color: white;
+    font-weight: 700;
+}
+
+.mockSelect {
+    display: block;
+    width: 22rem;
+    margin-top: 0.8rem;
+    color: var(--main-text);
+}
+
+.mockList {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.mockList > strong {
+    color: var(--main-text);
+    font-size: 1.8rem;
+    margin-bottom: 0.6rem;
+}
+
+.mockList div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem;
+}
+
+.mockList span {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.mockList b {
+    color: var(--main-text);
+    font-size: 1.4rem;
+}
+
+.mockList em {
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.income {
+    color: var(--text-income);
+}
+
+.expense {
+    color: var(--text-expense);
+}
+
+.mockRule {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+}
+
+.ruleTitle {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: var(--main-text);
+    font-size: 1.7rem;
+    font-weight: 700;
+}
+
+.ruleTitle svg {
+    color: var(--primary-color);
+}
+
+.mockRule p {
+    color: var(--secondary-text);
+    font-size: 1.3rem;
+    line-height: 1.45;
+}
+
+.mockSlider {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.mockSlider div {
+    display: flex;
+    justify-content: space-between;
+    color: var(--main-text);
+    font-size: 1.4rem;
+}
+
+.mockSlider strong {
+    color: var(--primary-color);
+}
+
+.mockSlider input {
+    width: 100%;
+    height: 1.2rem;
+    cursor: default;
+    border-radius: 999px;
+    background: linear-gradient(
+        to right,
+        var(--primary-color) 0%,
+        var(--primary-color) var(--slider-percent),
+        var(--standard-border) var(--slider-percent),
+        var(--standard-border) 100%
+    );
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.mockSlider input::-webkit-slider-runnable-track {
+    height: 1.2rem;
+    border-radius: 999px;
+    background: transparent;
+}
+
+.mockSlider input::-webkit-slider-thumb {
+    width: 2rem;
+    height: 2rem;
+    margin-top: -0.4rem;
+    border: none;
+    border-radius: 50%;
+    background: var(--primary-color);
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.mockSlider input::-moz-range-track {
+    height: 1.2rem;
+    border-radius: 999px;
+    background: var(--standard-border);
+}
+
+.mockSlider input::-moz-range-progress {
+    height: 1.2rem;
+    border-radius: 999px;
+    background: var(--primary-color);
+}
+
+.mockSlider input::-moz-range-thumb {
+    width: 2rem;
+    height: 2rem;
+    border: none;
+    border-radius: 50%;
+    background: var(--primary-color);
+}
+
+.mockRuleActions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.4rem;
+}
+
+.mockRuleActions button {
+    flex: 1;
+    border-radius: 0.8rem;
+    cursor: pointer;
+    font-size: 1.3rem;
+    font-weight: 700;
+    padding: 1.1rem;
+}
+
+.mockRuleActions button:first-child {
+    border: 1px solid var(--standard-border);
+    background: transparent;
+    color: var(--secondary-text);
+}
+
+.mockRuleActions button:last-child {
+    border: none;
+    background: var(--primary-color);
+    color: var(--inverted-text);
+}
+
+.mockNotifications {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.notificationTop {
+    align-self: flex-end;
+    position: relative;
+    color: var(--secondary-text);
+    font-size: 2.4rem;
+}
+
+.notificationTop span {
+    position: absolute;
+    top: -0.8rem;
+    right: -0.8rem;
+    min-width: 1.8rem;
+    height: 1.8rem;
+    border-radius: 999px;
+    background: var(--primary-color);
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.8rem;
+}
+
+.notificationCard {
+    padding: 1.4rem;
+}
+
+.notificationCard strong {
+    color: var(--main-text);
+    font-size: 1.4rem;
+}
+
+.notificationCard p {
+    margin: 0.8rem 0;
+    color: var(--secondary-text);
+    font-size: 1.3rem;
+    line-height: 1.4;
+}
+
+.notificationCard svg {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+}
+
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        max-height: 92dvh;
+        overflow-y: auto;
+    }
+
+    .preview {
+        min-height: 30rem;
+        border-right: none;
+        border-bottom: 1px solid var(--standard-border);
+        padding: 2rem;
+    }
+
+    .content {
+        padding: 2.4rem;
+    }
+
+    .content h2 {
+        font-size: 2.4rem;
+    }
+}
