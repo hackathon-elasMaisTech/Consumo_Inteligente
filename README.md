@@ -64,6 +64,12 @@ Colocar Print da lógica JS
 ## Estrutura dos Dados
 
 ### Print json utilizado 
+Os prints apresentados abaixo demonstram a estrutura dos dados JSON utilizados na aplicação, disponibilizados por meio da MockAPI.
+Para uma visualização mais detalhada da estrutura e dos dados utilizados no projeto, consulte a URL abaixo:
+MockAPI do Projeto Consumo Inteligente
+
+<img width="884" height="632" alt="image" src="https://github.com/user-attachments/assets/449e184e-e543-4413-89da-cbc400946c0e" />
+<img width="628" height="636" alt="image" src="https://github.com/user-attachments/assets/7efd0cf1-d8cf-4a3b-89c5-b181bfff6693" />
 
 
 ## Interface da Aplicação
