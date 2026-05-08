@@ -2,6 +2,7 @@ import { useState } from "react";
 import styles from "./ListaTransacoes.module.css";
 import { formatarMoeda } from "../../utils/formatadorMoeda";
 import { GoX } from "react-icons/go";
+import { NOME_CATEGORIAS } from "../../utils/categorias";
 
 export const ListaTransacoes = ({ consumos, onDelete }) => {
     const [modalAberto, setModalAberto] = useState(false);
@@ -47,7 +48,8 @@ export const ListaTransacoes = ({ consumos, onDelete }) => {
 
                                 <div className={styles.dataCategoriaWrapped}>
                                     <span className={styles.categoria}>
-                                        {item.categoria.replace("_", " ")}
+                                        {NOME_CATEGORIAS[item.categoria] ||
+                                            item.categoria}
                                     </span>
                                     <span className={styles.separador}>•</span>
                                     <span className={styles.data}>

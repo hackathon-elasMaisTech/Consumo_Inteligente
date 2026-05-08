@@ -4,6 +4,10 @@ import { getConsumos, createConsumo, deleteConsumo } from "./services/api";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { analisarConsumo } from "./utils/analiseConsumo";
 import { formatarMoeda } from "./utils/formatadorMoeda";
+import {
+    CATEGORIAS_DESPESA_FIXA,
+    CATEGORIAS_DESPESA_FLEXIVEL,
+} from "./utils/categorias";
 
 // estilos
 import "./styles/global.css";
@@ -83,25 +87,12 @@ function App() {
             fixos: {
                 titulo: "Gastos fixos acima do limite",
                 nome: "fixos",
-                categorias: [
-                    "mercado",
-                    "transporte",
-                    "contas",
-                    "moradia",
-                    "saude",
-                    "educacao",
-                ],
+                categorias: CATEGORIAS_DESPESA_FIXA,
             },
             flexiveis: {
                 titulo: "Gastos flexíveis acima do limite",
                 nome: "flexíveis",
-                categorias: [
-                    "lazer",
-                    "cuidados_pessoais",
-                    "compras",
-                    "assinaturas",
-                    "outros",
-                ],
+                categorias: CATEGORIAS_DESPESA_FLEXIVEL,
             },
         };
 

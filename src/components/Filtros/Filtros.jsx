@@ -1,3 +1,10 @@
+import {
+    CATEGORIAS_DESPESA_FIXA,
+    CATEGORIAS_DESPESA_FLEXIVEL,
+    CATEGORIAS_INVESTIMENTO,
+    CATEGORIAS_RECEITA,
+    NOME_CATEGORIAS,
+} from "../../utils/categorias";
 import styles from "./Filtros.module.css";
 
 export const Filtros = ({
@@ -46,25 +53,37 @@ export const Filtros = ({
                 >
                     <option value="">Todas as categorias</option>
 
-                    {/* despesas */}
-                    <option value="mercado">Mercado</option>
-                    <option value="transporte">Transporte</option>
-                    <option value="lazer">Lazer</option>
-                    <option value="contas">Contas</option>
-                    <option value="moradia">Moradia</option>
-                    <option value="saude">Saúde</option>
-                    <option value="educacao">Educação</option>
-                    <option value="cuidados_pessoais">Cuidados Pessoais</option>
-                    <option value="compras">Compras</option>
-                    <option value="assinaturas">Assinaturas</option>
-                    <option value="outros">Outros</option>
-                    <option value="investimento">Investimento</option>
-                    <option value="reserva">Reserva</option>
+                    <optgroup label="Despesas Fixas">
+                        {CATEGORIAS_DESPESA_FIXA.map((categoria) => (
+                            <option key={categoria} value={categoria}>
+                                {NOME_CATEGORIAS[categoria]}
+                            </option>
+                        ))}
+                    </optgroup>
 
-                    {/* receitas */}
-                    <option value="salario">Salário</option>
-                    <option value="freelance">Freelance</option>
-                    <option value="outros">Outros</option>
+                    <optgroup label="Despesas Flexíveis">
+                        {CATEGORIAS_DESPESA_FLEXIVEL.map((categoria) => (
+                            <option key={categoria} value={categoria}>
+                                {NOME_CATEGORIAS[categoria]}
+                            </option>
+                        ))}
+                    </optgroup>
+
+                    <optgroup label="Investimentos">
+                        {CATEGORIAS_INVESTIMENTO.map((categoria) => (
+                            <option key={categoria} value={categoria}>
+                                {NOME_CATEGORIAS[categoria]}
+                            </option>
+                        ))}
+                    </optgroup>
+
+                    <optgroup label="Receitas">
+                        {CATEGORIAS_RECEITA.map((categoria) => (
+                            <option key={categoria} value={categoria}>
+                                {NOME_CATEGORIAS[categoria]}
+                            </option>
+                        ))}
+                    </optgroup>
                 </select>
             </div>
         </section>
