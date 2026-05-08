@@ -133,15 +133,15 @@ function App() {
             (filtroCategoria === "" || item.categoria === filtroCategoria) &&
             (filtroTipo === "" || item.tipo === filtroTipo) &&
             (filtroPeriodo.dataInicio === "" ||
-                item.data >= filtroPeriodo.dataInicio) &&
+                item.dataUser >= filtroPeriodo.dataInicio) &&
             (filtroPeriodo.dataFim === "" ||
-                item.data <= filtroPeriodo.dataFim),
+                item.dataUser <= filtroPeriodo.dataFim),
     );
 
     // cálculos
     const categoriasInvestimentos = ["investimento", "reserva"];
 
-    const totalReceitas = consumos
+    const totalReceitas = consumosFiltrados
         .filter(
             (i) =>
                 i.tipo === "receita" &&
@@ -149,7 +149,7 @@ function App() {
         )
         .reduce((acc, i) => acc + i.valor, 0);
 
-    const totalDespesas = consumos
+    const totalDespesas = consumosFiltrados
         .filter(
             (i) =>
                 i.tipo === "despesa" &&
@@ -158,7 +158,7 @@ function App() {
         .reduce((acc, i) => acc + i.valor, 0);
 
     const saldo = totalReceitas - totalDespesas;
-    const analise = analisarConsumo(consumos, regraFinanceira);
+    const analise = analisarConsumo(consumosFiltrados, regraFinanceira);
     const categoriaDominante = analise.insightCategoriaDominante?.categoria;
 
     return (
