@@ -158,7 +158,7 @@ function App() {
 
     const saldo = totalReceitas - totalDespesas;
     const analise = analisarConsumo(consumosFiltrados, regraFinanceira);
-    const categoriaDominante = analise.insightCategoriaDominante?.categoria;
+    const totalInvestimentos = analise.investimentos?.total ?? 0;
 
     return (
         <Routes>
@@ -197,7 +197,7 @@ function App() {
                                 receitas={totalReceitas}
                                 despesas={totalDespesas}
                                 saldo={saldo}
-                                categoriaDominante={categoriaDominante}
+                                investimentos={totalInvestimentos}
                             />
 
                             <Filtros

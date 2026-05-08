@@ -47,43 +47,14 @@ export function analisarConsumo(consumos, regra) {
     }))
     .sort((a, b) => b.valor - a.valor);
 
-  const categoriaDominante = Object.entries(percentuais).reduce((acumulador, item) => {
-    if (item[1] > acumulador[1]) {
-      return item;
-    }
-
-    return acumulador;
-  }, ["", 0]);
-
-  const nomeDominante = categoriaDominante[0];
-  const percentualDominante = categoriaDominante[1];
   const perfil = analisarPerfil(totalReceitas, totalPorCategoria, regra);
-
-  if (!nomeDominante) {
-    return {
-      totalPorCategoria,
-      totalGeral,
-      percentuais,
-      categoriasConsumo,
-      insightCategoriaDominante: null,
-      insights: perfil.insights,
-      recomendacoes: perfil.recomendacoes,
-      resumoRegraFinanceira: perfil.resumoRegraFinanceira,
-      resumoRegra503020: perfil.resumoRegra503020
-    };
-  }
 
   return {
     totalPorCategoria,
     totalGeral,
     percentuais,
     categoriasConsumo,
-    insightCategoriaDominante: {
-      titulo: "Categoria dominante",
-      mensagem: `A categoria dominante é ${nomeDominante} com ${percentualDominante.toFixed(2)}% dos gastos.`,
-      categoria: nomeDominante,
-      percentual: Number(percentualDominante.toFixed(2))
-    },
+    investimentos: perfil.resumoRegraFinanceira.investimentos,
     insights: perfil.insights,
     recomendacoes: perfil.recomendacoes,
     resumoRegraFinanceira: perfil.resumoRegraFinanceira,

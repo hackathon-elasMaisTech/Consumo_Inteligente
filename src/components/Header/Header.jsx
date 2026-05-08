@@ -74,6 +74,8 @@ export const Header = ({
                     <button
                         onClick={toggleTheme}
                         className={`${styles.button} ${styles.themeToggleBtn}`}
+                        aria-label="Alternar tema"
+                        title="Alternar tema"
                     >
                         {theme === "light" ? <GoMoon /> : <GoSun />}
                     </button>
@@ -83,6 +85,7 @@ export const Header = ({
                         onClick={onOpenConfig}
                         type="button"
                         aria-label="Configurar regra financeira"
+                        title="Regra financeira"
                     >
                         <GoGear />
                     </button>
@@ -99,6 +102,7 @@ export const Header = ({
                             }}
                             type="button"
                             aria-label="Abrir notificações"
+                            title="Notificações"
                         >
                             <GoBell />
                             {notificacoes.length > 0 && (
@@ -166,6 +170,7 @@ export const Header = ({
                                 setIsUserMenuOpen((isOpen) => !isOpen);
                             }}
                             aria-label="Abrir menu do usuário"
+                            title="Menu do usuário"
                             type="button"
                         >
                             {user?.nome?.charAt(0).toUpperCase() || "U"}

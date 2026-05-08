@@ -15,7 +15,12 @@ export const Modal = ({ isOpen, onClose, children, title }) => {
             <div className={styles.container}>
                 <header className={styles.header}>
                     <h3>{title}</h3>
-                    <button className={styles.closeBtn} onClick={onClose}>
+                    <button
+                        className={styles.closeBtn}
+                        onClick={onClose}
+                        aria-label="Fechar modal"
+                        title="Fechar"
+                    >
                         <GoX />
                     </button>
                 </header>
