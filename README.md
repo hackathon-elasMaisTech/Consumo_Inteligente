@@ -60,7 +60,9 @@ Fluxo Principal
 ### Prints do Código (Lógica JavaScript)
 
 Os prints exibidos abaixo representam apenas algumas partes do código-fonte, considerando que o projeto possui trechos extensos e mais complexos. A inclusão de todos os prints poderia comprometer a organização e a visualização do documento.
-Para uma análise mais detalhada do código, recomenda-se consultar o repositório oficial no GitHub ou acessar o projeto hospedado.
+Para uma análise mais detalhada do código, recomenda-se consultar o repositório ou acessar o projeto hospedado.
+[Projeto Hospedado](https://hackathon-elasmaistech.github.io/Consumo_Inteligente/)
+
 
 
 **Lógica API.JS:**
@@ -105,7 +107,7 @@ Este módulo é responsável pelo gerenciamento de usuários da aplicação util
 ### Print json utilizado 
 Os prints apresentados abaixo demonstram a estrutura dos dados JSON utilizados na aplicação, disponibilizados por meio da MockAPI.
 Para uma visualização mais detalhada da estrutura e dos dados utilizados no projeto, consulte a URL abaixo:
-MockAPI do Projeto Lumi
+[MockAPI do Projeto Lumi](https://69fa756588a7af0ecca763f0.mockapi.io/consumos#)
 
 <img width="884" height="632" alt="image" src="https://github.com/user-attachments/assets/449e184e-e543-4413-89da-cbc400946c0e" />
 <img width="628" height="636" alt="image" src="https://github.com/user-attachments/assets/7efd0cf1-d8cf-4a3b-89c5-b181bfff6693" />
