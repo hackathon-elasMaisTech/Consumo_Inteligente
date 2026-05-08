@@ -1,126 +1,121 @@
 import { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { GoMoon, GoSun } from "react-icons/go";
 import { AuthContext } from "../../context/AuthContext";
+import { authenticateUser } from "../../utils/authStorage";
 import "./login.css";
 
 function Login() {
-  const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
-  const [nome, setNome] = useState("");
-  const { login } = useContext(AuthContext);
-  const navigate = useNavigate();
- 
-
-  async function handleSubmit(e) {
-  e.preventDefault();
-
-  setLoading(true);
-
-  try {
-
-    // simula usuário autenticado
- 
-    const userData = {
-  nome,
-  email,
-  token: "fake-token-123"
-};
-
-    // salva no contexto
-    login(userData);
-
-    // redireciona
-    navigate("/home");
-
-  } catch (error) {
-    console.error("Erro no login:", error);
-    alert("Erro ao fazer login");
-  } finally {
-    setLoading(false);
-  }
-}
-
-  function toggleTheme() {
-    const newTheme = !darkMode;
-
-    setDarkMode(newTheme);
-
-    document.documentElement.setAttribute(
-      "data-theme",
-      newTheme ? "dark" : "light"
+    const [email, setEmail] = useState("");
+    const [senha, setSenha] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [darkMode, setDarkMode] = useState(
+        () => localStorage.getItem("lumi-theme") === "dark",
     );
-  }
+    const { login } = useContext(AuthContext);
+    const navigate = useNavigate();
 
-  return (
-    <div className="login-container">
+    async function handleSubmit(e) {
+        e.preventDefault();
+        setLoading(true);
 
-      <button className="theme-toggle" onClick={toggleTheme}>
-        {darkMode ? "☀️" : "🌙"}
-      </button>
+        try {
+            const userData = authenticateUser(email, senha);
 
-      <div className="login-card">
+            if (!userData) {
+                alert("Email ou senha inválidos");
+                return;
+            }
 
-        {/* esquerda */}
-        <div className="login-content">
-        
+            login(userData);
+            navigate("/home");
+        } catch (error) {
+            console.error("Erro no login:", error);
+            alert("Erro ao fazer login");
+        } finally {
+            setLoading(false);
+        }
+    }
 
-          <h2>Bem-vindo!</h2>
+    function toggleTheme() {
+        const newTheme = !darkMode;
 
-          <p>
-            Seu assistente de gestão financeira
-          </p>
+        setDarkMode(newTheme);
 
-          <form onSubmit={handleSubmit} className="login-form">
-            <input
-            type="text"
-            placeholder="Seu nome"
-            value={nome}
-            onChange={(e) => setNome(e.target.value)}
-            required
-            />
-           
+        document.documentElement.setAttribute(
+            "data-theme",
+            newTheme ? "dark" : "light",
+        );
+        localStorage.setItem("lumi-theme", newTheme ? "dark" : "light");
+    }
 
-            <input
-              type="email"
-              placeholder="Seu email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-
-            <input
-              type="password"
-              placeholder="Sua senha"
-              value={senha}
-              onChange={(e) => setSenha(e.target.value)}
-              required
-            />
-
-            <button type="submit" disabled={loading}>
-              {loading ? "Entrando..." : "Entrar"}
+    return (
+        <main className="minimal-login login-container">
+            <button
+                className="theme-toggle"
+                onClick={toggleTheme}
+                aria-label="Alternar tema"
+                type="button"
+            >
+                {darkMode ? <GoSun /> : <GoMoon />}
             </button>
 
-          </form>
+            <section className="login-card">
+                <img
+                    className="login-brand"
+                    src={`${import.meta.env.BASE_URL}${
+                        darkMode
+                            ? "logo-horizontal-dark.svg"
+                            : "logo-horizontal-light.svg"
+                    }`}
+                    alt="Logo da Lumi"
+                />
 
-          <span className="login-link">
-            Não tem conta?
-            <Link to="/CadastroLogin"> Criar conta</Link>
-          </span>
-        </div>
+                <div className="login-content">
+                    <div className="login-heading">
+                        <h1>Entrar na sua conta</h1>
+                        <p>
+                            Organize seus gastos e acompanhe seus insights
+                            financeiros.
+                        </p>
+                    </div>
 
-        {/* direita */}
-        <div className="login-image">
-          <img
-            src={`${import.meta.env.BASE_URL}logo.png`}
-            alt="Consuman Logo"
-          />
-        </div>
+                    <form onSubmit={handleSubmit} className="login-form">
+                        <label>
+                            Email
+                            <input
+                                type="email"
+                                placeholder="Seu email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                            />
+                        </label>
 
-      </div>
-    </div>
-  );
+                        <label>
+                            Senha
+                            <input
+                                type="password"
+                                placeholder="Sua senha"
+                                value={senha}
+                                onChange={(e) => setSenha(e.target.value)}
+                                required
+                            />
+                        </label>
+
+                        <button type="submit" disabled={loading}>
+                            {loading ? "Entrando..." : "Entrar"}
+                        </button>
+                    </form>
+
+                    <span className="login-link">
+                        Não tem conta?
+                        <Link to="/cadastroLogin"> Criar conta</Link>
+                    </span>
+                </div>
+            </section>
+        </main>
+    );
 }
 
 export default Login;
