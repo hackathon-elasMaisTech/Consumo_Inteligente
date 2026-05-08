@@ -19,6 +19,9 @@
     max-height: 48dvh;
     overflow-y: auto;
     padding-right: 0.8rem;
+
+    scrollbar-width: thin;
+    scrollbar-color: var(--standard-border) var(--background);
 }
 
 .categorias::-webkit-scrollbar {
@@ -84,7 +87,11 @@
     border-radius: 1rem;
     /* Remove a aparência padrão do navegador */
     -webkit-appearance: none;
+    -moz-appearance: none;
     appearance: none;
+
+    border: none;
+    background-color: var(--standard-border);
 }
 
 /* Fundo da barra (trilha) */
@@ -95,6 +102,11 @@
 
 /* Cor do preenchimento */
 .progress::-webkit-progress-value {
+    background-color: var(--primary-color);
+    border-radius: 1rem;
+}
+
+.progress::-moz-progress-bar {
     background-color: var(--primary-color);
     border-radius: 1rem;
 }
