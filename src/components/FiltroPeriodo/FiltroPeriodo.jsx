@@ -85,7 +85,7 @@ export const FiltroPeriodo = ({ onConfirm, onClose }) => {
                 </div>
             </div>
             <div className={styles.divisor}>
-                <span>ou escolha o perído</span>
+                <span>ou escolha o período</span>
             </div>
             <div className={styles.inputContainer}>
                 <div className={styles.inputWrapped}>
