@@ -6,7 +6,7 @@ import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
-export const Header = () => {
+export const Header = ({ onOpenConfig }) => {
     const { user, logout } = useContext(AuthContext);
     const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
     const navigate = useNavigate();
@@ -56,6 +56,9 @@ export const Header = () => {
 
                     <button
                         className={`${styles.button} ${styles.iconsAccountMenu}`}
+                        onClick={onOpenConfig}
+                        type="button"
+                        aria-label="Configurar regra financeira"
                     >
                         <GoGear />
                     </button>

@@ -1,182 +1,235 @@
-export function analisarPerfil(totalReceitas, totalPorCategoria) {
-    const categoriasNecessidades = [
+import { formatarMoeda } from "./formatadorMoeda";
+
+const regraPadrao = {
+    fixos: 50,
+    flexiveis: 30,
+    investimentos: 20,
+};
+
+export function analisarPerfil(
+    totalReceitas,
+    totalPorCategoria,
+    regra = regraPadrao,
+) {
+    const categoriasFixas = [
         "mercado",
         "transporte",
         "contas",
         "moradia",
         "saude",
+        "educacao",
     ];
-    const categoriasDesejos = [
+    const categoriasFlexiveis = [
         "lazer",
         "cuidados_pessoais",
         "compras",
         "assinaturas",
+        "outros",
     ];
+    const categoriasInvestimentos = ["investimento", "reserva"];
 
-    const totalNecessidades = Object.entries(totalPorCategoria).reduce(
-        (total, [categoria, valor]) => {
-            if (categoriasNecessidades.includes(categoria)) {
-                return total + valor;
-            }
+    const calcularTotalPorGrupo = (categoriasGrupo) =>
+        Object.entries(totalPorCategoria).reduce(
+            (total, [categoria, valor]) => {
+                if (categoriasGrupo.includes(categoria)) {
+                    return total + valor;
+                }
 
-            return total;
-        },
-        0,
-    );
+                return total;
+            },
+            0,
+        );
 
-    const totalDesejos = Object.entries(totalPorCategoria).reduce(
-        (total, [categoria, valor]) => {
-            if (categoriasDesejos.includes(categoria)) {
-                return total + valor;
-            }
-
-            return total;
-        },
-        0,
-    );
-
-    const despesaTotal = totalNecessidades + totalDesejos;
+    const totalFixos = calcularTotalPorGrupo(categoriasFixas);
+    const totalFlexiveis = calcularTotalPorGrupo(categoriasFlexiveis);
+    const totalInvestimentos = calcularTotalPorGrupo(categoriasInvestimentos);
+    const despesaTotal = totalFixos + totalFlexiveis + totalInvestimentos;
     const saldoRestante = totalReceitas - despesaTotal;
-    const limiteNecessidades = totalReceitas * 0.5;
-    const limiteDesejos = totalReceitas * 0.3;
-    const metaReserva = totalReceitas * 0.2;
-    const percentualNecessidades =
-        totalReceitas === 0
-            ? 0
-            : Number(((totalNecessidades / totalReceitas) * 100).toFixed(2));
-    const percentualDesejos =
-        totalReceitas === 0
-            ? 0
-            : Number(((totalDesejos / totalReceitas) * 100).toFixed(2));
-    const percentualReserva =
-        totalReceitas === 0
-            ? 0
-            : Number(((saldoRestante / totalReceitas) * 100).toFixed(2));
-    const faltaParaReserva = Number((metaReserva - saldoRestante).toFixed(2));
 
-    let descricaoNecessidades;
-    let descricaoDesejos;
-    let descricaoReserva;
+    const limiteFixos = totalReceitas * (regra.fixos / 100);
+    const limiteFlexiveis = totalReceitas * (regra.flexiveis / 100);
+    const metaInvestimentos = totalReceitas * (regra.investimentos / 100);
 
-    if (percentualNecessidades > 50) {
-        descricaoNecessidades =
-            "Seus gastos essenciais passaram do limite de 50% da renda.";
+    const calcularPercentual = (valor) =>
+        totalReceitas === 0
+            ? 0
+            : Number(((valor / totalReceitas) * 100).toFixed(2));
+
+    const percentualFixos = calcularPercentual(totalFixos);
+    const percentualFlexiveis = calcularPercentual(totalFlexiveis);
+    const percentualInvestimentos = calcularPercentual(totalInvestimentos);
+    const percentualFixosExibicao = Math.round(percentualFixos);
+    const percentualFlexiveisExibicao = Math.round(percentualFlexiveis);
+    const percentualInvestimentosExibicao = Math.round(
+        percentualInvestimentos,
+    );
+    const faltaParaInvestimentos = Number(
+        (metaInvestimentos - totalInvestimentos).toFixed(2),
+    );
+    const valorAcimaFixos = Number((totalFixos - limiteFixos).toFixed(2));
+    const valorAcimaFlexiveis = Number(
+        (totalFlexiveis - limiteFlexiveis).toFixed(2),
+    );
+    const folgaFixos = Number((limiteFixos - totalFixos).toFixed(2));
+    const folgaFlexiveis = Number((limiteFlexiveis - totalFlexiveis).toFixed(2));
+
+    let descricaoFixos;
+    let descricaoFlexiveis;
+    let descricaoInvestimentos;
+    let destaqueFixos;
+    let destaqueFlexiveis;
+    let destaqueInvestimentos;
+
+    if (percentualFixos > 100) {
+        descricaoFixos = `Os gastos fixos consumiram ${percentualFixosExibicao}% da renda, ultrapassando o valor recebido no período.`;
+        destaqueFixos = `Revise os lançamentos fixos para entender onde está o maior peso do orçamento.`;
+    } else if (percentualFixos > regra.fixos) {
+        descricaoFixos = `Os gastos fixos consumiram ${percentualFixosExibicao}% da renda, acima do limite de ${regra.fixos}%.`;
+        destaqueFixos = `Isso reduz a margem para escolhas flexíveis e investimentos.`;
     } else {
-        descricaoNecessidades =
-            "Seus gastos essenciais estão dentro do limite recomendado de 50% da renda.";
+        descricaoFixos = `Os gastos fixos consumiram ${percentualFixosExibicao}% da renda e ficaram dentro do limite de ${regra.fixos}%.`;
+        destaqueFixos = `Ainda há ${formatarMoeda(folgaFixos)} de folga nessa meta.`;
     }
 
-    if (percentualDesejos > 30) {
-        descricaoDesejos =
-            "Seus gastos flexíveis passaram do limite recomendado de 30% da renda.";
+    if (percentualFlexiveis > 100) {
+        descricaoFlexiveis = `Os gastos flexíveis chegaram a ${percentualFlexiveisExibicao}% da renda, ultrapassando o valor recebido no período.`;
+        destaqueFlexiveis = `Esse grupo precisa de revisão porque compromete o equilíbrio do orçamento.`;
+    } else if (percentualFlexiveis > regra.flexiveis) {
+        descricaoFlexiveis = `Os gastos flexíveis chegaram a ${percentualFlexiveisExibicao}% da renda, acima do limite de ${regra.flexiveis}%.`;
+        destaqueFlexiveis = `Esse é o grupo com maior potencial de ajuste no curto prazo.`;
     } else {
-        descricaoDesejos =
-            "Seus gastos flexíveis estão dentro do limite recomendado de 30% da renda.";
+        descricaoFlexiveis = `Os gastos flexíveis ficaram em ${percentualFlexiveisExibicao}% da renda, dentro do limite de ${regra.flexiveis}%.`;
+        destaqueFlexiveis = `Isso indica bom controle nas despesas ajustáveis.`;
     }
 
-    if (percentualReserva >= 20) {
-        descricaoReserva =
-            "Você alcançou a meta de 20% para reserva ou objetivos financeiros.";
+    if (regra.investimentos === 0) {
+        descricaoInvestimentos =
+            "Nenhuma meta de investimento foi definida nesta regra.";
+        destaqueInvestimentos =
+            "Use a configuração da regra financeira para reservar parte da renda para objetivos futuros.";
+    } else if (percentualInvestimentos >= regra.investimentos) {
+        descricaoInvestimentos = `Seus investimentos superaram a meta configurada de ${regra.investimentos}%.`;
+        destaqueInvestimentos = `Neste período, você destinou ${percentualInvestimentosExibicao}% da renda para reserva ou objetivos financeiros.`;
     } else {
-        descricaoReserva = `Sua margem está abaixo da meta de 20%. Faltam R$ ${faltaParaReserva.toFixed(2)} para atingir a reserva recomendada.`;
+        descricaoInvestimentos = `Você destinou ${percentualInvestimentosExibicao}% da renda para investimentos.`;
+        destaqueInvestimentos = `Para alcançar a meta de ${regra.investimentos}%, faltam ${formatarMoeda(faltaParaInvestimentos)}.`;
     }
 
     const insights = [
         {
-            titulo: "Gastos essenciais",
-            valor: `${Math.round(percentualNecessidades)}% da renda`,
-            descricao: descricaoNecessidades,
+            titulo: "Gastos fixos",
+            valor: `${percentualFixosExibicao}% da renda`,
+            descricao: descricaoFixos,
+            destaque: destaqueFixos,
         },
         {
             titulo: "Gastos flexíveis",
-            valor: `${Math.round(percentualDesejos)}% da renda`,
-            descricao: descricaoDesejos,
+            valor: `${percentualFlexiveisExibicao}% da renda`,
+            descricao: descricaoFlexiveis,
+            destaque: destaqueFlexiveis,
         },
         {
-            titulo: "Capacidade de reserva",
-            valor: `${Math.round(percentualReserva)}% da renda`,
-            descricao: descricaoReserva,
+            titulo: "Investimentos",
+            valor: `${percentualInvestimentosExibicao}% da renda`,
+            descricao: descricaoInvestimentos,
+            destaque: destaqueInvestimentos,
         },
     ];
 
     const recomendacoes = [];
 
-    if (percentualNecessidades > 50) {
+    if (percentualFixos > regra.fixos) {
         recomendacoes.push({
-            titulo: "Revise gastos essenciais",
+            titulo: "Revise gastos fixos",
             tipo: "negativa",
-            descricao:
-                "Seus gastos essenciais ultrapassaram 50% da renda. Avalie despesas como mercado, moradia, contas e transporte para encontrar possíveis ajustes.",
+            descricao: `Os gastos fixos passaram do limite de ${regra.fixos}% da renda em ${formatarMoeda(valorAcimaFixos)}.`,
+            destaque:
+                "Revise despesas como mercado, moradia, contas e transporte para encontrar possíveis ajustes.",
         });
     } else if (totalReceitas > 0) {
         recomendacoes.push({
-            titulo: "Essenciais sob controle",
+            titulo: "Fixos sob controle",
             tipo: "positiva",
-            descricao:
-                "Seus gastos essenciais estão dentro do limite de 50% da renda. Isso ajuda a manter estabilidade no orçamento mensal.",
+            descricao: `Os gastos fixos estão dentro do limite de ${regra.fixos}% definido por você.`,
+            destaque: "Isso ajuda a manter estabilidade no orçamento mensal.",
         });
     }
 
-    if (percentualDesejos > 30) {
+    if (percentualFlexiveis > regra.flexiveis) {
         recomendacoes.push({
             titulo: "Reduza gastos flexíveis",
             tipo: "negativa",
-            descricao:
-                "Seus gastos flexíveis ultrapassaram 30% da renda. Defina limites para compras, lazer, cuidados pessoais e assinaturas.",
+            descricao: `Os gastos flexíveis passaram do limite de ${regra.flexiveis}% da renda em ${formatarMoeda(valorAcimaFlexiveis)}.`,
+            destaque:
+                "Defina um teto para compras, lazer, cuidados pessoais e assinaturas.",
         });
     } else if (totalReceitas > 0) {
         recomendacoes.push({
             titulo: "Consumo flexível equilibrado",
             tipo: "positiva",
-            descricao:
-                "Seus gastos com lazer, compras, assinaturas e cuidados pessoais estão dentro do limite de 30% da renda.",
+            descricao: `Os gastos com lazer, compras, assinaturas e cuidados pessoais estão dentro do limite de ${regra.flexiveis}% definido por você.`,
+            destaque: "Continue acompanhando esses gastos para preservar sua margem.",
         });
     }
 
-    if (percentualReserva >= 20) {
+    if (regra.investimentos === 0) {
         recomendacoes.push({
-            titulo: "Aproveite sua margem",
-            tipo: "positiva",
+            titulo: "Defina uma meta de investimento",
+            tipo: "negativa",
             descricao:
-                "Você alcançou a meta de 20% de saldo disponível. Considere direcionar essa margem para reserva de emergência ou objetivos financeiros.",
+                "A regra atual não reserva parte da renda para investimentos.",
+            destaque:
+                "Se possível, defina uma porcentagem para reserva ou objetivos financeiros.",
         });
-    } else if (percentualReserva > 0) {
+    } else if (percentualInvestimentos >= regra.investimentos) {
         recomendacoes.push({
-            titulo: "Você está poupando",
+            titulo: "Investimentos em dia",
             tipo: "positiva",
-            descricao: `Você conseguiu manter ${percentualReserva.toFixed(2)}% da renda disponível. Continue acompanhando seus gastos para aumentar essa margem até 20%.`,
+            descricao: `Você atingiu ou superou a meta de ${regra.investimentos}% definida para investimentos ou reserva financeira.`,
+            destaque:
+                "Continue mantendo esse dinheiro separado dos gastos do mês.",
+        });
+    } else if (totalInvestimentos > 0) {
+        recomendacoes.push({
+            titulo: "Você está investindo",
+            tipo: "positiva",
+            descricao: `Você já direcionou ${percentualInvestimentosExibicao}% da renda para investimentos ou reserva.`,
+            destaque: `A meta configurada é de ${regra.investimentos}%.`,
         });
 
         recomendacoes.push({
-            titulo: "Priorize sua reserva",
+            titulo: "Priorize seus investimentos",
             tipo: "negativa",
             descricao:
-                "Sua margem disponível ainda está abaixo de 20% da renda. Tente separar uma parte da receita logo ao receber e reduzir gastos variáveis.",
+                "O valor destinado a investimentos ainda está abaixo da meta configurada.",
+            destaque: `Faltam ${formatarMoeda(faltaParaInvestimentos)} para atingir o objetivo deste período.`,
         });
     } else {
         recomendacoes.push({
-            titulo: "Priorize sua reserva",
+            titulo: "Comece sua reserva",
             tipo: "negativa",
             descricao:
-                "Não sobrou margem disponível para reserva neste período. Revise os gastos do mês para tentar liberar parte da renda.",
+                "Não há valor registrado para investimentos ou reserva neste período.",
+            destaque: `Pela regra atual, a meta é separar ${regra.investimentos}% da renda.`,
         });
     }
 
     if (
-        percentualNecessidades <= 50 &&
-        percentualDesejos <= 30 &&
-        percentualReserva >= 20
+        percentualFixos <= regra.fixos &&
+        percentualFlexiveis <= regra.flexiveis &&
+        percentualInvestimentos >= regra.investimentos
     ) {
         recomendacoes.push({
             titulo: "Mantenha o equilíbrio",
             tipo: "positiva",
-            descricao:
-                "Seus gastos estão alinhados com a regra 50/30/20. Continue acompanhando as categorias para preservar sua saúde financeira.",
+            descricao: `A distribuição dos gastos está alinhada com a regra ${regra.fixos}/${regra.flexiveis}/${regra.investimentos}.`,
+            destaque:
+                "Continue acompanhando as categorias para preservar sua saúde financeira.",
         });
     }
 
-    const maiorDesejo = Object.entries(totalPorCategoria)
-        .filter(([categoria]) => categoriasDesejos.includes(categoria))
+    const maiorFlexivel = Object.entries(totalPorCategoria)
+        .filter(([categoria]) => categoriasFlexiveis.includes(categoria))
         .reduce(
             (acumulador, item) => {
                 if (item[1] > acumulador[1]) {
@@ -188,63 +241,80 @@ export function analisarPerfil(totalReceitas, totalPorCategoria) {
             ["", 0],
         );
 
-    if (percentualDesejos > 30 && maiorDesejo[0] === "compras") {
+    if (percentualFlexiveis > regra.flexiveis && maiorFlexivel[0] === "compras") {
         recomendacoes.push({
             titulo: "Ajuste gastos não essenciais",
             tipo: "negativa",
             descricao:
-                "Compras é a categoria flexível com maior gasto. Revise compras por impulso e defina um teto para esse tipo de consumo.",
+                "Compras tem o maior peso entre os gastos flexíveis.",
+            destaque:
+                "Revise compras por impulso e defina um teto para esse tipo de consumo.",
         });
-    } else if (percentualDesejos > 30 && maiorDesejo[0] === "assinaturas") {
+    } else if (
+        percentualFlexiveis > regra.flexiveis &&
+        maiorFlexivel[0] === "assinaturas"
+    ) {
         recomendacoes.push({
             titulo: "Revise suas assinaturas",
             tipo: "negativa",
             descricao:
-                "Assinaturas é a categoria flexível com maior impacto. Cancele ou pause serviços pouco usados para liberar parte da renda.",
+                "Assinaturas tem o maior peso entre os gastos flexíveis.",
+            destaque:
+                "Cancele ou pause serviços pouco usados para liberar parte da renda.",
         });
-    } else if (percentualDesejos > 30 && maiorDesejo[0] === "lazer") {
+    } else if (
+        percentualFlexiveis > regra.flexiveis &&
+        maiorFlexivel[0] === "lazer"
+    ) {
         recomendacoes.push({
             titulo: "Planeje seus gastos com lazer",
             tipo: "negativa",
             descricao:
-                "Lazer é a categoria flexível com maior impacto. Defina um teto semanal para passeios, eventos e momentos de entretenimento.",
+                "Lazer tem o maior peso entre os gastos flexíveis.",
+            destaque:
+                "Defina um teto semanal para passeios, eventos e momentos de entretenimento.",
         });
     } else if (
-        percentualDesejos > 30 &&
-        maiorDesejo[0] === "cuidados_pessoais"
+        percentualFlexiveis > regra.flexiveis &&
+        maiorFlexivel[0] === "cuidados_pessoais"
     ) {
         recomendacoes.push({
             titulo: "Organize cuidados pessoais",
             tipo: "negativa",
             descricao:
-                "Cuidados pessoais é a categoria flexível com maior impacto. Defina um orçamento mensal para manter esse gasto sob controle.",
+                "Cuidados pessoais tem o maior peso entre os gastos flexíveis.",
+            destaque:
+                "Defina um orçamento mensal para manter esse gasto sob controle.",
         });
     }
 
-    const resumoRegra503020 = {
-        necessidades: {
-            total: totalNecessidades,
-            limite: limiteNecessidades,
-            percentual: percentualNecessidades,
-            dentro: percentualNecessidades <= 50,
+    const resumoRegraFinanceira = {
+        fixos: {
+            total: totalFixos,
+            limite: limiteFixos,
+            percentual: percentualFixos,
+            dentro: percentualFixos <= regra.fixos,
         },
-        desejos: {
-            total: totalDesejos,
-            limite: limiteDesejos,
-            percentual: percentualDesejos,
-            dentro: percentualDesejos <= 30,
+        flexiveis: {
+            total: totalFlexiveis,
+            limite: limiteFlexiveis,
+            percentual: percentualFlexiveis,
+            dentro: percentualFlexiveis <= regra.flexiveis,
         },
-        reserva: {
-            total: saldoRestante,
-            meta: metaReserva,
-            percentual: percentualReserva,
-            dentro: percentualReserva >= 20,
+        investimentos: {
+            total: totalInvestimentos,
+            meta: metaInvestimentos,
+            percentual: percentualInvestimentos,
+            dentro: percentualInvestimentos >= regra.investimentos,
         },
+        saldoRestante,
+        regra,
     };
 
     return {
         insights,
         recomendacoes,
-        resumoRegra503020,
+        resumoRegraFinanceira,
+        resumoRegra503020: resumoRegraFinanceira,
     };
 }

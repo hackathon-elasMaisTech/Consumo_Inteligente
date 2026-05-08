@@ -1,8 +1,17 @@
 import { analisarPerfil } from "./analisePerfil.js";
 
-export function analisarConsumo(consumos) {
-  const despesas = consumos.filter((item) => item.tipo === "despesa");
-  const receitas = consumos.filter((item) => item.tipo === "receita");
+export function analisarConsumo(consumos, regra) {
+  const categoriasInvestimentos = ["investimento", "reserva"];
+  const despesas = consumos.filter(
+    (item) =>
+      item.tipo === "despesa" ||
+      categoriasInvestimentos.includes(item.categoria),
+  );
+  const receitas = consumos.filter(
+    (item) =>
+      item.tipo === "receita" &&
+      !categoriasInvestimentos.includes(item.categoria),
+  );
 
   const totalPorCategoria = despesas.reduce((acumulador, item) => {
     if (!acumulador[item.categoria]) {
@@ -48,7 +57,7 @@ export function analisarConsumo(consumos) {
 
   const nomeDominante = categoriaDominante[0];
   const percentualDominante = categoriaDominante[1];
-  const perfil = analisarPerfil(totalReceitas, totalPorCategoria);
+  const perfil = analisarPerfil(totalReceitas, totalPorCategoria, regra);
 
   if (!nomeDominante) {
     return {
@@ -59,6 +68,7 @@ export function analisarConsumo(consumos) {
       insightCategoriaDominante: null,
       insights: perfil.insights,
       recomendacoes: perfil.recomendacoes,
+      resumoRegraFinanceira: perfil.resumoRegraFinanceira,
       resumoRegra503020: perfil.resumoRegra503020
     };
   }
@@ -70,12 +80,13 @@ export function analisarConsumo(consumos) {
     categoriasConsumo,
     insightCategoriaDominante: {
       titulo: "Categoria dominante",
-      mensagem: `A categoria dominante e ${nomeDominante} com ${percentualDominante.toFixed(2)}% dos gastos.`,
+      mensagem: `A categoria dominante é ${nomeDominante} com ${percentualDominante.toFixed(2)}% dos gastos.`,
       categoria: nomeDominante,
       percentual: Number(percentualDominante.toFixed(2))
     },
     insights: perfil.insights,
     recomendacoes: perfil.recomendacoes,
+    resumoRegraFinanceira: perfil.resumoRegraFinanceira,
     resumoRegra503020: perfil.resumoRegra503020
   };
 }

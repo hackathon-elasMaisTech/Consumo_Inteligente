@@ -93,6 +93,11 @@ export const Recomendacoes = ({ analise }) => {
                                 </span>
                                 <h4>{recomendacao.titulo}</h4>
                                 <p>{recomendacao.descricao}</p>
+                                {recomendacao.destaque && (
+                                    <strong className={styles.highlight}>
+                                        {recomendacao.destaque}
+                                    </strong>
+                                )}
                             </article>
                         ))}
                     </div>

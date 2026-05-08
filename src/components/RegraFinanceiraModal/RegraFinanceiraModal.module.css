@@ -1,0 +1,144 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+}
+
+.description {
+    color: var(--secondary-text);
+    font-size: 1.4rem;
+    line-height: 1.5;
+    margin-top: -1.6rem;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-top: 0.8rem;
+}
+
+.secondaryButton,
+.primaryButton {
+    flex: 1;
+    border-radius: 0.8rem;
+    cursor: pointer;
+    font-size: 1.6rem;
+    font-weight: 600;
+    padding: 1.4rem;
+    transition: all 0.2s;
+}
+
+.secondaryButton {
+    border: 1px solid var(--standard-border);
+    background: transparent;
+    color: var(--secondary-text);
+}
+
+.secondaryButton:hover {
+    background-color: var(--standard-border);
+}
+
+.primaryButton {
+    border: none;
+    background-color: var(--primary-color);
+    color: var(--inverted-text);
+}
+
+.primaryButton:hover {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+.sliderGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.sliderHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.labelWrapped {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.sliderHeader label {
+    color: var(--main-text);
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.infoIcon {
+    color: var(--secondary-text);
+    font-size: 1.6rem;
+    cursor: help;
+    opacity: 0.55;
+}
+
+.sliderHeader span {
+    color: var(--primary-color);
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.sliderGroup input {
+    width: 100%;
+    height: 1.2rem;
+    border-radius: 1rem;
+    background: linear-gradient(
+        to right,
+        var(--primary-color) 0%,
+        var(--primary-color) var(--slider-percent),
+        var(--standard-border) var(--slider-percent),
+        var(--standard-border) 100%
+    );
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.sliderGroup input::-webkit-slider-runnable-track {
+    height: 1.2rem;
+    border-radius: 1rem;
+    background: transparent;
+}
+
+.sliderGroup input::-webkit-slider-thumb {
+    width: 2rem;
+    height: 2rem;
+    margin-top: -0.4rem;
+    border: none;
+    border-radius: 50%;
+    background: var(--primary-color);
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.sliderGroup input::-moz-range-track {
+    height: 1.2rem;
+    border-radius: 1rem;
+    background: var(--standard-border);
+}
+
+.sliderGroup input::-moz-range-progress {
+    height: 1.2rem;
+    border-radius: 1rem;
+    background: var(--primary-color);
+}
+
+.sliderGroup input::-moz-range-thumb {
+    width: 2rem;
+    height: 2rem;
+    border: none;
+    border-radius: 50%;
+    background: var(--primary-color);
+    cursor: pointer;
+}

@@ -21,6 +21,7 @@ import { ListaTransacoes } from "./components/ListaTransacoes/ListaTransacoes";
 import { Insights } from "./components/Insights/Insights";
 import { Recomendacoes } from "./components/Recomendacoes/Recomendacoes";
 import { VisaoConsumo } from "./components/VisaoConsumo/VisaoConsumo";
+import { RegraFinanceiraModal } from "./components/RegraFinanceiraModal/RegraFinanceiraModal";
 
 function App() {
     const [consumos, setConsumos] = useState([]);
@@ -29,6 +30,12 @@ function App() {
     const [filtroPeriodo, setFiltroPeriodo] = useState({
         dataInicio: "",
         dataFim: "",
+    });
+    const [isRegraModalOpen, setIsRegraModalOpen] = useState(false);
+    const [regraFinanceira, setRegraFinanceira] = useState({
+        fixos: 50,
+        flexiveis: 30,
+        investimentos: 20,
     });
 
     useEffect(() => {
@@ -66,16 +73,26 @@ function App() {
     );
 
     // cálculos
+    const categoriasInvestimentos = ["investimento", "reserva"];
+
     const totalReceitas = consumos
-        .filter((i) => i.tipo === "receita")
+        .filter(
+            (i) =>
+                i.tipo === "receita" &&
+                !categoriasInvestimentos.includes(i.categoria),
+        )
         .reduce((acc, i) => acc + i.valor, 0);
 
     const totalDespesas = consumos
-        .filter((i) => i.tipo === "despesa")
+        .filter(
+            (i) =>
+                i.tipo === "despesa" &&
+                !categoriasInvestimentos.includes(i.categoria),
+        )
         .reduce((acc, i) => acc + i.valor, 0);
 
     const saldo = totalReceitas - totalDespesas;
-    const analise = analisarConsumo(consumos);
+    const analise = analisarConsumo(consumos, regraFinanceira);
     const categoriaDominante = analise.insightCategoriaDominante?.categoria;
 
     return (
@@ -89,7 +106,9 @@ function App() {
                 path="/home"
                 element={
                     <ProtectedRoute>
-                        <Header />
+                        <Header
+                            onOpenConfig={() => setIsRegraModalOpen(true)}
+                        />
 
                         <div className={styles.appContainer}>
                             <MainHeader
@@ -123,6 +142,13 @@ function App() {
                             </section>
 
                             <Recomendacoes analise={analise} />
+
+                            <RegraFinanceiraModal
+                                isOpen={isRegraModalOpen}
+                                onClose={() => setIsRegraModalOpen(false)}
+                                regra={regraFinanceira}
+                                onChangeRegra={setRegraFinanceira}
+                            />
                         </div>
                     </ProtectedRoute>
                 }

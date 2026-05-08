@@ -53,14 +53,18 @@ export const Filtros = ({
                     <option value="contas">Contas</option>
                     <option value="moradia">Moradia</option>
                     <option value="saude">Saúde</option>
+                    <option value="educacao">Educação</option>
                     <option value="cuidados_pessoais">Cuidados Pessoais</option>
                     <option value="compras">Compras</option>
                     <option value="assinaturas">Assinaturas</option>
+                    <option value="outros">Outros</option>
+                    <option value="investimento">Investimento</option>
+                    <option value="reserva">Reserva</option>
 
                     {/* receitas */}
                     <option value="salario">Salário</option>
                     <option value="freelance">Freelance</option>
-                    <option value="investimento">Investimento</option>
+                    <option value="outros">Outros</option>
                 </select>
             </div>
         </section>

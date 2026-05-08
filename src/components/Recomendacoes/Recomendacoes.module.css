@@ -79,6 +79,14 @@
   margin-top: 0.8rem;
 }
 
+.highlight {
+  max-width: 60%;
+  color: var(--main-text);
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
 .btnNavegacao {
   position: absolute;
   top: 50%;

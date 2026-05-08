@@ -49,6 +49,10 @@
   font-weight: 700;
 }
 
+.highlight {
+  color: var(--main-text);
+}
+
 @media (max-width: 768px) {
   .insightsCard {
     width: 100%;

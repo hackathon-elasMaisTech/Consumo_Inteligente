@@ -38,11 +38,15 @@ export const Cadastro = ({ onAdd }) => {
                   "contas",
                   "moradia",
                   "saude",
+                  "educacao",
                   "cuidados_pessoais",
                   "compras",
                   "assinaturas",
+                  "outros",
+                  "investimento",
+                  "reserva",
               ]
-            : ["salario", "freelance", "investimento"];
+            : ["salario", "freelance", "outros"];
 
     return (
         <form onSubmit={handleSubmit} className={styles.formContainer}>

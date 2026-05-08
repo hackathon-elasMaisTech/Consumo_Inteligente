@@ -22,6 +22,11 @@ export const Insights = ({ analise }) => {
                         <strong>{item.valor}</strong>
 
                         <p>{item.descricao}</p>
+                        {item.destaque && (
+                            <strong className={styles.highlight}>
+                                {item.destaque}
+                            </strong>
+                        )}
                     </div>
                 </article>
             ))}
