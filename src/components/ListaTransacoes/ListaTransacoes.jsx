@@ -45,9 +45,20 @@ export const ListaTransacoes = ({ consumos, onDelete }) => {
                                         item.nome.slice(1)}
                                 </span>
 
-                                <span className={styles.categoria}>
-                                    {item.categoria.replace("_", " ")}
-                                </span>
+                                <div className={styles.dataCategoriaWrapped}>
+                                    <span className={styles.categoria}>
+                                        {item.categoria.replace("_", " ")}
+                                    </span>
+                                    <span className={styles.separador}>•</span>
+                                    <span className={styles.data}>
+                                        {item.dataUser
+                                            ? item.dataUser
+                                                  .split("-")
+                                                  .reverse()
+                                                  .join("/")
+                                            : "Sem Data"}
+                                    </span>
+                                </div>
                             </div>
 
                             <div className={styles.infoDireita}>
