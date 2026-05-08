@@ -127,47 +127,42 @@
 
 .modalOverlay {
     position: fixed;
-    inset: 0;
-
-    background: rgba(0, 0, 0, 0.45);
-
+    top: 0;
+    left: 0;
+    width: 100dvw;
+    height: 100dvh;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
     display: flex;
     align-items: center;
     justify-content: center;
-
-    z-index: 999;
+    z-index: 1000;
 }
 
 .modal {
-    background: var(--background);
-
-    width: 34rem;
-
-    padding: 2.4rem;
+    background-color: var(--background);
+    width: 90%;
+    max-width: 34rem;
     border-radius: 1.2rem;
-
-    text-align: center;
-
-    border: 1px solid var(--standard-border);
-    box-shadow: var(--shadow-container);
+    padding: 2.4rem;
+    box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
 }
 
 .modalTitulo {
     font-size: 1.8rem;
     color: var(--main-text);
-
     margin-bottom: 1.2rem;
 }
 
 .modalTexto {
     font-size: 1.4rem;
     color: var(--secondary-text);
-
     margin-bottom: 2rem;
 }
 
 .modalButtons {
     display: flex;
+    width: 100%;
     justify-content: center;
     gap: 1.2rem;
 }
@@ -176,7 +171,7 @@
 .btnCancelar {
     border: none;
     cursor: pointer;
-
+    width: 100%;
     padding: 0.9rem 1.6rem;
     border-radius: 0.8rem;
 
