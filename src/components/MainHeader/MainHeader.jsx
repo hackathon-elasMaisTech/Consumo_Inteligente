@@ -1,4 +1,4 @@
-import { GoPlus, GoCalendar } from "react-icons/go";
+import { GoPlus, GoCalendar, GoX } from "react-icons/go";
 import { useState, useContext } from "react";
 
 import { Modal } from "../Modal/Modal";
@@ -9,11 +9,17 @@ import styles from "./MainHeader.module.css";
 
 import { AuthContext } from "../../context/AuthContext";
 
-export const MainHeader = ({ onAddTransaction, onFilterPeriod }) => {
+export const MainHeader = ({
+    onAddTransaction,
+    onFilterPeriod,
+    filterPeriod,
+}) => {
     const { user } = useContext(AuthContext);
 
     const [isCadastroModalOpen, setIsCadastroModalOpen] = useState(false);
     const [isPeriodoModalOpen, setIsPeriodoModalOpen] = useState(false);
+
+    const isFiltroAtivo = filterPeriod?.dataInicio || filterPeriod?.dataFim;
 
     // ⏰ saudação automática
     const hora = new Date().getHours();
@@ -27,6 +33,16 @@ export const MainHeader = ({ onAddTransaction, onFilterPeriod }) => {
     } else {
         saudacao = "Boa noite";
     }
+
+    const handlePeriodoClick = () => {
+        if (isFiltroAtivo) {
+            if (onFilterPeriod) {
+                onFilterPeriod({ dataInicio: "", dataFim: "" });
+            }
+        } else {
+            setIsPeriodoModalOpen(true);
+        }
+    };
 
     return (
         <div className={styles.container}>
@@ -50,11 +66,20 @@ export const MainHeader = ({ onAddTransaction, onFilterPeriod }) => {
                 </button>
 
                 <button
-                    className={styles.button}
-                    onClick={() => setIsPeriodoModalOpen(true)}
+                    className={`${styles.button} ${isFiltroAtivo ? styles.btnFilterActive : ""}`}
+                    onClick={handlePeriodoClick}
                 >
-                    <GoCalendar className={styles.iconButton} />
-                    Selecionar Período
+                    {isFiltroAtivo ? (
+                        <>
+                            <GoX className={styles.iconButton} />
+                            Limpar Filtro
+                        </>
+                    ) : (
+                        <>
+                            <GoCalendar className={styles.iconButton} />
+                            Selecionar Período
+                        </>
+                    )}
                 </button>
             </div>
 
