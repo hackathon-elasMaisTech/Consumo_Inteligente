@@ -106,24 +106,80 @@
 .btnExcluir:hover {
     background-color: var(--bg-expense);
 }
+/* MODAL */
 
-@media (max-width: 480px) {
-    .item {
-        flex-direction: column;
-        align-items: start;
-        /* justify-content: space-between; */
-    }
+.modalOverlay {
+    position: fixed;
+    inset: 0;
 
-    .infoDireita {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        justify-content: space-between;
-    }
+    background: rgba(0, 0, 0, 0.45);
 
-    .btnExcluir {
-        position: absolute;
-        margin-left: 30rem;
-        margin-bottom: 4rem;
-    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 999;
+}
+
+.modal {
+    background: var(--background);
+
+    width: 34rem;
+
+    padding: 2.4rem;
+    border-radius: 1.2rem;
+
+    text-align: center;
+
+    border: 1px solid var(--standard-border);
+    box-shadow: var(--shadow-container);
+}
+
+.modalTitulo {
+    font-size: 1.8rem;
+    color: var(--main-text);
+
+    margin-bottom: 1.2rem;
+}
+
+.modalTexto {
+    font-size: 1.4rem;
+    color: var(--secondary-text);
+
+    margin-bottom: 2rem;
+}
+
+.modalButtons {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+}
+
+.btnConfirmar,
+.btnCancelar {
+    border: none;
+    cursor: pointer;
+
+    padding: 0.9rem 1.6rem;
+    border-radius: 0.8rem;
+
+    font-size: 1.4rem;
+    font-weight: 600;
+
+    transition: opacity 0.2s;
+}
+
+.btnConfirmar {
+    background: var(--text-income);
+    color: white;
+}
+
+.btnCancelar {
+    background: var(--standard-border);
+    color: var(--main-text);
+}
+
+.btnConfirmar:hover,
+.btnCancelar:hover {
+    opacity: 0.9;
 }
