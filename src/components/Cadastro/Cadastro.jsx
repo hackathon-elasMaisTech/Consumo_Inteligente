@@ -1,5 +1,12 @@
 import { useState } from "react";
 import styles from "./Cadastro.module.css";
+import {
+    CATEGORIAS_DESPESA_FIXA,
+    CATEGORIAS_DESPESA_FLEXIVEL,
+    CATEGORIAS_INVESTIMENTO,
+    CATEGORIAS_RECEITA,
+    NOME_CATEGORIAS,
+} from "../../utils/categorias";
 
 export const Cadastro = ({ onAdd }) => {
     const dataHoje = new Date().toISOString().split("T")[0];
@@ -32,26 +39,6 @@ export const Cadastro = ({ onAdd }) => {
         setTipo("despesa");
         setDataUser(dataHoje);
     };
-
-    // 🎯 categorias dinâmicas
-    const categorias =
-        tipo === "despesa"
-            ? [
-                  "mercado",
-                  "transporte",
-                  "lazer",
-                  "contas",
-                  "moradia",
-                  "saude",
-                  "educacao",
-                  "cuidados_pessoais",
-                  "compras",
-                  "assinaturas",
-                  "outros",
-                  "investimento",
-                  "reserva",
-              ]
-            : ["salario", "freelance", "outros"];
 
     return (
         <form onSubmit={handleSubmit} className={styles.formContainer}>
@@ -136,12 +123,44 @@ export const Cadastro = ({ onAdd }) => {
                     <option value="" disabled>
                         Selecione uma categoria
                     </option>
-                    {categorias.map((cat) => (
-                        <option key={cat} value={cat}>
-                            {cat.charAt(0).toLocaleUpperCase() +
-                                cat.slice(1).replace("_", " ")}
-                        </option>
-                    ))}
+                    {tipo === "despesa" ? (
+                        <>
+                            <optgroup label="Despesas Fixas">
+                                {CATEGORIAS_DESPESA_FIXA.map((categoria) => (
+                                    <option key={categoria} value={categoria}>
+                                        {NOME_CATEGORIAS[categoria]}
+                                    </option>
+                                ))}
+                            </optgroup>
+                            <optgroup label="Despesas Flexíveis">
+                                {CATEGORIAS_DESPESA_FLEXIVEL.map(
+                                    (categoria) => (
+                                        <option
+                                            key={categoria}
+                                            value={categoria}
+                                        >
+                                            {NOME_CATEGORIAS[categoria]}
+                                        </option>
+                                    ),
+                                )}
+                            </optgroup>
+                            <optgroup label="Investimentos">
+                                {CATEGORIAS_INVESTIMENTO.map((categoria) => (
+                                    <option key={categoria} value={categoria}>
+                                        {NOME_CATEGORIAS[categoria]}
+                                    </option>
+                                ))}
+                            </optgroup>
+                        </>
+                    ) : (
+                        <optgroup label="Receitas">
+                            {CATEGORIAS_RECEITA.map((categoria) => (
+                                <option key={categoria} value={categoria}>
+                                    {NOME_CATEGORIAS[categoria]}
+                                </option>
+                            ))}
+                        </optgroup>
+                    )}
                 </select>
             </div>
 
