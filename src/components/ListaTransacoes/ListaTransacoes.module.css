@@ -121,11 +121,14 @@
     padding: 0.5rem;
     border-radius: 100%;
     color: var(--secondary-text);
-    transition: background 0.2s;
+    transition:
+        background-color 0.2s,
+        color 0.2s;
 }
 
 .btnExcluir:hover {
-    background-color: var(--bg-expense);
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
 }
 
 /* MODAL */
