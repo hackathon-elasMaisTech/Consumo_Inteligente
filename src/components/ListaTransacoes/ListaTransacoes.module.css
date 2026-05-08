@@ -71,10 +71,26 @@
     color: var(--main-text);
 }
 
+.dataCategoriaWrapped {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.5rem;
+
+
+    color: var(--secondary-text);
+}
+
 .categoria {
     font-size: 1.2rem;
-    color: var(--secondary-text);
     text-transform: capitalize;
+}
+
+.separador {
+    font-size: 1rem;
+}
+
+.data {
+    font-variant-numeric: tabular-nums;
 }
 
 .infoDireita {
@@ -111,6 +127,7 @@
 .btnExcluir:hover {
     background-color: var(--bg-expense);
 }
+
 /* MODAL */
 
 .modalOverlay {
