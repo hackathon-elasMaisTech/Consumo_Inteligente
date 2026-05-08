@@ -59,7 +59,37 @@ Fluxo Principal
 
 ### Prints do Código (Lógica JavaScript)
 
-Colocar Print da lógica JS
+Os prints exibidos abaixo representam apenas algumas partes do código-fonte, considerando que o projeto possui trechos extensos e mais complexos. A inclusão de todos os prints poderia comprometer a organização e a visualização do documento.
+Para uma análise mais detalhada do código, recomenda-se consultar o repositório oficial no GitHub ou acessar o projeto hospedado.
+
+
+Lógica API.JS: 
+Este módulo é responsável pela comunicação entre a aplicação e a API MockAPI. Nele foram implementadas as operações de CRUD utilizando fetch e async/await, permitindo buscar, criar, atualizar e remover consumos. Também foram aplicados tratamentos de erro com try/catch e validação das respostas da API, garantindo maior estabilidade e evitando falhas na aplicação.
+
+<img width="1365" height="721" alt="image" src="https://github.com/user-attachments/assets/1a322a36-388b-4efc-bc8a-b9dc4779008d" />
+<img width="1365" height="722" alt="image" src="https://github.com/user-attachments/assets/a7fc4f33-e3f0-493a-b76b-319ad40ed4c0" />
+<img width="1365" height="717" alt="image" src="https://github.com/user-attachments/assets/f8455949-8b3c-4ff4-979f-269773141e83" />
+
+Lógica formatadorMoedas.js:
+É responsável por formatar valores numéricos para o padrão monetário brasileiro utilizando a API Intl.NumberFormat. Dessa forma, os valores são exibidos no formato de moeda Real (R$), garantindo melhor visualização e padronização das informações financeiras na aplicação. 
+
+<img width="1365" height="720" alt="image" src="https://github.com/user-attachments/assets/a991716d-2ed8-4124-99ad-47359f3d9a1c" />
+
+Lógica analisePerfil.js:
+Este módulo é responsável por analisar o perfil financeiro do usuário com base na regra financeira 50/30/20. A lógica calcula os totais gastos em categorias fixas, flexíveis e investimentos, compara os valores com os limites definidos e gera insights e recomendações personalizadas sobre o controle financeiro. Além disso, o sistema calcula percentuais, saldo restante e identifica possíveis excessos ou oportunidades de melhoria no orçamento do usuário. 
+
+<img width="1365" height="715" alt="image" src="https://github.com/user-attachments/assets/42400647-297a-46af-af99-22aa2aaffc2e" />
+
+Lógica analiseConsumo.js:
+Este módulo é responsável por analisar os dados de consumo do usuário. A lógica separa receitas e despesas, calcula os gastos por categoria, o total geral, percentuais de consumo e o saldo restante. Além disso, organiza as categorias por maior gasto e utiliza a função de análise de perfil financeiro para gerar insights, recomendações e o resumo da regra financeira 50/30/20, auxiliando no acompanhamento e controle do orçamento. 
+
+<img width="1365" height="719" alt="image" src="https://github.com/user-attachments/assets/5d24e44a-9aee-48e0-b4e2-c9acacea5779" />
+
+Lógica authStorage.js:
+Este módulo é responsável pelo gerenciamento de usuários da aplicação utilizando o localStorage. A lógica permite armazenar usuários de demonstração, realizar autenticação de login, validar credenciais e cadastrar novos usuários. Também são feitas validações para evitar e-mails duplicados e gerar um token fictício de autenticação, simulando o funcionamento básico de um sistema de login e cadastro. 
+
+<img width="1365" height="719" alt="image" src="https://github.com/user-attachments/assets/1197b9e5-e595-404e-8641-dda30de68660" />
+
 
 ## Estrutura dos Dados
 
