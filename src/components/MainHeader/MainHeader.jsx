@@ -9,7 +9,6 @@ import styles from "./MainHeader.module.css";
 import { AuthContext } from "../../context/AuthContext";
 
 export const MainHeader = ({ onAddTransaction }) => {
-
     const { user } = useContext(AuthContext);
 
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -20,42 +19,26 @@ export const MainHeader = ({ onAddTransaction }) => {
     let saudacao;
 
     if (hora >= 5 && hora < 12) {
-        saudacao = "☀️ Bom dia";
+        saudacao = "Bom dia";
     } else if (hora >= 12 && hora < 18) {
-        saudacao = "🌤️ Boa tarde";
+        saudacao = "Boa tarde";
     } else {
-        saudacao = "🌙 Boa noite";
+        saudacao = "Boa noite";
     }
 
     return (
         <div className={styles.container}>
-
-            {/* usuário */}
-            <div className={styles.userInfo}>
-
-                {/* avatar */}
-                {user?.foto ? (
-                    <img
-                        src={user.foto}
-                        alt={user.nome}
-                        className={styles.avatar}
-                    />
-                ) : (
-                    <div className={styles.avatarFallback}>
-                        {user?.nome?.charAt(0).toUpperCase() || "U"}
-                    </div>
-                )}
-
-                {/* saudação */}
-                <h1 className={styles.h1}>
-                    {saudacao}, {user?.nome || "Usuário"}!
-                </h1>
-
-            </div>
+            {/* saudação */}
+            <h1 className={styles.h1}>
+                {saudacao},{" "}
+                <span className={styles.nomeUsuario}>
+                    {user?.nome || "Usuário"}
+                </span>
+                !
+            </h1>
 
             {/* botões */}
             <div className={styles.btnWrapped}>
-
                 <button
                     className={styles.button}
                     onClick={() => setIsModalOpen(true)}
@@ -68,7 +51,6 @@ export const MainHeader = ({ onAddTransaction }) => {
                     <GoCalendar className={styles.iconButton} />
                     Selecionar Período
                 </button>
-
             </div>
 
             {/* modal */}
@@ -84,7 +66,6 @@ export const MainHeader = ({ onAddTransaction }) => {
                     }}
                 />
             </Modal>
-
         </div>
     );
 };

@@ -5,8 +5,8 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { analisarConsumo } from "./utils/analiseConsumo";
 
 // estilos
-// App.module.css ainda nao foi adicionado
 import "./styles/global.css";
+import styles from "./App.module.css";
 
 // páginas
 import Login from "./pages/Login/Login";
@@ -18,8 +18,8 @@ import { MainHeader } from "./components/MainHeader/MainHeader";
 import { Resumo } from "./components/Resumo/Resumo";
 import { Filtros } from "./components/Filtros/Filtros";
 import { ListaTransacoes } from "./components/ListaTransacoes/ListaTransacoes";
-import Insights from "./components/Insights/Insights";
-import Recomendacoes from "./components/Recomendacoes/Recomendacoes";
+import { Insights } from "./components/Insights/Insights";
+import { Recomendacoes } from "./components/Recomendacoes/Recomendacoes";
 import { VisaoConsumo } from "./components/VisaoConsumo/VisaoConsumo";
 
 function App() {
@@ -61,6 +61,7 @@ function App() {
 
     const saldo = totalReceitas - totalDespesas;
     const analise = analisarConsumo(consumos);
+    const categoriaDominante = analise.insightCategoriaDominante?.categoria;
 
     // filtro
     const consumosFiltrados = consumos.filter(
@@ -80,15 +81,16 @@ function App() {
                 path="/home"
                 element={
                     <ProtectedRoute>
-                        <div className="app-container">
-                            <Header />
+                        <Header />
 
+                        <div className={styles.appContainer}>
                             <MainHeader onAddTransaction={adicionarConsumo} />
 
                             <Resumo
                                 receitas={totalReceitas}
                                 despesas={totalDespesas}
                                 saldo={saldo}
+                                categoriaDominante={categoriaDominante}
                             />
 
                             <Filtros
@@ -97,16 +99,16 @@ function App() {
                                 filtroTipo={filtroTipo}
                                 setFiltroTipo={setFiltroTipo}
                             />
-                            <section className="listaConsumoWrapped">
-                                <ListaTransacoes
-                                    consumos={consumosFiltrados}
-                                    onDelete={removerConsumo}
-                                />
 
+                            <ListaTransacoes
+                                consumos={consumosFiltrados}
+                                onDelete={removerConsumo}
+                            />
+                            <section className={styles.consumoInsightsWrapped}>
                                 <VisaoConsumo analise={analise} />
+                                <Insights analise={analise} />
                             </section>
 
-                            <Insights analise={analise} />
                             <Recomendacoes analise={analise} />
                         </div>
                     </ProtectedRoute>

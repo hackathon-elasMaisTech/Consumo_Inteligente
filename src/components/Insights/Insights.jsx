@@ -1,36 +1,30 @@
 import styles from "./Insights.module.css";
 import { GoLightBulb } from "react-icons/go";
 
+export const Insights = ({ analise }) => {
+    if (!analise) {
+        return <p>Carregando insights...</p>;
+    }
 
+    return (
+        <aside className={styles.insightsCard}>
+            <h3>Insights</h3>
 
-function Insights({ analise }) {
-  if (!analise) {
-    return <p>Carregando insights...</p>;
-  }
+            {analise.insights.map((item) => (
+                <article className={styles.insightItem} key={item.titulo}>
+                    <div className={styles.iconContainer}>
+                        <GoLightBulb />
+                    </div>
 
-  return (    
-      <aside  className={styles.insightsCard}>
-        <h3>Insights</h3>
+                    <div className={styles.textContent}>
+                        <h4>{item.titulo}</h4>
 
-          {analise.insights.map((item) => (
-            <article  className={styles.insightItem} key={item.titulo}>
-              <div className={styles.iconContainer}>
-                <GoLightBulb />
-              </div>
+                        <strong>{item.valor}</strong>
 
-
-              <div className={styles.textContent}>
-                <h4>{item.titulo}</h4>
-
-                <strong>{item.valor}</strong>
-
-                <p>{item.descricao}</p>
-              </div>
-              
-            </article>
-      ))}
-          </aside>
-);
-}
-
-export default Insights;
+                        <p>{item.descricao}</p>
+                    </div>
+                </article>
+            ))}
+        </aside>
+    );
+};
