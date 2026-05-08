@@ -60,6 +60,7 @@ export const MainHeader = ({
                 <button
                     className={styles.button}
                     onClick={() => setIsCadastroModalOpen(true)}
+                    title="Nova transação"
                 >
                     <GoPlus className={styles.iconButton} />
                     Nova Transação
@@ -68,6 +69,7 @@ export const MainHeader = ({
                 <button
                     className={`${styles.button} ${isFiltroAtivo ? styles.btnFilterActive : ""}`}
                     onClick={handlePeriodoClick}
+                    title={isFiltroAtivo ? "Limpar filtro" : "Selecionar período"}
                 >
                     {isFiltroAtivo ? (
                         <>

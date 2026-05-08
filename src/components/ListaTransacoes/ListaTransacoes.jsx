@@ -76,6 +76,8 @@ export const ListaTransacoes = ({ consumos, onDelete }) => {
                                 <button
                                     className={styles.btnExcluir}
                                     onClick={() => abrirModalExcluir(item.id)}
+                                    aria-label="Excluir transação"
+                                    title="Excluir"
                                 >
                                     <GoX />
                                 </button>
