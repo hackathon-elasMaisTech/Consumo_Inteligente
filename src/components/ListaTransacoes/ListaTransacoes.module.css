@@ -18,6 +18,9 @@
     max-height: 50dvh;
     overflow-y: auto;
     padding-right: 0.8rem;
+
+    scrollbar-width: thin;
+    scrollbar-color: var(--standard-border) var(--background);
 }
 
 .emptyMessage {
@@ -82,7 +85,6 @@
 
 .categoria {
     font-size: 1.2rem;
-    text-transform: capitalize;
 }
 
 .separador {
