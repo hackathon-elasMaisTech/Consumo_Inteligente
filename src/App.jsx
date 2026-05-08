@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { getConsumos, createConsumo, deleteConsumo } from "./services/api";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { analisarConsumo } from "./utils/analiseConsumo";
+import { formatarMoeda } from "./utils/formatadorMoeda";
 
 // estilos
 import "./styles/global.css";
@@ -37,6 +38,7 @@ function App() {
         flexiveis: 30,
         investimentos: 20,
     });
+    const [notificacoes, setNotificacoes] = useState([]);
 
     useEffect(() => {
         async function carregar() {
@@ -49,16 +51,80 @@ function App() {
     const carregarConsumos = async () => {
         const dados = await getConsumos();
         setConsumos(dados);
+        return dados;
     };
 
     const adicionarConsumo = async (novoItem) => {
         await createConsumo(novoItem);
-        carregarConsumos();
+        const dadosAtualizados = await carregarConsumos();
+        gerarNotificacaoDeLimite(novoItem, dadosAtualizados);
     };
 
     const removerConsumo = async (id) => {
         await deleteConsumo(id);
         carregarConsumos();
+    };
+
+    const gerarNotificacaoDeLimite = (novoItem, dadosAtualizados) => {
+        if (novoItem.tipo !== "despesa") {
+            return;
+        }
+
+        const grupos = {
+            fixos: {
+                titulo: "Gastos fixos acima do limite",
+                nome: "fixos",
+                categorias: [
+                    "mercado",
+                    "transporte",
+                    "contas",
+                    "moradia",
+                    "saude",
+                    "educacao",
+                ],
+            },
+            flexiveis: {
+                titulo: "Gastos flexíveis acima do limite",
+                nome: "flexíveis",
+                categorias: [
+                    "lazer",
+                    "cuidados_pessoais",
+                    "compras",
+                    "assinaturas",
+                    "outros",
+                ],
+            },
+        };
+
+        const grupoEncontrado = Object.entries(grupos).find(([, grupo]) =>
+            grupo.categorias.includes(novoItem.categoria),
+        );
+
+        if (!grupoEncontrado) {
+            return;
+        }
+
+        const [grupo, dadosGrupo] = grupoEncontrado;
+        const novaAnalise = analisarConsumo(dadosAtualizados, regraFinanceira);
+        const resumoGrupo = novaAnalise.resumoRegraFinanceira?.[grupo];
+
+        if (!resumoGrupo || resumoGrupo.dentro) {
+            return;
+        }
+
+        const percentual = Math.round(resumoGrupo.percentual);
+        const limite = regraFinanceira[grupo];
+
+        const novaNotificacao = {
+            id: `${Date.now()}-${grupo}`,
+            titulo: dadosGrupo.titulo,
+            mensagem: `Seus gastos ${dadosGrupo.nome} chegaram a ${percentual}% da renda, acima do limite de ${limite}%. O lançamento foi de ${formatarMoeda(novoItem.valor)} em ${novoItem.categoria}.`,
+        };
+
+        setNotificacoes((notificacoesAtuais) => [
+            novaNotificacao,
+            ...notificacoesAtuais,
+        ].slice(0, 5));
     };
 
     // filtro
@@ -108,6 +174,15 @@ function App() {
                     <ProtectedRoute>
                         <Header
                             onOpenConfig={() => setIsRegraModalOpen(true)}
+                            notificacoes={notificacoes}
+                            onClearNotificacoes={() => setNotificacoes([])}
+                            onReadNotificacao={(id) =>
+                                setNotificacoes((notificacoesAtuais) =>
+                                    notificacoesAtuais.filter(
+                                        (notificacao) => notificacao.id !== id,
+                                    ),
+                                )
+                            }
                         />
 
                         <div className={styles.appContainer}>

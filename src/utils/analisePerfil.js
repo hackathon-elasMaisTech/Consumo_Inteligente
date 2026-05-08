@@ -11,6 +11,41 @@ export function analisarPerfil(
     totalPorCategoria,
     regra = regraPadrao,
 ) {
+    const semDadosParaAnalise =
+        totalReceitas === 0 && Object.keys(totalPorCategoria).length === 0;
+
+    if (semDadosParaAnalise) {
+        const resumoVazio = {
+            fixos: {
+                total: 0,
+                limite: 0,
+                percentual: 0,
+                dentro: true,
+            },
+            flexiveis: {
+                total: 0,
+                limite: 0,
+                percentual: 0,
+                dentro: true,
+            },
+            investimentos: {
+                total: 0,
+                meta: 0,
+                percentual: 0,
+                dentro: true,
+            },
+            saldoRestante: 0,
+            regra,
+        };
+
+        return {
+            insights: [],
+            recomendacoes: [],
+            resumoRegraFinanceira: resumoVazio,
+            resumoRegra503020: resumoVazio,
+        };
+    }
+
     const categoriasFixas = [
         "mercado",
         "transporte",

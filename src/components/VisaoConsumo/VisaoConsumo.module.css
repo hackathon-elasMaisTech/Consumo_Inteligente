@@ -18,6 +18,11 @@
     gap: 2rem;
 }
 
+.emptyMessage {
+    color: var(--secondary-text);
+    font-size: 1.4rem;
+}
+
 .categoriaItem {
     display: flex;
     flex-direction: column;

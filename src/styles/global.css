@@ -65,7 +65,7 @@ input,
 select,
 option,
 textarea {
-    font-family: "Inter", monospace;
+    font-family: "Inter", sans-serif;
 }
 
 body {
