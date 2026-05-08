@@ -2,10 +2,13 @@ import { useState } from "react";
 import styles from "./Cadastro.module.css";
 
 export const Cadastro = ({ onAdd }) => {
+    const dataHoje = new Date().toISOString().split("T")[0];
+
     const [nome, setNome] = useState("");
     const [valor, setValor] = useState("");
     const [categoria, setCategoria] = useState("");
     const [tipo, setTipo] = useState("despesa");
+    const [dataUser, setDataUser] = useState(dataHoje);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -17,7 +20,8 @@ export const Cadastro = ({ onAdd }) => {
             valor: Number(valor),
             categoria,
             tipo,
-            data: new Date().toISOString().split("T")[0],
+            data: dataHoje,
+            dataUser,
         };
 
         onAdd(novoItem);
@@ -26,6 +30,7 @@ export const Cadastro = ({ onAdd }) => {
         setValor("");
         setCategoria("");
         setTipo("despesa");
+        setDataUser(dataHoje);
     };
 
     // 🎯 categorias dinâmicas
@@ -95,16 +100,29 @@ export const Cadastro = ({ onAdd }) => {
                 />
             </div>
 
-            <div className={styles.inputWrapped}>
-                <label className={styles.label}>Valor</label>
-                <input
-                    className={styles.inputField}
-                    type="number"
-                    step="any"
-                    placeholder="Ex: 150,00"
-                    value={valor}
-                    onChange={(e) => setValor(e.target.value)}
-                />
+            <div className={styles.valueDateWrapped}>
+                <div className={styles.inputWrapped}>
+                    <label className={styles.label}>Valor</label>
+                    <input
+                        className={styles.inputField}
+                        type="number"
+                        step="any"
+                        placeholder="Ex: 150,00"
+                        value={valor}
+                        onChange={(e) => setValor(e.target.value)}
+                    />
+                </div>
+
+                <div className={styles.inputWrapped}>
+                    <label className={styles.label}>Data da Transação</label>
+                    <input
+                        className={styles.inputField}
+                        type="date"
+                        value={dataUser}
+                        required
+                        onChange={(e) => setDataUser(e.target.value)}
+                    />
+                </div>
             </div>
 
             <div className={styles.inputWrapped}>
