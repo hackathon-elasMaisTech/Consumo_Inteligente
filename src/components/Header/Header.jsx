@@ -32,8 +32,8 @@ export const Header = () => {
             {/* logo */}
             <div className={styles.headerWrapped}>
                 <img
-                    src={`${import.meta.env.BASE_URL}logo.png`}
-                    alt="Logo do Consuman"
+                    src={`${import.meta.env.BASE_URL}${theme === "light" ? "logo-horizontal-light.svg" : "logo-horizontal-dark.svg"}`}
+                    alt="Logo da Lumi"
                     className={styles.logo}
                 />
 
