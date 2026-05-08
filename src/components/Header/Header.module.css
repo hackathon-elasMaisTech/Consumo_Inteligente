@@ -1,18 +1,19 @@
 .header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 8rem;
     border-bottom: 1px solid var(--standard-border);
 }
 
 .headerWrapped {
-    max-width: 1300px;
+    width: 1300px;
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    margin: 0 auto;
 }
 
 .logo {
-    width: 10rem;
+    width: 15rem;
 }
 
 .menu {
