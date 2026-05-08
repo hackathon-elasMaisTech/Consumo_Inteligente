@@ -30,8 +30,6 @@ export function analisarConsumo(consumos, regra) {
     return acumulador + item.valor;
   }, 0);
 
-  const saldoRestante = totalReceitas - totalGeral;
-
   const percentuais = Object.keys(totalPorCategoria).reduce((acumulador, categoria) => {
     acumulador[categoria] = totalGeral === 0
       ? 0

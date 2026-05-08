@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { GoMoon, GoSun } from "react-icons/go";
-import { AuthContext } from "../../context/AuthContext";
+import { AuthContext } from "../../context/AuthContextValue";
 import { authenticateUser } from "../../utils/authStorage";
 import "./login.css";
 

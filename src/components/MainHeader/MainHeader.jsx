@@ -7,7 +7,7 @@ import { FiltroPeriodo } from "../FiltroPeriodo/FiltroPeriodo";
 
 import styles from "./MainHeader.module.css";
 
-import { AuthContext } from "../../context/AuthContext";
+import { AuthContext } from "../../context/AuthContextValue";
 import { obterPeriodoMesAtual } from "../../utils/periodo";
 
 export const MainHeader = ({

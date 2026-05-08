@@ -106,8 +106,6 @@ export function analisarPerfil(
         (totalFlexiveis - limiteFlexiveis).toFixed(2),
     );
     const folgaFixos = Number((limiteFixos - totalFixos).toFixed(2));
-    const folgaFlexiveis = Number((limiteFlexiveis - totalFlexiveis).toFixed(2));
-
     let descricaoFixos;
     let descricaoFlexiveis;
     let descricaoInvestimentos;

@@ -4,7 +4,7 @@ import { GoGear, GoBell, GoMoon, GoSun } from "react-icons/go";
 
 import { useEffect, useState, useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
+import { AuthContext } from "../../context/AuthContextValue";
 
 export const Header = ({
     onOpenConfig,
