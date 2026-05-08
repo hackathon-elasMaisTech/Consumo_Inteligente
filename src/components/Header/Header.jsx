@@ -3,21 +3,24 @@ import styles from "./Header.module.css";
 import { GoGear, GoBell, GoMoon, GoSun } from "react-icons/go";
 
 import { useEffect, useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
 export const Header = () => {
-    const { user } = useContext(AuthContext);
+    const { user, logout } = useContext(AuthContext);
+    const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+    const navigate = useNavigate();
 
     // tema salvo
     const [theme, setTheme] = useState(() => {
-        const savedTheme = localStorage.getItem("consuman-theme");
+        const savedTheme = localStorage.getItem("lumi-theme");
         return savedTheme ? savedTheme : "light";
     });
 
     // aplica tema
     useEffect(() => {
         document.documentElement.setAttribute("data-theme", theme);
-        localStorage.setItem("consuman-theme", theme);
+        localStorage.setItem("lumi-theme", theme);
     }, [theme]);
 
     // alternar tema
@@ -25,6 +28,11 @@ export const Header = () => {
         setTheme((currentTheme) =>
             currentTheme === "light" ? "dark" : "light",
         );
+    };
+
+    const handleLogout = () => {
+        logout();
+        navigate("/");
     };
 
     return (
@@ -59,8 +67,25 @@ export const Header = () => {
                     </button>
 
                     {/* avatar */}
-                    <div className={styles.avatarFallback}>
-                        {user?.nome?.charAt(0).toUpperCase() || "U"}
+                    <div className={styles.userMenu}>
+                        <button
+                            className={styles.avatarFallback}
+                            onClick={() =>
+                                setIsUserMenuOpen((isOpen) => !isOpen)
+                            }
+                            aria-label="Abrir menu do usuário"
+                            type="button"
+                        >
+                            {user?.nome?.charAt(0).toUpperCase() || "U"}
+                        </button>
+
+                        {isUserMenuOpen && (
+                            <div className={styles.logoutMenu}>
+                                <button onClick={handleLogout} type="button">
+                                    Sair
+                                </button>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
