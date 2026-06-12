@@ -1,12 +1,16 @@
 import { useState } from "react";
 import styles from "./ListaTransacoes.module.css";
 import { formatarMoeda } from "../../utils/formatadorMoeda";
-import { GoX } from "react-icons/go";
+import { GoX, GoPencil } from "react-icons/go";
 import { NOME_CATEGORIAS } from "../../utils/categorias";
+import { Modal } from "../Modal/Modal";
+import { Cadastro } from "../Cadastro/Cadastro";
 
-export const ListaTransacoes = ({ consumos, onDelete }) => {
+export const ListaTransacoes = ({ consumos, onDelete, onEdit }) => {
     const [modalAberto, setModalAberto] = useState(false);
     const [transacaoSelecionada, setTransacaoSelecionada] = useState(null);
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+    const [itemParaEditar, setItemParaEditar] = useState(null);
 
     // abrir modal
     const abrirModalExcluir = (id) => {
@@ -76,6 +80,18 @@ export const ListaTransacoes = ({ consumos, onDelete }) => {
                                 </span>
 
                                 <button
+                                    className={styles.btnEditar}
+                                    onClick={() => {
+                                        setItemParaEditar(item);
+                                        setIsEditModalOpen(true);
+                                    }}
+                                    aria-label="Editar transação"
+                                    title="Editar"
+                                >
+                                    <GoPencil />
+                                </button>
+
+                                <button
                                     className={styles.btnExcluir}
                                     onClick={() => abrirModalExcluir(item.id)}
                                     aria-label="Excluir transação"
@@ -119,6 +135,25 @@ export const ListaTransacoes = ({ consumos, onDelete }) => {
                     </div>
                 </div>
             )}
+
+            {/* MODAL DE EDIÇÃO */}
+            <Modal
+                isOpen={isEditModalOpen}
+                onClose={() => {
+                    setIsEditModalOpen(false);
+                    setItemParaEditar(null);
+                }}
+                title="Editar Transação"
+            >
+                <Cadastro
+                    itemParaEditar={itemParaEditar}
+                    onEdit={(transacaoAtualizada) => {
+                        onEdit(itemParaEditar.id, transacaoAtualizada);
+                        setIsEditModalOpen(false);
+                        setItemParaEditar(null);
+                    }}
+                />
+            </Modal>
         </div>
     );
 };

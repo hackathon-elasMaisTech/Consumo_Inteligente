@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import { getConsumos, createConsumo, deleteConsumo } from "./services/api";
+import {
+    getConsumos,
+    createConsumo,
+    deleteConsumo,
+    updateConsumo,
+} from "./services/api";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { analisarConsumo } from "./utils/analiseConsumo";
 import { formatarMoeda } from "./utils/formatadorMoeda";
@@ -70,6 +75,24 @@ function App() {
     const removerConsumo = async (id) => {
         await deleteConsumo(id);
         carregarConsumos();
+    };
+
+    const editarConsumo = async (id, transacaoAtualizada) => {
+        try {
+            const itemAtualizado = await updateConsumo(
+                id,
+                transacaoAtualizada,
+            );
+
+            // Atualiza a lista na tela, trocando apenas o item antigo pelo novo
+            setConsumos((dadosAntigos) =>
+                dadosAntigos.map((item) =>
+                    item.id === id ? itemAtualizado : item,
+                ),
+            );
+        } catch (error) {
+            console.error("Erro ao editar transação:", error);
+        }
     };
 
     const fecharOnboarding = () => {
@@ -226,6 +249,7 @@ function App() {
                             <ListaTransacoes
                                 consumos={consumosFiltrados}
                                 onDelete={removerConsumo}
+                                onEdit={editarConsumo}
                             />
                             <section className={styles.consumoInsightsWrapped}>
                                 <VisaoConsumo analise={analise} />
