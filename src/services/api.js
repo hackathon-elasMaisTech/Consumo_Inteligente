@@ -144,3 +144,25 @@ export const updateConsumo = async (id, data) => {
     salvarConsumos(consumosAtualizados);
     return consumosAtualizados.find((consumo) => consumo.id === id) || null;
 };
+
+// PUT - Atualiza uma transação existente
+export const updateTransacao = async (id, transacaoAtualizada) => {
+    try {
+        const response = await fetch(`${STORAGE_PREFIX}/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(transacaoAtualizada),
+        });
+
+        if (!response.ok) {
+            throw new Error("Erro ao atualizar transação");
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error("Erro na API:", error);
+        throw error;
+    }
+};

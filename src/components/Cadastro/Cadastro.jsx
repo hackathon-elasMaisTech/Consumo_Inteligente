@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./Cadastro.module.css";
 import {
     CATEGORIAS_DESPESA_FIXA,
@@ -8,7 +8,7 @@ import {
     NOME_CATEGORIAS,
 } from "../../utils/categorias";
 
-export const Cadastro = ({ onAdd }) => {
+export const Cadastro = ({ onAdd, itemParaEditar, onEdit }) => {
     const dataHoje = new Date().toISOString().split("T")[0];
 
     const [nome, setNome] = useState("");
@@ -16,6 +16,16 @@ export const Cadastro = ({ onAdd }) => {
     const [categoria, setCategoria] = useState("");
     const [tipo, setTipo] = useState("despesa");
     const [dataUser, setDataUser] = useState(dataHoje);
+
+    useEffect(() => {
+        if (itemParaEditar) {
+            setNome(itemParaEditar.nome);
+            setValor(itemParaEditar.valor.toString());
+            setCategoria(itemParaEditar.categoria);
+            setTipo(itemParaEditar.tipo);
+            setDataUser(itemParaEditar.dataUser || dataHoje);
+        }
+    }, [itemParaEditar, dataHoje]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -31,7 +41,12 @@ export const Cadastro = ({ onAdd }) => {
             dataUser,
         };
 
-        onAdd(novoItem);
+        // SE ESTIVER EDITANDO, CHAMA ONEDIT. SE NÃO, CHAMA ONADD.
+        if (itemParaEditar) {
+            onEdit(novoItem);
+        } else {
+            onAdd(novoItem);
+        }
 
         setNome("");
         setValor("");
@@ -165,7 +180,7 @@ export const Cadastro = ({ onAdd }) => {
             </div>
 
             <button type="submit" className={styles.submitBtn}>
-                Cadastrar
+                {itemParaEditar ? "Salvar Alterações" : "Cadastrar"}
             </button>
         </form>
     );
